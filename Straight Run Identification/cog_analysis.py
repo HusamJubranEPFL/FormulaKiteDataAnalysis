@@ -83,38 +83,40 @@ def compute_longest_intervals(boat1_changes: pd.DataFrame, boat2_changes: pd.Dat
 
 def add_avg_twa_to_intervals(intervals: list[dict], boat1_df: pd.DataFrame, boat2_df: pd.DataFrame) -> list[dict]:
     """
-    Pour chaque intervalle, ajoute la moyenne de TWA calculée à partir de boat1_df et boat2_df.
+    Pour chaque intervalle, ajoute la moyenne de TWA pour chaque bateau séparément.
     """
-    # Combiner les deux sources
-    twa_df = pd.concat([boat1_df[['SecondsSince1970', 'TWA']], boat2_df[['SecondsSince1970', 'TWA']]])
-    
     for interval in intervals:
         start = interval['start_time']
         end = interval['end_time']
 
-        # Sélection des valeurs de TWA dans l'intervalle
-        mask = (twa_df['SecondsSince1970'] >= start) & (twa_df['SecondsSince1970'] <= end)
-        twa_values = twa_df.loc[mask, 'TWA']
+        # Moyenne TWA pour boat1
+        mask1 = (boat1_df['SecondsSince1970'] >= start) & (boat1_df['SecondsSince1970'] <= end)
+        twa_values1 = boat1_df.loc[mask1, 'TWA']
+        interval['avg TWA boat1'] = twa_values1.mean() if not twa_values1.empty else None
 
-        # Calcul de la moyenne ou None si aucun point
-        interval['avg TWA'] = twa_values.mean() if not twa_values.empty else None
+        # Moyenne TWA pour boat2
+        mask2 = (boat2_df['SecondsSince1970'] >= start) & (boat2_df['SecondsSince1970'] <= end)
+        twa_values2 = boat2_df.loc[mask2, 'TWA']
+        interval['avg TWA boat2'] = twa_values2.mean() if not twa_values2.empty else None
 
     return intervals
 
 def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boat2_name="boat2"):
     """
     Plot the two longest trajectory segments between COG change points,
-    using different linewidths and showing avg TWA in the legend.
+    using different linewidths and showing avg TWA per boat in the legend.
     """
     colors = {boat1_name: 'green', boat2_name: 'blue'}
-    linewidths = [1, 3]  # Épaisseurs différentes pour chaque intervalle
+    linewidths = [1, 3]  # Different thicknesses per interval
 
     plt.figure(figsize=(10, 8))
 
     for idx, interval in enumerate(intervals, 1):
         t_min, t_max = interval['start_time'], interval['end_time']
-        avg_twa = interval.get('avg TWA', None)
-        twa_str = f"{avg_twa:.1f}°" if avg_twa is not None else "N/A"
+        twa1 = interval.get('avg TWA boat1')
+        twa2 = interval.get('avg TWA boat2')
+        twa1_str = f"{twa1:.1f}°" if twa1 is not None else "N/A"
+        twa2_str = f"{twa2:.1f}°" if twa2 is not None else "N/A"
 
         traj_boat1 = boat1_df[(boat1_df['SecondsSince1970'] >= t_min) & (boat1_df['SecondsSince1970'] <= t_max)]
         traj_boat2 = boat2_df[(boat2_df['SecondsSince1970'] >= t_min) & (boat2_df['SecondsSince1970'] <= t_max)]
@@ -122,9 +124,9 @@ def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boa
         lw = linewidths[(idx - 1) % len(linewidths)]
 
         plt.plot(traj_boat2['Lon'], traj_boat2['Lat'], color=colors[boat2_name], linewidth=lw,
-                 label=f'{boat2_name} (interval {idx}, avg TWA: {twa_str})')
+                 label=f'{boat2_name} (interval {idx}, avg TWA: {twa2_str})')
         plt.plot(traj_boat1['Lon'], traj_boat1['Lat'], color=colors[boat1_name], linewidth=lw,
-                 label=f'{boat1_name} (interval {idx}, avg TWA: {twa_str})')
+                 label=f'{boat1_name} (interval {idx}, avg TWA: {twa1_str})')
 
     plt.xlabel("Longitude")
     plt.ylabel("Latitude")
@@ -136,14 +138,17 @@ def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boa
 
 
 
-def analyze_session(boat1_path: str, boat2_path: str) -> None:
+
+def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
     """
     Perform a full analysis of a sailing session given CSV paths for boat1 and boat2.
+    Returns a list of the top N longest intervals with avg TWA per boat.
     """
     # Load data
     boat1_df = pd.read_csv(boat1_path)
     boat2_df = pd.read_csv(boat2_path)
 
+    # Extract boat names from file names
     boat1_name = extract_boat_name(boat1_path)
     boat2_name = extract_boat_name(boat2_path)
 
@@ -154,13 +159,33 @@ def analyze_session(boat1_path: str, boat2_path: str) -> None:
     # Plot full trajectories with COG changes
     plot_full_trajectories(boat1_df, boat2_df, boat1_changes, boat2_changes, boat1_name, boat2_name)
 
-    # Compute and display longest intervals
-    longest_intervals = compute_longest_intervals(boat1_changes, boat2_changes, top_n=2, boat1_name=boat1_name, boat2_name=boat2_name)
+    # Compute longest intervals between change points
+    longest_intervals = compute_longest_intervals(
+        boat1_changes, boat2_changes,
+        top_n=2,
+        boat1_name=boat1_name,
+        boat2_name=boat2_name
+    )
+
+    # Add average TWA per boat
     add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
+
+    # Print interval summary
     for idx, interval in enumerate(longest_intervals, 1):
-        print(f"Interval {idx}: start_time = {interval['start_time']}, end_time = {interval['end_time']}, "
-            f"duration = {interval['duration']} seconds, avg TWA = {interval['avg TWA']}")
+        twa1 = interval.get('avg TWA boat1')
+        twa2 = interval.get('avg TWA boat2')
+        twa1_str = f"{twa1:.1f}°" if twa1 is not None else "N/A"
+        twa2_str = f"{twa2:.1f}°" if twa2 is not None else "N/A"
+
+        print(f"Interval {idx}:")
+        print(f"  Start time: {interval['start_time']}")
+        print(f"  End time  : {interval['end_time']}")
+        print(f"  Duration  : {interval['duration']} seconds")
+        print(f"  Avg TWA {boat1_name}: {twa1_str}")
+        print(f"  Avg TWA {boat2_name}: {twa2_str}")
+        print()
 
     # Plot the longest trajectory segments
     plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
+
     return longest_intervals

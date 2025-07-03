@@ -8,7 +8,8 @@
         "end_time": 1749217783.157,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 49.232144847972975
+        "avg TWA boat1": 49.33433868243244,
+        "avg TWA boat2": 49.129951013513505
       },
       {
         "duration": 89.10800004005432,
@@ -16,7 +17,8 @@
         "end_time": 1749217970.959,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -123.18249551569505
+        "avg TWA boat1": -125.6109831838565,
+        "avg TWA boat2": -120.75400784753363
       }
     ]
   },
@@ -29,7 +31,8 @@
         "end_time": 1749218506.36,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 61.16726696165192
+        "avg TWA boat1": 60.0383598820059,
+        "avg TWA boat2": 62.29617404129794
       },
       {
         "duration": 96.20199990272522,
@@ -37,7 +40,8 @@
         "end_time": 1749218770.36,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -125.32435636363637
+        "avg TWA boat1": -127.28327130977131,
+        "avg TWA boat2": -123.36747559709242
       }
     ]
   },
@@ -50,7 +54,8 @@
         "end_time": 1749219179.356,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 51.16894077079107
+        "avg TWA boat1": 50.77386931818181,
+        "avg TWA boat2": 51.563691808596914
       },
       {
         "duration": 88.50300002098083,
@@ -58,7 +63,8 @@
         "end_time": 1749219367.16,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -138.11416149068324
+        "avg TWA boat1": -139.73577853107344,
+        "avg TWA boat2": -136.49437471783295
       }
     ]
   },
@@ -71,7 +77,8 @@
         "end_time": 1749219680.56,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 54.438955151515145
+        "avg TWA boat1": 54.24801292407108,
+        "avg TWA boat2": 54.630051738075984
       },
       {
         "duration": 81.00600004196167,
@@ -79,7 +86,8 @@
         "end_time": 1749219919.364,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -149.44788155459594
+        "avg TWA boat1": -149.6636251541307,
+        "avg TWA boat2": -149.23187160493825
       }
     ]
   },
@@ -92,7 +100,8 @@
         "end_time": 1749220819.96,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.742664980122875
+        "avg TWA boat1": 50.57098481561822,
+        "avg TWA boat2": 52.913498554913296
       },
       {
         "duration": 68.8050000667572,
@@ -100,7 +109,8 @@
         "end_time": 1749220985.857,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -151.769328
+        "avg TWA boat1": -152.4933488372093,
+        "avg TWA boat2": -151.04425327510918
       }
     ]
   },
@@ -113,7 +123,8 @@
         "end_time": 1749221432.152,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 46.10712873438349
+        "avg TWA boat1": 46.211359782608696,
+        "avg TWA boat2": 46.0030108577633
       },
       {
         "duration": 83.3989999294281,
@@ -121,7 +132,8 @@
         "end_time": 1749221609.562,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -144.20821762589927
+        "avg TWA boat1": -143.9761726618705,
+        "avg TWA boat2": -144.44026258992807
       }
     ]
   },
@@ -134,7 +146,8 @@
         "end_time": 1749221958.96,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 47.909739748953974
+        "avg TWA boat1": 48.43784351464435,
+        "avg TWA boat2": 47.3816359832636
       },
       {
         "duration": 77.5920000076294,
@@ -142,7 +155,8 @@
         "end_time": 1749222119.049,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -146.36022229381445
+        "avg TWA boat1": -146.57619483870968,
+        "avg TWA boat2": -146.14480566280565
       }
     ]
   },
@@ -155,7 +169,8 @@
         "end_time": 1749222441.956,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 52.27409890710383
+        "avg TWA boat1": 52.399158469945355,
+        "avg TWA boat2": 52.14903934426229
       },
       {
         "duration": 66.59700012207031,
@@ -163,7 +178,8 @@
         "end_time": 1749222601.16,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -154.98276333583772
+        "avg TWA boat1": -155.09663813813813,
+        "avg TWA boat2": -154.8687172932331
       }
     ]
   },
@@ -176,7 +192,8 @@
         "end_time": 1749297064.954,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 49.69677382792375
+        "avg TWA boat1": 49.46038311019567,
+        "avg TWA boat2": 49.933408247422676
       },
       {
         "duration": 72.71500015258789,
@@ -184,7 +201,8 @@
         "end_time": 1749297209.075,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -141.32629573590097
+        "avg TWA boat1": -141.44878129298488,
+        "avg TWA boat2": -141.20381017881706
       }
     ]
   },
@@ -197,7 +215,8 @@
         "end_time": 1749302879.956,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 46.66724346689895
+        "avg TWA boat1": 47.111502613240425,
+        "avg TWA boat2": 46.222984320557494
       },
       {
         "duration": 35.907999992370605,
@@ -205,7 +224,8 @@
         "end_time": 1749303003.264,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -144.41387204450626
+        "avg TWA boat1": -145.04362674094708,
+        "avg TWA boat2": -143.78586666666666
       }
     ]
   },
@@ -218,7 +238,8 @@
         "end_time": 1749297588.055,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 48.193454384932316
+        "avg TWA boat1": 47.8230035335689,
+        "avg TWA boat2": 48.56346941176471
       },
       {
         "duration": 72.4079999923706,
@@ -226,7 +247,8 @@
         "end_time": 1749297755.456,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -148.31237862068966
+        "avg TWA boat1": -148.57263724137934,
+        "avg TWA boat2": -148.05212
       }
     ]
   },
@@ -239,7 +261,8 @@
         "end_time": 1749298552.558,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 46.24503802816902
+        "avg TWA boat1": 46.056414473684214,
+        "avg TWA boat2": 46.43330769230769
       },
       {
         "duration": 62.704999923706055,
@@ -247,7 +270,8 @@
         "end_time": 1749298721.757,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -151.36818102073366
+        "avg TWA boat1": -151.6317715654952,
+        "avg TWA boat2": -151.1054299363057
       }
     ]
   },
@@ -260,7 +284,8 @@
         "end_time": 1749299265.759,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 44.351388387096776
+        "avg TWA boat1": 44.029063225806446,
+        "avg TWA boat2": 44.67371354838709
       },
       {
         "duration": 32.68900012969971,
@@ -268,7 +293,8 @@
         "end_time": 1749299405.548,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -142.8645773353752
+        "avg TWA boat1": -144.5397737003058,
+        "avg TWA boat2": -141.18424233128832
       }
     ]
   },
@@ -281,7 +307,8 @@
         "end_time": 1749299837.657,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 37.32256141275699
+        "avg TWA boat1": 37.2380105374078,
+        "avg TWA boat2": 37.407201476793254
       },
       {
         "duration": 68.19600009918213,
@@ -289,7 +316,8 @@
         "end_time": 1749300009.556,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -142.94194501466276
+        "avg TWA boat1": -144.47360703812316,
+        "avg TWA boat2": -141.41028299120237
       }
     ]
   },
@@ -302,7 +330,8 @@
         "end_time": 1749300473.155,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.890019141531326
+        "avg TWA boat1": 51.77049651972158,
+        "avg TWA boat2": 52.009541763341076
       },
       {
         "duration": 64.39999985694885,
@@ -310,7 +339,8 @@
         "end_time": 1749300641.155,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -140.5211552795031
+        "avg TWA boat1": -140.17658229813665,
+        "avg TWA boat2": -140.86572826086956
       }
     ]
   },
@@ -323,7 +353,8 @@
         "end_time": 1749301285.157,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 48.699149595045256
+        "avg TWA boat1": 48.87764476190476,
+        "avg TWA boat2": 48.52048427073403
       },
       {
         "duration": 65.40299987792969,
@@ -331,7 +362,8 @@
         "end_time": 1749301465.356,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -142.88720855614974
+        "avg TWA boat1": -143.87557251908396,
+        "avg TWA boat2": -141.89733333333334
       }
     ]
   },
@@ -344,7 +376,8 @@
         "end_time": 1749301812.076,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 40.98098296836983
+        "avg TWA boat1": 41.05373722627737,
+        "avg TWA boat2": 40.90822871046228
       },
       {
         "duration": 73.58299994468689,
@@ -352,7 +385,8 @@
         "end_time": 1749301973.845,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -148.30266372282608
+        "avg TWA boat1": -148.83998777173912,
+        "avg TWA boat2": -147.76533967391305
       }
     ]
   },
@@ -365,7 +399,8 @@
         "end_time": 1749302309.857,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 41.41196674584323
+        "avg TWA boat1": 41.6543963878327,
+        "avg TWA boat2": 41.169767331433995
       },
       {
         "duration": 71.00499987602234,
@@ -373,7 +408,8 @@
         "end_time": 1749302450.064,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -143.3406748768473
+        "avg TWA boat1": -143.59252253521126,
+        "avg TWA boat2": -143.08918143459914
       }
     ]
   },
@@ -386,7 +422,8 @@
         "end_time": 1749470050.857,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 47.09183158630328
+        "avg TWA boat1": 46.80966013986014,
+        "avg TWA boat2": 47.373608938547484
       },
       {
         "duration": 29.805000066757202,
@@ -394,7 +431,8 @@
         "end_time": 1749470163.16,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -142.70799832214766
+        "avg TWA boat1": -144.16379530201343,
+        "avg TWA boat2": -141.2522013422819
       }
     ]
   },
@@ -407,7 +445,8 @@
         "end_time": 1749475547.556,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.80868351870576
+        "avg TWA boat1": 51.95275506072875,
+        "avg TWA boat2": 51.66490303030303
       },
       {
         "duration": 62.69599986076355,
@@ -415,7 +454,8 @@
         "end_time": 1749475711.655,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -142.13174481658695
+        "avg TWA boat1": -142.2328041401274,
+        "avg TWA boat2": -142.03036261980833
       }
     ]
   },
@@ -428,7 +468,8 @@
         "end_time": 1749476128.051,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.26500310008858
+        "avg TWA boat1": 51.783255978742254,
+        "avg TWA boat2": 50.7467502214349
       },
       {
         "duration": 47.401999950408936,
@@ -436,7 +477,8 @@
         "end_time": 1749476283.855,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -143.21088631578948
+        "avg TWA boat1": -142.89194947368424,
+        "avg TWA boat2": -143.52982315789473
       }
     ]
   },
@@ -449,7 +491,8 @@
         "end_time": 1749470454.266,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": 50.905989082969434
+        "avg TWA boat1": 49.52002620087337,
+        "avg TWA boat2": 52.29195196506551
       },
       {
         "duration": 32.99000000953674,
@@ -457,7 +500,8 @@
         "end_time": 1749470584.157,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "Karl Maeder",
-        "avg TWA": -135.28517602427922
+        "avg TWA boat1": -135.81420668693008,
+        "avg TWA boat2": -134.7577484848485
       }
     ]
   },
@@ -470,7 +514,8 @@
         "end_time": 1749472189.959,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.045945395650165
+        "avg TWA boat1": 51.33942777777777,
+        "avg TWA boat2": 50.75273450508788
       },
       {
         "duration": 74.60400009155273,
@@ -478,7 +523,8 @@
         "end_time": 1749472323.453,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -134.35162650602408
+        "avg TWA boat1": -134.4089518072289,
+        "avg TWA boat2": -134.29430120481928
       }
     ]
   },
@@ -491,7 +537,8 @@
         "end_time": 1749472742.759,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 49.79865664160401
+        "avg TWA boat1": 50.4221612364244,
+        "avg TWA boat2": 49.17515204678362
       },
       {
         "duration": 24.502999782562256,
@@ -499,7 +546,8 @@
         "end_time": 1749472831.36,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -131.64659266802445
+        "avg TWA boat1": -131.56424897959187,
+        "avg TWA boat2": -131.72860162601626
       }
     ]
   },
@@ -512,7 +560,8 @@
         "end_time": 1749473229.16,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 47.259775894538606
+        "avg TWA boat1": 47.77521280602636,
+        "avg TWA boat2": 46.744338983050845
       },
       {
         "duration": 65.50799989700317,
@@ -520,7 +569,8 @@
         "end_time": 1749473374.964,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -138.69561450381678
+        "avg TWA boat1": -138.3066961832061,
+        "avg TWA boat2": -139.0845328244275
       }
     ]
   },
@@ -533,7 +583,8 @@
         "end_time": 1749473722.16,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 48.264844383561645
+        "avg TWA boat1": 48.89900328947369,
+        "avg TWA boat2": 47.63138006571741
       },
       {
         "duration": 48.90400004386902,
@@ -541,7 +592,8 @@
         "end_time": 1749473835.76,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -141.92761554192228
+        "avg TWA boat1": -142.14021676891613,
+        "avg TWA boat2": -141.71501431492845
       }
     ]
   },
@@ -554,7 +606,8 @@
         "end_time": 1749474396.756,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 56.209271622934885
+        "avg TWA boat1": 56.449081632653055,
+        "avg TWA boat2": 55.96946161321671
       },
       {
         "duration": 64.89800000190735,
@@ -562,7 +615,8 @@
         "end_time": 1749474554.443,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -143.45688289676426
+        "avg TWA boat1": -143.1879661016949,
+        "avg TWA boat2": -143.72579969183357
       }
     ]
   },
@@ -575,7 +629,8 @@
         "end_time": 1749475015.842,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 41.43370498251749
+        "avg TWA boat1": 41.73883304195804,
+        "avg TWA boat2": 41.12857692307693
       },
       {
         "duration": 69.00300002098083,
@@ -583,7 +638,8 @@
         "end_time": 1749475183.456,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -140.9803950795948
+        "avg TWA boat1": -140.71743270622287,
+        "avg TWA boat2": -141.24335745296673
       }
     ]
   },
@@ -596,7 +652,8 @@
         "end_time": 1749558590.144,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 52.2343616636528
+        "avg TWA boat1": 52.18566184448463,
+        "avg TWA boat2": 52.283061482820976
       },
       {
         "duration": 78.48499989509583,
@@ -604,7 +661,8 @@
         "end_time": 1749558738.553,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -124.69306500956023
+        "avg TWA boat1": -124.34488520408163,
+        "avg TWA boat2": -125.04080127388536
       }
     ]
   },
@@ -617,7 +675,8 @@
         "end_time": 1749563419.552,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.24009675615213
+        "avg TWA boat1": 51.25987136465324,
+        "avg TWA boat2": 51.22032214765101
       },
       {
         "duration": 26.503999948501587,
@@ -625,7 +684,8 @@
         "end_time": 1749563524.858,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -140.10500376647835
+        "avg TWA boat1": -140.82676981132076,
+        "avg TWA boat2": -139.38595112781954
       }
     ]
   },
@@ -638,7 +698,8 @@
         "end_time": 1749559063.453,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.353849214145384
+        "avg TWA boat1": 51.653295677799605,
+        "avg TWA boat2": 51.05440275049116
       },
       {
         "duration": 75.90000009536743,
@@ -646,7 +707,8 @@
         "end_time": 1749559227.552,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -127.03053355263157
+        "avg TWA boat1": -127.0276039473684,
+        "avg TWA boat2": -127.03346315789474
       }
     ]
   },
@@ -659,7 +721,8 @@
         "end_time": 1749559521.742,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 51.030474182851734
+        "avg TWA boat1": 51.00467803030303,
+        "avg TWA boat2": 51.05629478672986
       },
       {
         "duration": 69.69000005722046,
@@ -667,7 +730,8 @@
         "end_time": 1749559682.953,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -132.15642354630293
+        "avg TWA boat1": -132.78795114942528,
+        "avg TWA boat2": -131.5258020086083
       }
     ]
   },
@@ -680,7 +744,8 @@
         "end_time": 1749560028.16,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 53.00921971830985
+        "avg TWA boat1": 53.17891206313416,
+        "avg TWA boat2": 52.83971846846847
       },
       {
         "duration": 76.70099997520447,
@@ -688,7 +753,8 @@
         "end_time": 1749560214.256,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -134.07438005215124
+        "avg TWA boat1": -133.92926597131682,
+        "avg TWA boat2": -134.2194941329857
       }
     ]
   },
@@ -701,7 +767,8 @@
         "end_time": 1749560605.852,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": 52.50905480140775
+        "avg TWA boat1": 52.83517989949749,
+        "avg TWA boat2": 52.18260160965795
       },
       {
         "duration": 73.81299996376038,
@@ -709,7 +776,8 @@
         "end_time": 1749560781.075,
         "boat1_name": "Gian Stragiotti",
         "boat2_name": "SenseBoard",
-        "avg TWA": -137.20126829268293
+        "avg TWA boat1": -137.22780894308943,
+        "avg TWA boat2": -137.17472764227642
       }
     ]
   },
@@ -722,7 +790,8 @@
         "end_time": 1749561255.052,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 49.45420037019898
+        "avg TWA boat1": 49.112382053654024,
+        "avg TWA boat2": 49.796335185185185
       },
       {
         "duration": 72.90200018882751,
@@ -730,7 +799,8 @@
         "end_time": 1749561417.058,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -138.44087774725276
+        "avg TWA boat1": -139.16793956043955,
+        "avg TWA boat2": -137.71381593406593
       }
     ]
   },
@@ -743,7 +813,8 @@
         "end_time": 1749561820.956,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 50.25819043588659
+        "avg TWA boat1": 49.93137140439932,
+        "avg TWA boat2": 50.58528619813717
       },
       {
         "duration": 76.40499997138977,
@@ -751,7 +822,8 @@
         "end_time": 1749561982.859,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -138.99571764705883
+        "avg TWA boat1": -138.70026535947713,
+        "avg TWA boat2": -139.29116993464052
       }
     ]
   },
@@ -764,7 +836,8 @@
         "end_time": 1749562439.053,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 46.59344893248703
+        "avg TWA boat1": 47.1526662817552,
+        "avg TWA boat2": 46.03487658592849
       },
       {
         "duration": 59.79800009727478,
@@ -772,7 +845,8 @@
         "end_time": 1749562582.954,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -141.5919164578112
+        "avg TWA boat1": -141.86730267558528,
+        "avg TWA boat2": -141.3169899833055
       }
     ]
   },
@@ -785,7 +859,8 @@
         "end_time": 1749562856.157,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": 48.54235092491839
+        "avg TWA boat1": 48.45644396082698,
+        "avg TWA boat2": 48.628257889009795
       },
       {
         "duration": 70.89299988746643,
@@ -793,7 +868,8 @@
         "end_time": 1749563002.155,
         "boat1_name": "Karl Maeder",
         "boat2_name": "SenseBoard",
-        "avg TWA": -141.325963354475
+        "avg TWA boat1": -141.86400422535212,
+        "avg TWA boat2": -140.78716361071932
       }
     ]
   }
