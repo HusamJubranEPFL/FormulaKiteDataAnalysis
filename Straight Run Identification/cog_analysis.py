@@ -70,11 +70,9 @@ def compute_longest_intervals(boat1_changes: pd.DataFrame, boat2_changes: pd.Dat
 
     intervals = []
     for i in range(len(all_changes_sorted) - 1):
-        start = all_changes_sorted.loc[i, 'SecondsSince1970']
-        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970']
+        start = all_changes_sorted.loc[i, 'SecondsSince1970'] +5 # Adding a 5 seconds buffer to start time
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970'] -5 # Adding a 5 seconds buffer to end time
         intervals.append({
-            'index_min': i,
-            'index_max': i + 1,
             'duration': end - start,
             'start_time': start,
             'end_time': end,
@@ -160,7 +158,7 @@ def analyze_session(boat1_path: str, boat2_path: str) -> None:
     longest_intervals = compute_longest_intervals(boat1_changes, boat2_changes, top_n=2, boat1_name=boat1_name, boat2_name=boat2_name)
     add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
     for idx, interval in enumerate(longest_intervals, 1):
-        print(f"Interval {idx}: start_time = {interval['start_time']}, end_time = {interval['index_max']}, "
+        print(f"Interval {idx}: start_time = {interval['start_time']}, end_time = {interval['end_time']}, "
             f"duration = {interval['duration']} seconds, avg TWA = {interval['avg TWA']}")
 
     # Plot the longest trajectory segments
