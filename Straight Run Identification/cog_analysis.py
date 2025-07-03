@@ -46,8 +46,8 @@ def plot_full_trajectories(boat1_df, boat2_df, boat1_changes, boat2_changes, boa
     plt.figure(figsize=(10, 8))
     plt.scatter(boat2_df['Lon'], boat2_df['Lat'], c=colors[boat2_name], marker='x', s=10, label=f'Trajectory {boat2_name}')
     plt.scatter(boat1_df['Lon'], boat1_df['Lat'], c=colors[boat1_name], marker='x', s=10, label=f'Trajectory {boat1_name}')
-    plt.scatter(boat2_changes['Lon'], boat2_changes['Lat'], c='red', s=40, label=f'COG Change Points {boat2_name}')
-    plt.scatter(boat1_changes['Lon'], boat1_changes['Lat'], c='red', s=40, label=f'COG Change Points {boat1_name}')
+    plt.scatter(boat2_changes['Lon'], boat2_changes['Lat'], c='red', s=40, label=f'COG Change Points')
+    plt.scatter(boat1_changes['Lon'], boat1_changes['Lat'], c='red', s=40)
 
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
@@ -169,22 +169,6 @@ def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
 
     # Add average TWA per boat
     add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
-
-    # Print interval summary
-    for idx, interval in enumerate(longest_intervals, 1):
-        twa1 = interval.get('avg TWA boat1')
-        twa2 = interval.get('avg TWA boat2')
-        twa1_str = f"{twa1:.1f}°" if twa1 is not None else "N/A"
-        twa2_str = f"{twa2:.1f}°" if twa2 is not None else "N/A"
-
-        print(f"Interval {idx}:")
-        print(f"  Start time: {interval['start_time']}")
-        print(f"  End time  : {interval['end_time']}")
-        print(f"  Duration  : {interval['duration']} seconds")
-        print(f"  Avg TWA {boat1_name}: {twa1_str}")
-        print(f"  Avg TWA {boat2_name}: {twa2_str}")
-        print()
-
     # Plot the longest trajectory segments
     plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
 
