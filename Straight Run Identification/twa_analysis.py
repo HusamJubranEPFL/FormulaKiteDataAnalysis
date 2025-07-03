@@ -8,14 +8,57 @@ from typing import Tuple, List
 def load_data(karl_path: str, senseboard_path: str) -> Tuple[pd.DataFrame, pd.DataFrame]:
     return pd.read_csv(karl_path), pd.read_csv(senseboard_path)
 
-
 def detect_TWA_change(df: pd.DataFrame, value_col: str = 'TWA') -> pd.DataFrame:
     data = df[value_col].values
     value_diffs = np.abs(data[1:] - data[:-1])
-    switch_indices = np.where(value_diffs > 10)[0] + 1
+    switch_indices = np.where(value_diffs > 8)[0] + 1
     return df.loc[switch_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']]\
              .assign(index=switch_indices)
+"""
+def detect_TWA_change(
+    df: pd.DataFrame,
+    value_col: str = 'TWA',
+    window: int = 5,
+    threshold: float = 2
+) -> pd.DataFrame:
 
+    # Smooth TWA using rolling mean
+    smoothed = df[value_col].rolling(window=window, center=True).mean()
+
+    # Compute differences between consecutive smoothed values
+    value_diffs = np.abs(smoothed.diff())
+
+    # Find indices where the change exceeds the threshold
+    switch_indices = np.where(value_diffs > threshold)[0]
+
+    # Clean up: remove any out-of-bounds due to rolling window NaNs
+    switch_indices = switch_indices[(switch_indices > 0) & (switch_indices < len(df))]
+
+    return df.loc[switch_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']].assign(index=switch_indices)
+"""
+
+def detect_COG_change(df: pd.DataFrame, value_col: str = 'COG', threshold: float = 10.0) -> pd.DataFrame:
+    """
+    Détecte les points où le COG change brusquement de plus de `threshold` degrés.
+    
+    Args:
+        df (pd.DataFrame): le DataFrame contenant les données.
+        value_col (str): la colonne à analyser (par défaut 'COG').
+        threshold (float): seuil en degrés pour détecter un changement significatif.
+
+    Returns:
+        pd.DataFrame: sous-ensemble du DataFrame aux points de rupture détectés.
+    """
+    data = df[value_col].values
+    value_diffs = np.abs(data[1:] - data[:-1])
+    
+    # Corrige pour passage de 359° à 0°
+    value_diffs = np.minimum(value_diffs, 360 - value_diffs)
+
+    switch_indices = np.where(value_diffs > threshold)[0] + 1
+    
+    return df.loc[switch_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']]\
+             .assign(index=switch_indices)
 
 def detect_simple_sign_switch(df: pd.DataFrame, value_col: str = 'TWA') -> pd.DataFrame:
     data = df[value_col].values
@@ -25,6 +68,37 @@ def detect_simple_sign_switch(df: pd.DataFrame, value_col: str = 'TWA') -> pd.Da
         switch_indices = np.concatenate(([0], switch_indices, [len(df) - 1]))
     return df.loc[switch_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']]\
              .assign(index=switch_indices)
+"""
+def detect_simple_sign_switch(
+    df: pd.DataFrame,
+    value_col: str = 'TWA',
+    window: int = 5
+) -> pd.DataFrame:
+    # Smooth the data with a rolling mean
+    smoothed = df[value_col].rolling(window=window, center=True).mean()
+
+    # Remove NaNs caused by rolling
+    smoothed = smoothed.dropna()
+    valid_indices = smoothed.index
+
+    # Detect sign switches on smoothed data
+    signs = np.sign(smoothed.values)  # Utiliser .values pour travailler avec des array numpy
+    switch_positions = np.where(np.diff(signs) != 0)[0] + 1
+    
+    # Get the actual indices from the DataFrame
+    switch_indices = valid_indices[switch_positions]
+
+    # Add first and last if needed
+    if len(valid_indices) > 0:
+        first_idx = valid_indices[0]
+        last_idx = valid_indices[-1]
+        switch_indices = np.concatenate(([first_idx], switch_indices, [last_idx]))
+
+    # Ensure matching index for result
+    result = df.loc[switch_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']].copy()
+    result['index'] = switch_indices
+    return result
+"""
 
 
 def find_best_ranges(df: pd.DataFrame, index_col: str) -> Tuple[Tuple[int, int], Tuple[int, int]]:
@@ -65,10 +139,10 @@ def max_successive_gap_in_range(df: pd.DataFrame, index_col: str, range_: Tuple[
 def plot_trajectories(karl_df, senseboard_df, result_sb, result_kl, result_sb_man, result_kl_man):
     plt.figure(figsize=(10, 8))
     colors = {'SenseBoard': 'blue', 'Karl': 'green'}
-    plt.scatter(senseboard_df['Lon'], senseboard_df['Lat'], c=colors['SenseBoard'], marker='x', s=10, label='Traj. SenseBoard')
-    plt.scatter(karl_df['Lon'], karl_df['Lat'], c=colors['Karl'], marker='x', s=10, label='Traj. Karl')
-    plt.scatter(result_sb['Lon'], result_sb['Lat'], c=colors['SenseBoard'], marker='o', s=40, label='Changes TWA SenseBoard')
-    plt.scatter(result_kl['Lon'], result_kl['Lat'], c=colors['Karl'], marker='o', s=40, label='Changes TWA Karl')
+    plt.scatter(senseboard_df['Lon'], senseboard_df['Lat'], c=colors['SenseBoard'], marker='x', s=5, label='Traj. SenseBoard')
+    plt.scatter(karl_df['Lon'], karl_df['Lat'], c=colors['Karl'], marker='x', s=5, label='Traj. Karl')
+    plt.scatter(result_sb['Lon'], result_sb['Lat'], c='yellow', marker='o', s=40, label='Changes TWA SenseBoard')
+    plt.scatter(result_kl['Lon'], result_kl['Lat'], c='yellow', marker='o', s=40, label='Changes TWA Karl')
     plt.scatter(result_sb_man['Lon'], result_sb_man['Lat'], c='red', marker='o', s=40, label='Manoeuvre SenseBoard')
     plt.scatter(result_kl_man['Lon'], result_kl_man['Lat'], c='red', marker='o', s=40, label='Manoeuvre Karl')
     plt.xlabel('Longitude')
@@ -92,16 +166,23 @@ def plot_max_gaps(karl_df, senseboard_df, gap1: Tuple[int, int], gap2: Tuple[int
     plt.grid(True)
     plt.tight_layout()
     plt.show()
-
-
+"""
+def reduce_to_one_per_second(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df['SecondsSince1970'] = df['SecondsSince1970'].astype(int)
+    df = df.drop_duplicates(subset='SecondsSince1970')
+    return df.sort_values('SecondsSince1970').reset_index(drop=True)
+"""
 def analyze_session(karl_path: str, senseboard_path: str):
     karl_df, senseboard_df = load_data(karl_path, senseboard_path)
-    result_sb = detect_TWA_change(senseboard_df)
-    result_kl = detect_TWA_change(karl_df)
+    #karl_df = reduce_to_one_per_second(karl_df)
+    #senseboard_df = reduce_to_one_per_second(senseboard_df)
+
+    window = 20
+    result_sb = detect_COG_change(senseboard_df)
+    result_kl = detect_COG_change(karl_df)
     result_sb_man = detect_simple_sign_switch(senseboard_df)
     result_kl_man = detect_simple_sign_switch(karl_df)
-
-    plot_trajectories(karl_df, senseboard_df, result_sb, result_kl, result_sb_man, result_kl_man)
 
     result_all = pd.concat([result_sb_man, result_sb, result_kl_man, result_kl], ignore_index=True)
 
@@ -111,7 +192,8 @@ def analyze_session(karl_path: str, senseboard_path: str):
     gap1 = max_successive_gap_in_range(result_all, "index", final_r1)
     gap2 = max_successive_gap_in_range(result_all, "index", final_r2)
 
-    print("Max gap in first range:", gap1)
-    print("Max gap in second range:", gap2)
+    print("Max gap in first range:", [gap1[0], gap1[1]])
+    print("Max gap in second range:", [gap2[0], gap2[1]])
 
+    plot_trajectories(karl_df, senseboard_df, result_sb, result_kl, result_sb_man, result_kl_man)
     plot_max_gaps(karl_df, senseboard_df, (gap1[0], gap1[1]), (gap2[0], gap2[1]))
