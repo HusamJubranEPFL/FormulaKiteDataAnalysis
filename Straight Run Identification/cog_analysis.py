@@ -35,12 +35,12 @@ def detect_COG_changes_rolling_mean(df: pd.DataFrame, value_col: str = 'COG',
 
     return df.loc[change_indices, ['Lat', 'Lon', value_col, 'SecondsSince1970']].assign(index=change_indices)
 
-
+"""
 def plot_full_trajectories(boat1_df, boat2_df, boat1_changes, boat2_changes, boat1_name="boat1", boat2_name="boat2"):
 
-    """
+    
     Plot full trajectories of both boat1 and boat2 with markers on COG change points.
-    """
+    
     colors = {boat1_name: 'green', boat2_name: 'blue'}
 
     plt.figure(figsize=(10, 8))
@@ -52,6 +52,41 @@ def plot_full_trajectories(boat1_df, boat2_df, boat1_changes, boat2_changes, boa
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
     plt.title('Trajectories with COG Change Points')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+"""
+
+def plot_full_trajectories(
+    boat1_df,
+    boat2_df,
+    boat1_changes,
+    boat2_changes,
+    boat1_name="boat1",
+    boat2_name="boat2",
+    show_changes=True
+):
+    """
+    Plot full trajectories of both boats.
+    Optionally overlay COG change points if show_changes is True.
+    """
+    colors = {boat1_name: 'green', boat2_name: 'blue'}
+
+    plt.figure(figsize=(10, 8))
+
+    # Trajectoires des bateaux
+    plt.scatter(boat2_df['Lon'], boat2_df['Lat'], c=colors[boat2_name], marker='x', s=10, label=f'Trajectory {boat2_name}')
+    plt.scatter(boat1_df['Lon'], boat1_df['Lat'], c=colors[boat1_name], marker='x', s=10, label=f'Trajectory {boat1_name}')
+
+    # Points de changement de cap si demandé
+    if show_changes:
+        plt.scatter(boat2_changes['Lon'], boat2_changes['Lat'], c='red', s=40, label='COG Change Points')
+        plt.scatter(boat1_changes['Lon'], boat1_changes['Lat'], c='red', s=40)
+
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    plt.title('Trajectories' + (' with COG Change Points' if show_changes else ''))
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
@@ -136,8 +171,18 @@ def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boa
     plt.tight_layout()
     plt.show()
 
+def load_boat_data(boat1_path: str, boat2_path: str) -> tuple[pd.DataFrame, pd.DataFrame, str, str]:
+    """
+    Load boat data from CSV files and extract boat names.
+    Returns dataframes and corresponding boat names.
+    """
+    boat1_df = pd.read_csv(boat1_path)
+    boat2_df = pd.read_csv(boat2_path)
 
+    boat1_name = extract_boat_name(boat1_path)
+    boat2_name = extract_boat_name(boat2_path)
 
+    return boat1_df, boat2_df, boat1_name, boat2_name
 
 def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
     """
@@ -145,12 +190,7 @@ def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
     Returns a list of the top N longest intervals with avg TWA per boat.
     """
     # Load data
-    boat1_df = pd.read_csv(boat1_path)
-    boat2_df = pd.read_csv(boat2_path)
-
-    # Extract boat names from file names
-    boat1_name = extract_boat_name(boat1_path)
-    boat2_name = extract_boat_name(boat2_path)
+    boat1_df, boat2_df, boat1_name, boat2_name = load_boat_data(boat1_path, boat2_path)
 
     # Detect COG change points
     boat1_changes = detect_COG_changes_rolling_mean(boat1_df)
@@ -169,6 +209,7 @@ def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
 
     # Add average TWA per boat
     add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
+
     # Plot the longest trajectory segments
     plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
 
