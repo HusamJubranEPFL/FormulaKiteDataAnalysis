@@ -8,7 +8,7 @@ from cog_analysis import load_boat_data
 from IPython.display import display
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import pprint as pp
 def load_summary_intervals(summary_file="summary.json"):
     with open(summary_file, "r") as f:
         return {r["run"]: r["intervals"] for r in json.load(f)}
@@ -478,7 +478,7 @@ def process_run(df1, df2, name1, name2, title):
     if df1.empty or df2.empty:
         print(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
         return
-
+    """ 
     df1, df2 = df1.copy(), df2.copy()
     df1["ISODateTimeUTC"] = pd.to_datetime(df1["ISODateTimeUTC"], errors="coerce")
     df2["ISODateTimeUTC"] = pd.to_datetime(df2["ISODateTimeUTC"], errors="coerce")
@@ -493,7 +493,7 @@ def process_run(df1, df2, name1, name2, title):
     if df1.empty or df2.empty:
         print(f"⚠️ Skipping {title} after time alignment")
         return
-
+    """
     print("\n" + "="*80)
     print(title)
     print("="*80)
@@ -516,13 +516,25 @@ def process_all_run(run_path, summary_path, tot = False):
         print(f"Processing only reduced intervals for {name1} vs {name2}")
         run_name = os.path.basename(run_path)
         intervals = summary_dict.get(run_name, [])
-        
-        start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        title1 = f"Interval 1: Upwind from {start1} to {end1}: {name1} vs {name2}"
-        process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
 
-        start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        title2 = f"Interval 2: Downwind from {start2} to {end2}: {name1} vs {name2}"
-        process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
+        print(f"Interval 1 summary:")
+        pp.pprint(intervals[0])
+        if intervals[0]["duration"] < 30:
+            print(f"⚠️ Skipping {name1} vs {name2} first intervall due to insufficient high SOG duration in intervals.")
+            return
+        else:
+            start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title1 = f"Interval 1: Upwind from {start1} to {end1}: {name1} vs {name2}"
+            process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
+            
+        print(f"Interval 2 summary:")
+        pp.pprint(intervals[1])
+        if intervals[1]["duration"] < 30:
+            print(f"⚠️ Skipping {name1} vs {name2} second intervall due to insufficient high SOG duration in intervals.")
+            return
+        else:
+            start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title2 = f"Interval 2: Downwind from {start2} to {end2}: {name1} vs {name2}"
+            process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)

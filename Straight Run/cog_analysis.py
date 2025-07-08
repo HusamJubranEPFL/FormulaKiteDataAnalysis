@@ -92,11 +92,9 @@ def plot_full_trajectories(
     plt.tight_layout()
     plt.show()
 
-
+"""
+# No SOG threshold
 def compute_longest_intervals(boat1_changes: pd.DataFrame, boat2_changes: pd.DataFrame, top_n: int = 2,boat1_name="boat1", boat2_name="boat2") -> list[dict]:
-    """
-    Combine COG change points and compute the top N longest time intervals between them.
-    """
     boat1_changes['source'] = 'boat1'
     boat2_changes['source'] = 'boat2'
     all_changes = pd.concat([boat1_changes, boat2_changes], ignore_index=True)
@@ -105,42 +103,380 @@ def compute_longest_intervals(boat1_changes: pd.DataFrame, boat2_changes: pd.Dat
 
     intervals = []
     for i in range(len(all_changes_sorted) - 1):
-        start = all_changes_sorted.loc[i, 'SecondsSince1970'] +5 # Adding a 5 seconds buffer to start time
-        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970'] -5 # Adding a 5 seconds buffer to end time
+        start = all_changes_sorted.loc[i, 'SecondsSince1970']
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970']
         intervals.append({
             'duration': end - start,
-            'start_time': start,
-            'end_time': end,
+            'start_time': start,  # Adding a buffer to start time if needed
+            'end_time': end,  # Adding a buffer to end time if needed
             'boat1_name': boat1_name,
             'boat2_name': boat2_name
         })
     return sorted(intervals, key=lambda x: x['duration'], reverse=True)[:top_n]
 
-def add_avg_twa_to_intervals(intervals: list[dict], boat1_df: pd.DataFrame, boat2_df: pd.DataFrame) -> list[dict]:
-    """
-    Pour chaque intervalle, ajoute la moyenne de TWA pour chaque bateau séparément.
-    """
-    for interval in intervals:
-        start = interval['start_time']
-        end = interval['end_time']
+# Constant SOG threshold
+def compute_longest_intervals(
+    boat1_changes: pd.DataFrame,
+    boat2_changes: pd.DataFrame,
+    boat1_df: pd.DataFrame,
+    boat2_df: pd.DataFrame,
+    top_n: int = 2,
+    boat1_name="boat1",
+    boat2_name="boat2",
+    min_sog: float = 18.0
+) -> list[dict]:
+    
+    boat1_changes['source'] = 'boat1'
+    boat2_changes['source'] = 'boat2'
+    all_changes = pd.concat([boat1_changes, boat2_changes], ignore_index=True)
+    all_changes_sorted = all_changes.sort_values('SecondsSince1970').reset_index(drop=True)
 
-        # Moyenne TWA pour boat1
-        mask1 = (boat1_df['SecondsSince1970'] >= start) & (boat1_df['SecondsSince1970'] <= end)
-        twa_values1 = boat1_df.loc[mask1, 'TWA']
-        interval['avg TWA boat1'] = twa_values1.mean() if not twa_values1.empty else None
+    intervals = []
+    for i in range(len(all_changes_sorted) - 1):
+        start = all_changes_sorted.loc[i, 'SecondsSince1970']
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970']
+        
+        # Données pour l’intervalle
+        boat1_interval = boat1_df[(boat1_df['SecondsSince1970'] >= start) & 
+                                  (boat1_df['SecondsSince1970'] <= end)]
+        boat2_interval = boat2_df[(boat2_df['SecondsSince1970'] >= start) & 
+                                  (boat2_df['SecondsSince1970'] <= end)]
+        
+        # Fusion des données temporelles
+        merged = pd.merge_asof(
+            boat1_interval.sort_values('SecondsSince1970'),
+            boat2_interval.sort_values('SecondsSince1970'),
+            on='SecondsSince1970',
+            suffixes=('_boat1', '_boat2')
+        )
+        
+        # Filtrer les points où les deux bateaux dépassent le SOG minimum
+        high_sog_mask = (merged['SOG_boat1'] > min_sog) & (merged['SOG_boat2'] > min_sog)
 
-        # Moyenne TWA pour boat2
-        mask2 = (boat2_df['SecondsSince1970'] >= start) & (boat2_df['SecondsSince1970'] <= end)
-        twa_values2 = boat2_df.loc[mask2, 'TWA']
-        interval['avg TWA boat2'] = twa_values2.mean() if not twa_values2.empty else None
+        if high_sog_mask.any():
+            valid_times = merged.loc[high_sog_mask, 'SecondsSince1970']
+            interval_start = valid_times.min()
+            interval_end = valid_times.max()
+            high_sog_duration = interval_end - interval_start
 
-    return intervals
+            intervals.append({
+                'duration': interval_end - interval_start,
+                'start_time': interval_start,
+                'end_time': interval_end,
+                'boat1_name': boat1_name,
+                'boat2_name': boat2_name,
+                'high_sog_duration': high_sog_duration
+            })
 
+    # Trier selon la durée SOG haute, puis la durée totale
+    return sorted(intervals, key=lambda x: (-x['high_sog_duration'], -x['duration']))[:top_n]
+
+
+# Dynamic SOG threshold based on percentile
+def compute_longest_intervals(
+    boat1_changes: pd.DataFrame,
+    boat2_changes: pd.DataFrame,
+    boat1_df: pd.DataFrame,
+    boat2_df: pd.DataFrame,
+    top_n: int = 2,
+    boat1_name="boat1",
+    boat2_name="boat2",
+    sog_percentile: float = 25,
+    min_duration_sec: float = 30.0
+) -> list[dict]:
+
+    # Marquer l’origine des points de changement
+    boat1_changes['source'] = boat1_name
+    boat2_changes['source'] = boat2_name
+
+    # Fusionner et trier chronologiquement tous les points de changement de cap
+    all_changes = pd.concat([boat1_changes, boat2_changes], ignore_index=True)
+    all_changes_sorted = all_changes.sort_values('SecondsSince1970').reset_index(drop=True)
+
+    all_intervals = []
+
+    for i in range(len(all_changes_sorted) - 1):
+        # Début et fin de l’intervalle brut
+        start = all_changes_sorted.loc[i, 'SecondsSince1970']+5 # Adding a buffer to start time
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970']-5 # Adding a buffer to end time
+
+        # Découpage des données dans l’intervalle
+        boat1_interval = boat1_df[(boat1_df['SecondsSince1970'] >= start) & 
+                                  (boat1_df['SecondsSince1970'] <= end)]
+        boat2_interval = boat2_df[(boat2_df['SecondsSince1970'] >= start) & 
+                                  (boat2_df['SecondsSince1970'] <= end)]
+
+        if boat1_interval.empty or boat2_interval.empty:
+            continue
+
+        # Fusion temporelle des deux bateaux
+        merged = pd.merge_asof(
+            boat1_interval.sort_values('SecondsSince1970'),
+            boat2_interval.sort_values('SecondsSince1970'),
+            on='SecondsSince1970',
+            suffixes=('_boat1', '_boat2')
+        )
+
+        # Calcul du seuil de SOG commun
+        combined_sog = pd.concat([merged['SOG_boat1'], merged['SOG_boat2']])
+        min_sog = np.percentile(combined_sog.dropna(), sog_percentile)
+
+        # Filtrer sur les instants où les deux bateaux sont > min_sog
+        high_sog_mask = (merged['SOG_boat1'] > min_sog) & (merged['SOG_boat2'] > min_sog)
+
+        if high_sog_mask.any():
+            valid_times = merged.loc[high_sog_mask, 'SecondsSince1970']
+            interval_start = valid_times.min()
+            interval_end = valid_times.max()
+            high_sog_duration = interval_end - interval_start
+
+            if high_sog_duration >= min_duration_sec:
+                all_intervals.append({
+                    'start_time': interval_start,
+                    'end_time': interval_end,
+                    'high_sog_duration': high_sog_duration,
+                    'boat1_name': boat1_name,
+                    'boat2_name': boat2_name,
+                    'min_sog_used': min_sog
+                })
+
+    # Trier selon la durée décroissante
+    sorted_intervals = sorted(all_intervals, key=lambda x: -x['high_sog_duration'])
+
+    # Retourner les top N
+    return sorted_intervals[:top_n]
+
+# dynamic SOG threshold based on derivative of SOG
+def compute_longest_intervals(
+    boat1_changes: pd.DataFrame,
+    boat2_changes: pd.DataFrame,
+    boat1_df: pd.DataFrame,
+    boat2_df: pd.DataFrame,
+    top_n: int = 2,
+    boat1_name: str = "boat1",
+    boat2_name: str = "boat2",
+    min_duration_sec: float = 30.0,
+    sog_derivative_threshold: float = 0.5,
+    smoothing_window: int = 60
+) -> list[dict]:
+    # Mark source of change points
+    boat1_changes['source'] = boat1_name
+    boat2_changes['source'] = boat2_name
+    
+    # Combine and sort all change points chronologically
+    all_changes = pd.concat([boat1_changes, boat2_changes], ignore_index=True)
+    all_changes_sorted = all_changes.sort_values('SecondsSince1970').reset_index(drop=True)
+    
+    # Preprocess SOG data with smoothing and derivative calculation
+    for df in [boat1_df, boat2_df]:
+        # Smooth SOG data to reduce noise
+        df['SOG_smoothed'] = df['SOG'].rolling(
+            window=smoothing_window,
+            min_periods=1,
+            center=True
+        ).mean()
+        
+        # Calculate robust derivative using central differences
+        df['SOG_derivative'] = (
+            df['SOG_smoothed'].diff(2) / 
+            df['SecondsSince1970'].diff(2).abs()
+        ).abs()
+    
+    intervals = []
+    
+    for i in range(len(all_changes_sorted) - 1):
+        # Get interval boundaries with small buffer
+        start = all_changes_sorted.loc[i, 'SecondsSince1970'] + 5
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970'] - 5
+        
+        # Get data for this interval
+        boat1_interval = boat1_df[(boat1_df['SecondsSince1970'] >= start) & 
+                                (boat1_df['SecondsSince1970'] <= end)].copy()
+        boat2_interval = boat2_df[(boat2_df['SecondsSince1970'] >= start) & 
+                                (boat2_df['SecondsSince1970'] <= end)].copy()
+        
+        if boat1_interval.empty or boat2_interval.empty:
+            continue
+            
+        # Merge the two boats' data by time
+        merged = pd.merge_asof(
+            boat1_interval.sort_values('SecondsSince1970'),
+            boat2_interval.sort_values('SecondsSince1970'),
+            on='SecondsSince1970',
+            suffixes=('_boat1', '_boat2')
+        )
+        
+        # Find periods where both boats have stable speed
+        stable_mask = (
+            (merged['SOG_derivative_boat1'] < sog_derivative_threshold) &
+            (merged['SOG_derivative_boat2'] < sog_derivative_threshold))
+        
+        # Group consecutive stable periods
+        stable_groups = (stable_mask != stable_mask.shift(1)).cumsum()
+        
+        for group_id, group_data in merged[stable_mask].groupby(stable_groups):
+            group_start = group_data['SecondsSince1970'].min()
+            group_end = group_data['SecondsSince1970'].max()
+            group_duration = group_end - group_start
+            
+            if group_duration >= min_duration_sec:
+                # Calculate additional metrics
+                avg_sog1 = group_data['SOG_boat1'].mean()
+                avg_sog2 = group_data['SOG_boat2'].mean()
+                
+                intervals.append({
+                    'start_time': group_start,
+                    'end_time': group_end,
+                    'duration': group_duration,
+                    'boat1_name': boat1_name,
+                    'boat2_name': boat2_name,
+                    'avg_SOG_boat1': avg_sog1,
+                    'avg_SOG_boat2': avg_sog2,
+                    'SOG_variation_boat1': group_data['SOG_boat1'].std(),
+                    'SOG_variation_boat2': group_data['SOG_boat2'].std(),
+                    'stability_score': 1/(1 + group_data[['SOG_derivative_boat1', 
+                                                       'SOG_derivative_boat2']].mean().mean())
+                })
+    
+    # Sort by duration and stability score
+    return sorted(intervals, 
+                 key=lambda x: (-x['duration'], -x['stability_score']))[:top_n]
+
+
+def plot_smoothing_comparison(boat1_df: pd.DataFrame, boat2_df: pd.DataFrame, 
+                             boat1_name: str, boat2_name: str,
+                             window: int, sog_derivative_threshold: float):
+
+    plt.figure(figsize=(15, 10))
+    
+    # Time conversion to seconds from start
+    time = boat2_df['SecondsSince1970'] - boat2_df['SecondsSince1970'].min()
+
+    
+    # Plot SOG comparison for both boats
+    plt.subplot(2, 1, 1)
+    plt.plot(time, boat1_df['SOG'], 'b-', alpha=0.3, label=f'{boat1_name} Original SOG')
+    plt.plot(time, boat1_df['SOG_smoothed'], 'b-', linewidth=1.5, label=f'{boat1_name} Smoothed')
+    plt.plot(time, boat2_df['SOG'], 'r-', alpha=0.3, label=f'{boat2_name} Original SOG')
+    plt.plot(time, boat2_df['SOG_smoothed'], 'r-', linewidth=1.5, label=f'{boat2_name} Smoothed')
+    plt.ylabel('SOG (knots)')
+    plt.xlabel('Time (seconds from start)')
+    plt.title('SOG Smoothing Comparison for Both Boats')
+    plt.legend()
+    plt.grid(True)
+    
+    # Plot SOG derivatives for both boats
+    plt.subplot(2, 1, 2)
+    plt.plot(time, boat1_df['SOG_derivative'], 'b-', label=f'{boat1_name} SOG Derivative')
+    plt.plot(time, boat2_df['SOG_derivative'], 'r-', label=f'{boat2_name} SOG Derivative')
+    plt.axhline(y=sog_derivative_threshold, color='k', linestyle='--', label='Threshold')
+    plt.ylabel('SOG Derivative (knots/sec)')
+    plt.xlabel('Time (seconds from start)')
+    plt.title('SOG Derivative (Rate of Change)')
+    plt.legend()
+    plt.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+"""
+def compute_longest_intervals(
+    boat1_changes: pd.DataFrame,
+    boat2_changes: pd.DataFrame,
+    boat1_df: pd.DataFrame,
+    boat2_df: pd.DataFrame,
+    top_n: int = 2,
+    boat1_name: str = "boat1",
+    boat2_name: str = "boat2",
+    min_duration_sec: float = 30.0,
+    sog_derivative_threshold: float = 0.2,
+    smoothing_window: int = 300
+) -> list[dict]:
+    
+    # Mark source of change points
+    boat1_changes['source'] = boat1_name
+    boat2_changes['source'] = boat2_name
+    
+    # Combine and sort all change points chronologically
+    all_changes = pd.concat([boat1_changes, boat2_changes], ignore_index=True)
+    all_changes_sorted = all_changes.sort_values('SecondsSince1970').reset_index(drop=True)
+    
+    # Preprocess SOG data with smoothing and derivative calculation
+    for df in [boat1_df, boat2_df]:
+        # Smooth SOG data to reduce noise
+        df['SOG_smoothed'] = df['SOG'].rolling(
+            window=smoothing_window,
+            min_periods=1,
+            center=True
+        ).mean()
+        
+        # Calculate robust derivative using central differences
+        df['SOG_derivative'] = (
+            df['SOG_smoothed'].diff(2) / 
+            df['SecondsSince1970'].diff(2).abs()
+        ).abs()
+    intervals = []
+    
+    for i in range(len(all_changes_sorted) - 1):
+        start = all_changes_sorted.loc[i, 'SecondsSince1970']
+        end = all_changes_sorted.loc[i + 1, 'SecondsSince1970']
+        
+        # Get data for this interval
+        boat1_interval = boat1_df[(boat1_df['SecondsSince1970'] >= start) & 
+                                (boat1_df['SecondsSince1970'] <= end)].copy()
+        boat2_interval = boat2_df[(boat2_df['SecondsSince1970'] >= start) & 
+                                (boat2_df['SecondsSince1970'] <= end)].copy()
+        
+        if boat1_interval.empty or boat2_interval.empty:
+            continue
+            
+        # Merge the two boats' data by time
+        merged = pd.merge_asof(
+            boat1_interval.sort_values('SecondsSince1970'),
+            boat2_interval.sort_values('SecondsSince1970'),
+            on='SecondsSince1970',
+            suffixes=('_boat1', '_boat2')
+        )
+        
+        # Find periods where both boats have stable speed
+        stable_mask = (
+            (merged['SOG_derivative_boat1'] < sog_derivative_threshold) &
+            (merged['SOG_derivative_boat2'] < sog_derivative_threshold))
+        
+        # Group consecutive stable periods
+        stable_groups = (stable_mask != stable_mask.shift(1)).cumsum()
+        
+        for group_id, group_data in merged[stable_mask].groupby(stable_groups):
+            group_start = group_data['SecondsSince1970'].min()
+            group_end = group_data['SecondsSince1970'].max()
+            group_duration = group_end - group_start
+            
+            if group_duration >= min_duration_sec:
+                # Calculate additional metrics
+                avg_sog1 = group_data['SOG_boat1'].mean()
+                avg_sog2 = group_data['SOG_boat2'].mean()
+                
+                intervals.append({
+                    'start_time': group_start,
+                    'end_time': group_end,
+                    'duration': group_duration,
+                    'boat1_name': boat1_name,
+                    'boat2_name': boat2_name,
+                    'avg_SOG_boat1': avg_sog1,
+                    'avg_SOG_boat2': avg_sog2,
+                    'SOG_variation_boat1': group_data['SOG_boat1'].std(),
+                    'SOG_variation_boat2': group_data['SOG_boat2'].std(),
+                    'stability_score': 1/(1 + group_data[['SOG_derivative_boat1', 
+                                                       'SOG_derivative_boat2']].mean().mean())
+                })
+    
+    # Sort by duration and stability score
+    return sorted(intervals, 
+                 key=lambda x: (-x['duration'], -x['stability_score']))[:top_n]
+
+
+
+"""
 def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boat2_name="boat2"):
-    """
-    Plot the two longest trajectory segments between COG change points,
-    using different linewidths and showing avg TWA per boat in the legend.
-    """
     colors = {boat1_name: 'green', boat2_name: 'blue'}
     linewidths = [1, 3]  # Different thicknesses per interval
 
@@ -170,6 +506,117 @@ def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boa
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+"""
+import matplotlib.dates as mdates
+import matplotlib.gridspec as gridspec
+"""
+def plot_longest_segments(boat1_df, boat2_df, intervals, boat1_name="boat1", boat2_name="boat2"):
+
+    for idx, interval in enumerate(intervals, 1):
+        t_min, t_max = interval['start_time'], interval['end_time']
+        twa1 = interval.get('avg TWA boat1')
+        twa2 = interval.get('avg TWA boat2')
+        twa1_str = f"{twa1:.1f}°" if twa1 is not None else "N/A"
+        twa2_str = f"{twa2:.1f}°" if twa2 is not None else "N/A"
+
+        traj1 = boat1_df[(boat1_df['SecondsSince1970'] >= t_min) & (boat1_df['SecondsSince1970'] <= t_max)].copy()
+        traj2 = boat2_df[(boat2_df['SecondsSince1970'] >= t_min) & (boat2_df['SecondsSince1970'] <= t_max)].copy()
+
+        if traj1.empty or traj2.empty:
+            continue
+
+        # Convert time for plotting
+        traj1['Time'] = pd.to_datetime(traj1['SecondsSince1970'], unit='s')
+        traj2['Time'] = pd.to_datetime(traj2['SecondsSince1970'], unit='s')
+
+        fig = plt.figure(figsize=(12, 10))
+        gs = gridspec.GridSpec(2, 1, height_ratios=[2, 1])
+
+        # --- Plot 1: Trajectory Map ---
+        ax1 = plt.subplot(gs[0])
+        ax1.plot(traj1['Lon'], traj1['Lat'], color='green', label=f'{boat1_name} (avg TWA: {twa1_str})')
+        ax1.plot(traj2['Lon'], traj2['Lat'], color='blue', label=f'{boat2_name} (avg TWA: {twa2_str})')
+        ax1.set_title(f"Segment {idx}: Trajectory Between COG Changes")
+        ax1.set_xlabel("Longitude")
+        ax1.set_ylabel("Latitude")
+        ax1.legend()
+        ax1.grid(True)
+
+        # --- Plot 2: SOG vs Time ---
+        ax2 = plt.subplot(gs[1])
+        ax2.plot(traj1['Time'], traj1['SOG'], color='green', label=f'{boat1_name} SOG')
+        ax2.plot(traj2['Time'], traj2['SOG'], color='blue', label=f'{boat2_name} SOG')
+        ax2.set_ylabel("SOG (knots)")
+        ax2.set_xlabel("Time")
+        ax2.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M:%S'))
+        ax2.set_title("Speed Over Ground vs Time")
+        ax2.legend()
+        ax2.grid(True)
+
+        plt.tight_layout()
+        plt.show()
+"""
+def plot_sog_with_intervals(
+    boat1_df: pd.DataFrame,
+    boat2_df: pd.DataFrame,
+    intervals: list[dict],
+    boat1_name: str = "boat1",
+    boat2_name: str = "boat2"
+):
+    """
+    Plot raw and smoothed SOG for both boats with vertical lines indicating stable intervals.
+    """
+    plt.figure(figsize=(15, 8))
+    
+    time_offset = boat1_df['SecondsSince1970'].min()
+    time1 = boat1_df['SecondsSince1970'] - time_offset
+    time2 = boat2_df['SecondsSince1970'] - time_offset
+
+    # --- Plot raw and smoothed SOG ---
+    plt.plot(time1, boat1_df['SOG'], color='green', alpha=0.3, label=f'{boat1_name} Raw SOG')
+    plt.plot(time1, boat1_df['SOG_smoothed'], color='green', linewidth=1.5, label=f'{boat1_name} Smoothed SOG')
+
+    plt.plot(time2, boat2_df['SOG'], color='blue', alpha=0.3, label=f'{boat2_name} Raw SOG')
+    plt.plot(time2, boat2_df['SOG_smoothed'], color='blue', linewidth=1.5, label=f'{boat2_name} Smoothed SOG')
+
+    # --- Vertical lines for flat/stable intervals ---
+    for i, interval in enumerate(intervals, 1):
+        start = interval['start_time'] - time_offset
+        end = interval['end_time'] - time_offset
+        plt.axvline(start, color='red', linestyle='--', linewidth=1)
+        plt.axvline(end, color='red', linestyle='--', linewidth=1)
+        plt.text((start + end) / 2, plt.ylim()[1]*0.95, f"#{i}", color='red',
+                 ha='center', va='top', fontsize=9, fontweight='bold', rotation=0)
+
+    plt.xlabel('Time (seconds from start)')
+    plt.ylabel('SOG (knots)')
+    plt.title('SOG with Smoothed Curve and Stable Intervals')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+
+
+def add_avg_twa_to_intervals(intervals: list[dict], boat1_df: pd.DataFrame, boat2_df: pd.DataFrame) -> list[dict]:
+    """
+    Pour chaque intervalle, ajoute la moyenne de TWA pour chaque bateau séparément.
+    """
+    for interval in intervals:
+        start = interval['start_time']
+        end = interval['end_time']
+
+        # Moyenne TWA pour boat1
+        mask1 = (boat1_df['SecondsSince1970'] >= start) & (boat1_df['SecondsSince1970'] <= end)
+        twa_values1 = boat1_df.loc[mask1, 'TWA']
+        interval['avg TWA boat1'] = twa_values1.mean() if not twa_values1.empty else None
+
+        # Moyenne TWA pour boat2
+        mask2 = (boat2_df['SecondsSince1970'] >= start) & (boat2_df['SecondsSince1970'] <= end)
+        twa_values2 = boat2_df.loc[mask2, 'TWA']
+        interval['avg TWA boat2'] = twa_values2.mean() if not twa_values2.empty else None
+
+    return intervals
 
 def load_boat_data(boat1_path: str, boat2_path: str) -> tuple[pd.DataFrame, pd.DataFrame, str, str]:
     """
@@ -202,15 +649,17 @@ def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
     # Compute longest intervals between change points
     longest_intervals = compute_longest_intervals(
         boat1_changes, boat2_changes,
+        boat1_df, boat2_df,
         top_n=2,
         boat1_name=boat1_name,
         boat2_name=boat2_name
     )
-
+    
     # Add average TWA per boat
     add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
 
     # Plot the longest trajectory segments
-    plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
+    # plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
+    plot_sog_with_intervals(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
 
     return longest_intervals
