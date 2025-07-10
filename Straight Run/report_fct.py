@@ -69,6 +69,8 @@ def _empty_result():
     )
 
 # --- Core Analysis Functions ---
+import numpy as np
+import pandas as pd
 
 def compute_directional_gain(df1, df2):
     if df1.empty or df2.empty or len(df1) < 2 or len(df2) < 2:
