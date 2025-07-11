@@ -7677,51 +7677,52 @@ Name: SOG, dtype: float64
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="sd">"""</span>
-<span class="sd">def calculer_anova_quadratique(df, target="SOG"):</span>
-<span class="sd">    cols = df.columns.drop(target)</span>
-<span class="sd">    formula = f"{target} ~ " + " + ".join(</span>
-<span class="sd">        list(cols) + </span>
-<span class="sd">        [f"I({col}**2)" for col in cols] +</span>
-<span class="sd">        [f"I({col}**(1/2))" for col in cols]</span>
-<span class="sd">    )</span>
-<span class="sd">    model_anova = smf.ols(formula=formula, data=df.dropna(subset=cols)).fit()</span>
-<span class="sd">    anova_table = sm.stats.anova_lm(model_anova, typ=2)</span>
-<span class="sd">    return anova_table.sort_values("F", ascending=False)</span>
-<span class="sd">"""</span>
-
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">calculer_anova_quadratique</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"SOG"</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculer_anova_quadratique</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"SOG"</span><span class="p">):</span>
     <span class="c1"># Make a copy of the DataFrame to avoid modifying the original</span>
     <span class="n">df_copy</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
     <span class="n">cols</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
     
     <span class="c1"># Print missing value count before imputation</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Missing values before imputation:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
-    <span class="c1"># Impute missing values with column means</span>
-    <span class="n">df_copy</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
-
-    <span class="c1"># Print shape after imputation</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Shape after imputation:"</span><span class="p">,</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-    <span class="c1"># Build the formula with linear, squared, and square root terms</span>
-    <span class="n">formula</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> ~ "</span> <span class="o">+</span> <span class="s2">" + "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="c1"># --- 1. ANOVA avec imputation ---</span>
+    <span class="n">df_impute</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_impute</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_impute</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+    <span class="n">formula_impute</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> ~ "</span> <span class="o">+</span> <span class="s2">" + "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
         <span class="nb">list</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">+</span>
         <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**2)"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">]</span> <span class="o">+</span>
         <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**(1/2))"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">]</span>
     <span class="p">)</span>
-    
-    <span class="c1"># Fit the model</span>
-    <span class="n">model_anova</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_copy</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-    <span class="n">anova_table</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model_anova</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">anova_table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">model_impute</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula_impute</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_impute</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">anova_impute</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model_impute</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># --- 2. ANOVA sans valeurs manquantes ---</span>
+    <span class="n">df_no_missing</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+    <span class="n">formula_no_missing</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> ~ "</span> <span class="o">+</span> <span class="s2">" + "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">df_no_missing</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">))</span> <span class="o">+</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**2)"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_no_missing</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">)]</span> <span class="o">+</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**(1/2))"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_no_missing</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">model_no_missing</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula_no_missing</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_no_missing</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">anova_no_missing</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model_no_missing</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># --- 3. ANOVA sans les colonnes LineC et SideLines ---</span>
+    <span class="n">df_no_linec_sidelines</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Line_C"</span><span class="p">,</span> <span class="s2">"Side_lines"</span><span class="p">])</span>
+    <span class="n">formula_no_linec_sidelines</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> ~ "</span> <span class="o">+</span> <span class="s2">" + "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">df_no_linec_sidelines</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">))</span> <span class="o">+</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**2)"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_no_linec_sidelines</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">)]</span> <span class="o">+</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s2">"I(</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">**(1/2))"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_no_linec_sidelines</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">model_no_linec_sidelines</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula_no_linec_sidelines</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_no_linec_sidelines</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">anova_no_linec_sidelines</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model_no_linec_sidelines</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"anova_impute"</span><span class="p">:</span> <span class="n">anova_impute</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="s2">"anova_no_missing"</span><span class="p">:</span> <span class="n">anova_no_missing</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="s2">"anova_no_linec_sidelines"</span><span class="p">:</span> <span class="n">anova_no_linec_sidelines</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="p">}</span>
 
 <span class="n">resultats_anova</span> <span class="o">=</span> <span class="n">calculer_anova_quadratique</span><span class="p">(</span><span class="n">df_numeric</span><span class="p">)</span>
-<span class="n">resultats_anova</span>
 </pre></div>
 </div>
 </div>
@@ -7746,13 +7747,50 @@ TWD               0
 TWS               0
 boat_weight       0
 dtype: int64
-Shape after imputation: (80131, 10)
 </pre>
 </div>
 </div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=af73907b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">anova_impute</span> <span class="o">=</span> <span class="n">resultats_anova</span><span class="p">[</span><span class="s2">"anova_impute"</span><span class="p">]</span>
+<span class="n">anova_no_missing</span> <span class="o">=</span> <span class="n">resultats_anova</span><span class="p">[</span><span class="s2">"anova_no_missing"</span><span class="p">]</span>
+<span class="n">anova_no_linec_sidelines</span> <span class="o">=</span> <span class="n">resultats_anova</span><span class="p">[</span><span class="s2">"anova_no_linec_sidelines"</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ANOVA avec Imputation:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_impute</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Valeurs Manquantes:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_missing</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Line_C et Side_lines:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_linec_sidelines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>ANOVA avec Imputation:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -8000,6 +8038,480 @@ Shape after imputation: (80131, 10)
 </div>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Valeurs Manquantes:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>967.813715</td>
+<td>1.0</td>
+<td>1224.207534</td>
+<td>1.115842e-263</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>961.911051</td>
+<td>1.0</td>
+<td>1216.741132</td>
+<td>4.129429e-262</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>752.094680</td>
+<td>1.0</td>
+<td>951.340076</td>
+<td>3.785083e-206</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>741.707856</td>
+<td>1.0</td>
+<td>938.201568</td>
+<td>2.288057e-203</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>736.386933</td>
+<td>1.0</td>
+<td>931.471022</td>
+<td>6.091373e-202</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>548.938788</td>
+<td>1.0</td>
+<td>694.363998</td>
+<td>1.488105e-151</td>
+</tr>
+<tr>
+<th>I(Side_lines ** (1 / 2))</th>
+<td>167.620254</td>
+<td>1.0</td>
+<td>212.026317</td>
+<td>6.841096e-48</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>141.124874</td>
+<td>1.0</td>
+<td>178.511764</td>
+<td>1.286389e-40</td>
+</tr>
+<tr>
+<th>Side_lines</th>
+<td>86.192996</td>
+<td>1.0</td>
+<td>109.027299</td>
+<td>1.743964e-25</td>
+</tr>
+<tr>
+<th>I(Side_lines ** 2)</th>
+<td>80.636260</td>
+<td>1.0</td>
+<td>101.998469</td>
+<td>5.990110e-24</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>33.104264</td>
+<td>1.0</td>
+<td>41.874266</td>
+<td>9.861137e-11</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>30.542988</td>
+<td>1.0</td>
+<td>38.634456</td>
+<td>5.168067e-10</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>30.250910</td>
+<td>1.0</td>
+<td>38.265000</td>
+<td>6.243881e-10</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>26.519510</td>
+<td>1.0</td>
+<td>33.545075</td>
+<td>7.022253e-09</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>24.503356</td>
+<td>1.0</td>
+<td>30.994800</td>
+<td>2.606030e-08</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>20.695451</td>
+<td>1.0</td>
+<td>26.178103</td>
+<td>3.129648e-07</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>19.461351</td>
+<td>1.0</td>
+<td>24.617064</td>
+<td>7.025525e-07</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>18.001930</td>
+<td>1.0</td>
+<td>22.771013</td>
+<td>1.832286e-06</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>14.095394</td>
+<td>1.0</td>
+<td>17.829555</td>
+<td>2.422069e-05</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>7.873447</td>
+<td>1.0</td>
+<td>9.959285</td>
+<td>1.601749e-03</td>
+</tr>
+<tr>
+<th>I(Line_C ** 2)</th>
+<td>4.786223</td>
+<td>1.0</td>
+<td>6.054192</td>
+<td>1.387809e-02</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>2.839280</td>
+<td>1.0</td>
+<td>3.591464</td>
+<td>5.808525e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>2.317089</td>
+<td>1.0</td>
+<td>2.930934</td>
+<td>8.690600e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>2.249081</td>
+<td>1.0</td>
+<td>2.844909</td>
+<td>9.167267e-02</td>
+</tr>
+<tr>
+<th>Line_C</th>
+<td>0.671686</td>
+<td>1.0</td>
+<td>0.849629</td>
+<td>3.566635e-01</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>0.510684</td>
+<td>1.0</td>
+<td>0.645974</td>
+<td>4.215611e-01</td>
+</tr>
+<tr>
+<th>I(Line_C ** (1 / 2))</th>
+<td>0.445116</td>
+<td>1.0</td>
+<td>0.563036</td>
+<td>4.530446e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>0.444994</td>
+<td>1.0</td>
+<td>0.562882</td>
+<td>4.531065e-01</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>0.152693</td>
+<td>1.0</td>
+<td>0.193145</td>
+<td>6.603145e-01</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>0.108263</td>
+<td>1.0</td>
+<td>0.136944</td>
+<td>7.113408e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>27842.853678</td>
+<td>35219.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Line_C et Side_lines:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>1360.880622</td>
+<td>1.0</td>
+<td>1633.160576</td>
+<td>0.000000e+00</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>1272.621467</td>
+<td>1.0</td>
+<td>1527.242857</td>
+<td>0.000000e+00</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>687.304609</td>
+<td>1.0</td>
+<td>824.817969</td>
+<td>1.411261e-179</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>150.594718</td>
+<td>1.0</td>
+<td>180.725152</td>
+<td>4.128824e-41</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>146.480537</td>
+<td>1.0</td>
+<td>175.787821</td>
+<td>4.888255e-40</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>140.997918</td>
+<td>1.0</td>
+<td>169.208259</td>
+<td>1.318107e-38</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>138.188048</td>
+<td>1.0</td>
+<td>165.836201</td>
+<td>7.135984e-38</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>72.353226</td>
+<td>1.0</td>
+<td>86.829392</td>
+<td>1.240892e-20</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>68.890342</td>
+<td>1.0</td>
+<td>82.673667</td>
+<td>1.010726e-19</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>61.661478</td>
+<td>1.0</td>
+<td>73.998478</td>
+<td>8.094993e-18</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>39.215405</td>
+<td>1.0</td>
+<td>47.061478</td>
+<td>6.978628e-12</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>26.920686</td>
+<td>1.0</td>
+<td>32.306877</td>
+<td>1.325541e-08</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>23.615328</td>
+<td>1.0</td>
+<td>28.340195</td>
+<td>1.023046e-07</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>20.110955</td>
+<td>1.0</td>
+<td>24.134680</td>
+<td>9.017966e-07</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>12.415180</td>
+<td>1.0</td>
+<td>14.899163</td>
+<td>1.135901e-04</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>11.025779</td>
+<td>1.0</td>
+<td>13.231776</td>
+<td>2.755862e-04</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>7.831294</td>
+<td>1.0</td>
+<td>9.398150</td>
+<td>2.173482e-03</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>4.797168</td>
+<td>1.0</td>
+<td>5.756968</td>
+<td>1.642790e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>4.316575</td>
+<td>1.0</td>
+<td>5.180219</td>
+<td>2.285067e-02</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>2.751252</td>
+<td>1.0</td>
+<td>3.301713</td>
+<td>6.921511e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>2.506403</td>
+<td>1.0</td>
+<td>3.007875</td>
+<td>8.286850e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>1.353719</td>
+<td>1.0</td>
+<td>1.624567</td>
+<td>2.024636e-01</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>0.593713</td>
+<td>1.0</td>
+<td>0.712500</td>
+<td>3.986200e-01</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>0.004963</td>
+<td>1.0</td>
+<td>0.005956</td>
+<td>9.384872e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>33568.699020</td>
+<td>40285.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1e580406">
@@ -8007,7 +8519,7 @@ Shape after imputation: (80131, 10)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -8287,7 +8799,7 @@ Shape after imputation: (80131, 10)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Same analysis, but for downwind and upwind separately</span>
@@ -8346,7 +8858,7 @@ Shape after imputation: (80131, 10)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">afficher_correlation_vmg</span><span class="p">(</span><span class="n">df_numeric_upwind</span><span class="p">)</span>
@@ -8396,11 +8908,23 @@ Name: SOG, dtype: float64
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">resultats_anova_upwind</span> <span class="o">=</span> <span class="n">calculer_anova_quadratique</span><span class="p">(</span><span class="n">df_numeric_upwind</span><span class="p">)</span>
-<span class="n">resultats_anova_upwind</span>
+
+<span class="n">anova_impute_upwind</span> <span class="o">=</span> <span class="n">resultats_anova_upwind</span><span class="p">[</span><span class="s2">"anova_impute"</span><span class="p">]</span>
+<span class="n">anova_no_missing_upwind</span> <span class="o">=</span> <span class="n">resultats_anova_upwind</span><span class="p">[</span><span class="s2">"anova_no_missing"</span><span class="p">]</span>
+<span class="n">anova_no_linec_sidelines_upwind</span> <span class="o">=</span> <span class="n">resultats_anova_upwind</span><span class="p">[</span><span class="s2">"anova_no_linec_sidelines"</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ANOVA avec Imputation:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_impute_upwind</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Valeurs Manquantes:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_missing_upwind</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Line_C et Side_lines:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_linec_sidelines_upwind</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8430,13 +8954,13 @@ gain_forward     113
 gain_lateral     113
 gain_vmg         113
 dtype: int64
-Shape after imputation: (48787, 15)
+ANOVA avec Imputation:
 </pre>
 </div>
 </div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -8789,6 +9313,690 @@ Shape after imputation: (48787, 15)
 </div>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Valeurs Manquantes:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>4.775791e+00</td>
+<td>1.0</td>
+<td>6193.946654</td>
+<td>0.000000e+00</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>1.008609e+00</td>
+<td>1.0</td>
+<td>1308.112259</td>
+<td>1.514384e-253</td>
+</tr>
+<tr>
+<th>I(VMG ** (1 / 2))</th>
+<td>5.647946e-01</td>
+<td>1.0</td>
+<td>732.508519</td>
+<td>2.880229e-150</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>1.022987e-01</td>
+<td>1.0</td>
+<td>132.675968</td>
+<td>2.653056e-30</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>8.248465e-02</td>
+<td>1.0</td>
+<td>106.978186</td>
+<td>8.184519e-25</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>7.934281e-02</td>
+<td>1.0</td>
+<td>102.903390</td>
+<td>6.123554e-24</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>7.693824e-02</td>
+<td>1.0</td>
+<td>99.784788</td>
+<td>2.861703e-23</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>7.018504e-02</td>
+<td>1.0</td>
+<td>91.026250</td>
+<td>2.190972e-21</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>3.788144e-02</td>
+<td>1.0</td>
+<td>49.130212</td>
+<td>2.727294e-12</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>3.474008e-02</td>
+<td>1.0</td>
+<td>45.056033</td>
+<td>2.136626e-11</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>3.432208e-02</td>
+<td>1.0</td>
+<td>44.513908</td>
+<td>2.810998e-11</td>
+</tr>
+<tr>
+<th>VMG</th>
+<td>3.357655e-02</td>
+<td>1.0</td>
+<td>43.546996</td>
+<td>4.586119e-11</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>3.346998e-02</td>
+<td>1.0</td>
+<td>43.408775</td>
+<td>4.918652e-11</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>2.549090e-02</td>
+<td>1.0</td>
+<td>33.060340</td>
+<td>9.486910e-09</td>
+</tr>
+<tr>
+<th>gain_lateral</th>
+<td>2.423326e-02</td>
+<td>1.0</td>
+<td>31.429240</td>
+<td>2.184089e-08</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** (1 / 2))</th>
+<td>2.156284e-02</td>
+<td>1.0</td>
+<td>27.965854</td>
+<td>1.289537e-07</td>
+</tr>
+<tr>
+<th>I(gain_forward ** (1 / 2))</th>
+<td>1.898243e-02</td>
+<td>1.0</td>
+<td>24.619197</td>
+<td>7.226519e-07</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** 2)</th>
+<td>1.801008e-02</td>
+<td>1.0</td>
+<td>23.358109</td>
+<td>1.386670e-06</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** 2)</th>
+<td>1.544368e-02</td>
+<td>1.0</td>
+<td>20.029632</td>
+<td>7.801520e-06</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>1.268143e-02</td>
+<td>1.0</td>
+<td>16.447138</td>
+<td>5.081840e-05</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>1.220350e-02</td>
+<td>1.0</td>
+<td>15.827289</td>
+<td>7.041652e-05</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>1.132636e-02</td>
+<td>1.0</td>
+<td>14.689686</td>
+<td>1.283582e-04</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** (1 / 2))</th>
+<td>9.570632e-03</td>
+<td>1.0</td>
+<td>12.412599</td>
+<td>4.304164e-04</td>
+</tr>
+<tr>
+<th>gain_forward</th>
+<td>9.396250e-03</td>
+<td>1.0</td>
+<td>12.186435</td>
+<td>4.857122e-04</td>
+</tr>
+<tr>
+<th>I(Side_lines ** 2)</th>
+<td>5.536182e-03</td>
+<td>1.0</td>
+<td>7.180132</td>
+<td>7.396668e-03</td>
+</tr>
+<tr>
+<th>Side_lines</th>
+<td>4.558684e-03</td>
+<td>1.0</td>
+<td>5.912370</td>
+<td>1.507126e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>4.008772e-03</td>
+<td>1.0</td>
+<td>5.199163</td>
+<td>2.264140e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** 2)</th>
+<td>3.976350e-03</td>
+<td>1.0</td>
+<td>5.157114</td>
+<td>2.319542e-02</td>
+</tr>
+<tr>
+<th>I(Side_lines ** (1 / 2))</th>
+<td>3.797726e-03</td>
+<td>1.0</td>
+<td>4.925448</td>
+<td>2.651049e-02</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>3.315325e-03</td>
+<td>1.0</td>
+<td>4.299799</td>
+<td>3.817005e-02</td>
+</tr>
+<tr>
+<th>I(Total_lines ** (1 / 2))</th>
+<td>3.191937e-03</td>
+<td>1.0</td>
+<td>4.139773</td>
+<td>4.194161e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>2.714689e-03</td>
+<td>1.0</td>
+<td>3.520807</td>
+<td>6.066351e-02</td>
+</tr>
+<tr>
+<th>Total_lines</th>
+<td>2.636840e-03</td>
+<td>1.0</td>
+<td>3.419840</td>
+<td>6.447865e-02</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>2.587468e-03</td>
+<td>1.0</td>
+<td>3.355808</td>
+<td>6.703025e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>2.125588e-03</td>
+<td>1.0</td>
+<td>2.756774</td>
+<td>9.690859e-02</td>
+</tr>
+<tr>
+<th>I(Total_lines ** 2)</th>
+<td>1.648852e-03</td>
+<td>1.0</td>
+<td>2.138473</td>
+<td>1.437103e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>9.700615e-04</td>
+<td>1.0</td>
+<td>1.258118</td>
+<td>2.620637e-01</td>
+</tr>
+<tr>
+<th>gain_vmg</th>
+<td>9.240321e-04</td>
+<td>1.0</td>
+<td>1.198420</td>
+<td>2.736925e-01</td>
+</tr>
+<tr>
+<th>I(Line_C ** 2)</th>
+<td>3.907732e-04</td>
+<td>1.0</td>
+<td>0.506812</td>
+<td>4.765568e-01</td>
+</tr>
+<tr>
+<th>Line_C</th>
+<td>3.453840e-04</td>
+<td>1.0</td>
+<td>0.447945</td>
+<td>5.033448e-01</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>9.867705e-05</td>
+<td>1.0</td>
+<td>0.127979</td>
+<td>7.205526e-01</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>8.763955e-05</td>
+<td>1.0</td>
+<td>0.113664</td>
+<td>7.360256e-01</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>7.018052e-05</td>
+<td>1.0</td>
+<td>0.091020</td>
+<td>7.628970e-01</td>
+</tr>
+<tr>
+<th>I(Line_C ** (1 / 2))</th>
+<td>1.440852e-05</td>
+<td>1.0</td>
+<td>0.018687</td>
+<td>8.912731e-01</td>
+</tr>
+<tr>
+<th>I(VMG ** 2)</th>
+<td>7.444345e-07</td>
+<td>1.0</td>
+<td>0.000965</td>
+<td>9.752131e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>3.703313e+00</td>
+<td>4803.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Line_C et Side_lines:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>4.775241</td>
+<td>1.0</td>
+<td>6171.560595</td>
+<td>0.000000e+00</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>1.008170</td>
+<td>1.0</td>
+<td>1302.967244</td>
+<td>1.044372e-252</td>
+</tr>
+<tr>
+<th>I(VMG ** (1 / 2))</th>
+<td>0.566063</td>
+<td>1.0</td>
+<td>731.584897</td>
+<td>4.160050e-150</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>0.101402</td>
+<td>1.0</td>
+<td>131.052149</td>
+<td>5.874114e-30</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>0.081928</td>
+<td>1.0</td>
+<td>105.884291</td>
+<td>1.403325e-24</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>0.078690</td>
+<td>1.0</td>
+<td>101.700200</td>
+<td>1.109021e-23</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>0.076452</td>
+<td>1.0</td>
+<td>98.807304</td>
+<td>4.637860e-23</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>0.069388</td>
+<td>1.0</td>
+<td>89.677440</td>
+<td>4.275325e-21</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>0.045798</td>
+<td>1.0</td>
+<td>59.189784</td>
+<td>1.725608e-14</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>0.038210</td>
+<td>1.0</td>
+<td>49.382394</td>
+<td>2.400963e-12</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>0.037844</td>
+<td>1.0</td>
+<td>48.909419</td>
+<td>3.048197e-12</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>0.037099</td>
+<td>1.0</td>
+<td>47.946444</td>
+<td>4.956544e-12</td>
+</tr>
+<tr>
+<th>VMG</th>
+<td>0.033341</td>
+<td>1.0</td>
+<td>43.089865</td>
+<td>5.780104e-11</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>0.032371</td>
+<td>1.0</td>
+<td>41.836475</td>
+<td>1.090954e-10</td>
+</tr>
+<tr>
+<th>gain_lateral</th>
+<td>0.026507</td>
+<td>1.0</td>
+<td>34.257825</td>
+<td>5.147467e-09</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** (1 / 2))</th>
+<td>0.022995</td>
+<td>1.0</td>
+<td>29.718960</td>
+<td>5.243935e-08</td>
+</tr>
+<tr>
+<th>I(gain_forward ** (1 / 2))</th>
+<td>0.019868</td>
+<td>1.0</td>
+<td>25.677185</td>
+<td>4.186852e-07</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** 2)</th>
+<td>0.016641</td>
+<td>1.0</td>
+<td>21.507202</td>
+<td>3.618467e-06</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** 2)</th>
+<td>0.016142</td>
+<td>1.0</td>
+<td>20.861871</td>
+<td>5.059585e-06</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>0.013110</td>
+<td>1.0</td>
+<td>16.943973</td>
+<td>3.914417e-05</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>0.012645</td>
+<td>1.0</td>
+<td>16.342907</td>
+<td>5.367986e-05</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>0.011801</td>
+<td>1.0</td>
+<td>15.251116</td>
+<td>9.541114e-05</td>
+</tr>
+<tr>
+<th>gain_forward</th>
+<td>0.010507</td>
+<td>1.0</td>
+<td>13.579446</td>
+<td>2.311920e-04</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** (1 / 2))</th>
+<td>0.008312</td>
+<td>1.0</td>
+<td>10.742816</td>
+<td>1.054283e-03</td>
+</tr>
+<tr>
+<th>I(Total_lines ** (1 / 2))</th>
+<td>0.004586</td>
+<td>1.0</td>
+<td>5.927233</td>
+<td>1.494476e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>0.003869</td>
+<td>1.0</td>
+<td>5.000959</td>
+<td>2.537896e-02</td>
+</tr>
+<tr>
+<th>Total_lines</th>
+<td>0.003805</td>
+<td>1.0</td>
+<td>4.917780</td>
+<td>2.662821e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** 2)</th>
+<td>0.003609</td>
+<td>1.0</td>
+<td>4.664371</td>
+<td>3.084397e-02</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>0.003141</td>
+<td>1.0</td>
+<td>4.058869</td>
+<td>4.399547e-02</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>0.002666</td>
+<td>1.0</td>
+<td>3.445303</td>
+<td>6.349290e-02</td>
+</tr>
+<tr>
+<th>I(Total_lines ** 2)</th>
+<td>0.002532</td>
+<td>1.0</td>
+<td>3.272727</td>
+<td>7.050284e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>0.002509</td>
+<td>1.0</td>
+<td>3.242792</td>
+<td>7.180092e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>0.002233</td>
+<td>1.0</td>
+<td>2.885544</td>
+<td>8.944251e-02</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>0.000954</td>
+<td>1.0</td>
+<td>1.232373</td>
+<td>2.670016e-01</td>
+</tr>
+<tr>
+<th>gain_vmg</th>
+<td>0.000487</td>
+<td>1.0</td>
+<td>0.629263</td>
+<td>4.276649e-01</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>0.000087</td>
+<td>1.0</td>
+<td>0.111941</td>
+<td>7.379592e-01</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>0.000081</td>
+<td>1.0</td>
+<td>0.104683</td>
+<td>7.462948e-01</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>0.000070</td>
+<td>1.0</td>
+<td>0.091000</td>
+<td>7.629227e-01</td>
+</tr>
+<tr>
+<th>I(VMG ** 2)</th>
+<td>0.000004</td>
+<td>1.0</td>
+<td>0.005040</td>
+<td>9.434052e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>3.721734</td>
+<td>4810.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1dbf34f7">
@@ -8796,7 +10004,7 @@ Shape after imputation: (48787, 15)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">resultats_coefs_upwind</span> <span class="o">=</span> <span class="n">analyser_modele_polynomial_final</span><span class="p">(</span><span class="n">df_numeric_upwind</span><span class="p">)</span>
@@ -9017,7 +10225,7 @@ Shape after imputation: (48787, 15)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Same analysis, but for downwind and upwind separately</span>
@@ -9076,7 +10284,7 @@ Shape after imputation: (48787, 15)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">afficher_correlation_vmg</span><span class="p">(</span><span class="n">df_numeric_downwind</span><span class="p">)</span>
@@ -9126,11 +10334,23 @@ Name: SOG, dtype: float64
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">resultats_anova_downwind</span> <span class="o">=</span> <span class="n">calculer_anova_quadratique</span><span class="p">(</span><span class="n">df_numeric_downwind</span><span class="p">)</span>
-<span class="n">resultats_anova_downwind</span>
+
+<span class="n">anova_impute_downwind</span> <span class="o">=</span> <span class="n">resultats_anova_downwind</span><span class="p">[</span><span class="s2">"anova_impute"</span><span class="p">]</span>
+<span class="n">anova_no_missing_downwind</span> <span class="o">=</span> <span class="n">resultats_anova_downwind</span><span class="p">[</span><span class="s2">"anova_no_missing"</span><span class="p">]</span>
+<span class="n">anova_no_linec_sidelines_downwind</span> <span class="o">=</span> <span class="n">resultats_anova_downwind</span><span class="p">[</span><span class="s2">"anova_no_linec_sidelines"</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ANOVA avec Imputation:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_impute_downwind</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Valeurs Manquantes:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_missing_downwind</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ANOVA sans Line_C et Side_lines:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_no_linec_sidelines_downwind</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9160,13 +10380,13 @@ gain_forward     101
 gain_lateral     101
 gain_vmg         101
 dtype: int64
-Shape after imputation: (31344, 15)
+ANOVA avec Imputation:
 </pre>
 </div>
 </div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -9519,6 +10739,690 @@ Shape after imputation: (31344, 15)
 </div>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Valeurs Manquantes:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>2.064409e-01</td>
+<td>1.0</td>
+<td>542.220149</td>
+<td>1.133198e-101</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>1.113018e-01</td>
+<td>1.0</td>
+<td>292.335802</td>
+<td>1.113291e-59</td>
+</tr>
+<tr>
+<th>I(VMG ** (1 / 2))</th>
+<td>4.445278e-02</td>
+<td>1.0</td>
+<td>116.755903</td>
+<td>3.377157e-26</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>2.090993e-02</td>
+<td>1.0</td>
+<td>54.920243</td>
+<td>2.160166e-13</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>1.306520e-02</td>
+<td>1.0</td>
+<td>34.315941</td>
+<td>5.828953e-09</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>1.196306e-02</td>
+<td>1.0</td>
+<td>31.421150</td>
+<td>2.497342e-08</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>1.153250e-02</td>
+<td>1.0</td>
+<td>30.290291</td>
+<td>4.416695e-08</td>
+</tr>
+<tr>
+<th>gain_forward</th>
+<td>6.502333e-03</td>
+<td>1.0</td>
+<td>17.078475</td>
+<td>3.798873e-05</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>4.737644e-03</td>
+<td>1.0</td>
+<td>12.443493</td>
+<td>4.329766e-04</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>4.704425e-03</td>
+<td>1.0</td>
+<td>12.356244</td>
+<td>4.534996e-04</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>4.522776e-03</td>
+<td>1.0</td>
+<td>11.879139</td>
+<td>5.844327e-04</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** 2)</th>
+<td>4.501859e-03</td>
+<td>1.0</td>
+<td>11.824202</td>
+<td>6.017806e-04</td>
+</tr>
+<tr>
+<th>gain_vmg</th>
+<td>4.032562e-03</td>
+<td>1.0</td>
+<td>10.591586</td>
+<td>1.163108e-03</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>2.507639e-03</td>
+<td>1.0</td>
+<td>6.586351</td>
+<td>1.037936e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** 2)</th>
+<td>2.346925e-03</td>
+<td>1.0</td>
+<td>6.164233</td>
+<td>1.315206e-02</td>
+</tr>
+<tr>
+<th>I(Side_lines ** 2)</th>
+<td>2.062758e-03</td>
+<td>1.0</td>
+<td>5.417864</td>
+<td>2.007335e-02</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>1.952061e-03</td>
+<td>1.0</td>
+<td>5.127118</td>
+<td>2.370688e-02</td>
+</tr>
+<tr>
+<th>Side_lines</th>
+<td>1.945230e-03</td>
+<td>1.0</td>
+<td>5.109175</td>
+<td>2.395237e-02</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>1.792404e-03</td>
+<td>1.0</td>
+<td>4.707776</td>
+<td>3.019385e-02</td>
+</tr>
+<tr>
+<th>I(Line_C ** 2)</th>
+<td>1.720659e-03</td>
+<td>1.0</td>
+<td>4.519336</td>
+<td>3.368807e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** (1 / 2))</th>
+<td>1.688696e-03</td>
+<td>1.0</td>
+<td>4.435385</td>
+<td>3.537855e-02</td>
+</tr>
+<tr>
+<th>Line_C</th>
+<td>1.444020e-03</td>
+<td>1.0</td>
+<td>3.792741</td>
+<td>5.167454e-02</td>
+</tr>
+<tr>
+<th>VMG</th>
+<td>1.442073e-03</td>
+<td>1.0</td>
+<td>3.787626</td>
+<td>5.183224e-02</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>1.374430e-03</td>
+<td>1.0</td>
+<td>3.609961</td>
+<td>5.763934e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>1.343636e-03</td>
+<td>1.0</td>
+<td>3.529081</td>
+<td>6.050841e-02</td>
+</tr>
+<tr>
+<th>I(Side_lines ** (1 / 2))</th>
+<td>1.277307e-03</td>
+<td>1.0</td>
+<td>3.354866</td>
+<td>6.721858e-02</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>1.168466e-03</td>
+<td>1.0</td>
+<td>3.068994</td>
+<td>8.001730e-02</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>1.104802e-03</td>
+<td>1.0</td>
+<td>2.901778</td>
+<td>8.870337e-02</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>9.793445e-04</td>
+<td>1.0</td>
+<td>2.572263</td>
+<td>1.089771e-01</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>8.091998e-04</td>
+<td>1.0</td>
+<td>2.125376</td>
+<td>1.451011e-01</td>
+</tr>
+<tr>
+<th>I(VMG ** 2)</th>
+<td>7.259040e-04</td>
+<td>1.0</td>
+<td>1.906598</td>
+<td>1.675616e-01</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** (1 / 2))</th>
+<td>7.051858e-04</td>
+<td>1.0</td>
+<td>1.852181</td>
+<td>1.737485e-01</td>
+</tr>
+<tr>
+<th>I(Line_C ** (1 / 2))</th>
+<td>4.300403e-04</td>
+<td>1.0</td>
+<td>1.129507</td>
+<td>2.880633e-01</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>2.723395e-04</td>
+<td>1.0</td>
+<td>0.715304</td>
+<td>3.978329e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>2.098103e-04</td>
+<td>1.0</td>
+<td>0.551070</td>
+<td>4.580051e-01</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** 2)</th>
+<td>2.006643e-04</td>
+<td>1.0</td>
+<td>0.527048</td>
+<td>4.679718e-01</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>1.585535e-04</td>
+<td>1.0</td>
+<td>0.416443</td>
+<td>5.188227e-01</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>1.465058e-04</td>
+<td>1.0</td>
+<td>0.384800</td>
+<td>5.351464e-01</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>1.352157e-04</td>
+<td>1.0</td>
+<td>0.355146</td>
+<td>5.513106e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>8.313428e-05</td>
+<td>1.0</td>
+<td>0.218353</td>
+<td>6.403700e-01</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** (1 / 2))</th>
+<td>7.811306e-05</td>
+<td>1.0</td>
+<td>0.205165</td>
+<td>6.506537e-01</td>
+</tr>
+<tr>
+<th>I(Total_lines ** (1 / 2))</th>
+<td>5.880287e-05</td>
+<td>1.0</td>
+<td>0.154447</td>
+<td>6.943814e-01</td>
+</tr>
+<tr>
+<th>Total_lines</th>
+<td>2.084216e-05</td>
+<td>1.0</td>
+<td>0.054742</td>
+<td>8.150419e-01</td>
+</tr>
+<tr>
+<th>gain_lateral</th>
+<td>1.604456e-05</td>
+<td>1.0</td>
+<td>0.042141</td>
+<td>8.373805e-01</td>
+</tr>
+<tr>
+<th>I(Total_lines ** 2)</th>
+<td>3.846619e-07</td>
+<td>1.0</td>
+<td>0.001010</td>
+<td>9.746476e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>5.341679e-01</td>
+<td>1403.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+ANOVA sans Line_C et Side_lines:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>sum_sq</th>
+<th>df</th>
+<th>F</th>
+<th>PR(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>I(TWA_Abs ** (1 / 2))</th>
+<td>2.274381e-01</td>
+<td>1.0</td>
+<td>591.849493</td>
+<td>1.809585e-109</td>
+</tr>
+<tr>
+<th>TWA_Abs</th>
+<td>1.250545e-01</td>
+<td>1.0</td>
+<td>325.422322</td>
+<td>1.257297e-65</td>
+</tr>
+<tr>
+<th>I(VMG ** (1 / 2))</th>
+<td>4.970011e-02</td>
+<td>1.0</td>
+<td>129.331825</td>
+<td>9.780639e-29</td>
+</tr>
+<tr>
+<th>I(TWA_Abs ** 2)</th>
+<td>2.584503e-02</td>
+<td>1.0</td>
+<td>67.255074</td>
+<td>5.306031e-16</td>
+</tr>
+<tr>
+<th>I(TWD ** 2)</th>
+<td>9.617491e-03</td>
+<td>1.0</td>
+<td>25.027062</td>
+<td>6.362777e-07</td>
+</tr>
+<tr>
+<th>TWD</th>
+<td>8.613998e-03</td>
+<td>1.0</td>
+<td>22.415729</td>
+<td>2.416384e-06</td>
+</tr>
+<tr>
+<th>I(TWD ** (1 / 2))</th>
+<td>8.213557e-03</td>
+<td>1.0</td>
+<td>21.373683</td>
+<td>4.124654e-06</td>
+</tr>
+<tr>
+<th>gain_forward</th>
+<td>6.304256e-03</td>
+<td>1.0</td>
+<td>16.405215</td>
+<td>5.392501e-05</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** 2)</th>
+<td>5.460020e-03</td>
+<td>1.0</td>
+<td>14.208306</td>
+<td>1.703932e-04</td>
+</tr>
+<tr>
+<th>I(TWS ** (1 / 2))</th>
+<td>5.341991e-03</td>
+<td>1.0</td>
+<td>13.901165</td>
+<td>2.002977e-04</td>
+</tr>
+<tr>
+<th>TWS</th>
+<td>5.282553e-03</td>
+<td>1.0</td>
+<td>13.746494</td>
+<td>2.173086e-04</td>
+</tr>
+<tr>
+<th>I(TWS ** 2)</th>
+<td>4.889840e-03</td>
+<td>1.0</td>
+<td>12.724560</td>
+<td>3.729463e-04</td>
+</tr>
+<tr>
+<th>gain_vmg</th>
+<td>4.443093e-03</td>
+<td>1.0</td>
+<td>11.562013</td>
+<td>6.919081e-04</td>
+</tr>
+<tr>
+<th>I(Trim ** (1 / 2))</th>
+<td>2.486815e-03</td>
+<td>1.0</td>
+<td>6.471300</td>
+<td>1.106885e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** 2)</th>
+<td>2.300118e-03</td>
+<td>1.0</td>
+<td>5.985470</td>
+<td>1.454546e-02</td>
+</tr>
+<tr>
+<th>VMG</th>
+<td>2.269748e-03</td>
+<td>1.0</td>
+<td>5.906438</td>
+<td>1.520953e-02</td>
+</tr>
+<tr>
+<th>I(gain_forward ** (1 / 2))</th>
+<td>1.921181e-03</td>
+<td>1.0</td>
+<td>4.999384</td>
+<td>2.551208e-02</td>
+</tr>
+<tr>
+<th>Trim</th>
+<td>1.710203e-03</td>
+<td>1.0</td>
+<td>4.450365</td>
+<td>3.506938e-02</td>
+</tr>
+<tr>
+<th>I(COG ** 2)</th>
+<td>1.281948e-03</td>
+<td>1.0</td>
+<td>3.335943</td>
+<td>6.799260e-02</td>
+</tr>
+<tr>
+<th>I(Trim ** 2)</th>
+<td>1.022809e-03</td>
+<td>1.0</td>
+<td>2.661598</td>
+<td>1.030204e-01</td>
+</tr>
+<tr>
+<th>COG</th>
+<td>9.626192e-04</td>
+<td>1.0</td>
+<td>2.504971</td>
+<td>1.137116e-01</td>
+</tr>
+<tr>
+<th>I(COG ** (1 / 2))</th>
+<td>5.263339e-04</td>
+<td>1.0</td>
+<td>1.369649</td>
+<td>2.420696e-01</td>
+</tr>
+<tr>
+<th>gain_lateral</th>
+<td>3.753899e-04</td>
+<td>1.0</td>
+<td>0.976856</td>
+<td>3.231455e-01</td>
+</tr>
+<tr>
+<th>I(VMG ** 2)</th>
+<td>3.510711e-04</td>
+<td>1.0</td>
+<td>0.913573</td>
+<td>3.393318e-01</td>
+</tr>
+<tr>
+<th>I(gain_vmg ** (1 / 2))</th>
+<td>2.990158e-04</td>
+<td>1.0</td>
+<td>0.778112</td>
+<td>3.778693e-01</td>
+</tr>
+<tr>
+<th>I(boat_weight ** (1 / 2))</th>
+<td>2.315797e-04</td>
+<td>1.0</td>
+<td>0.602627</td>
+<td>4.377074e-01</td>
+</tr>
+<tr>
+<th>boat_weight</th>
+<td>2.089579e-04</td>
+<td>1.0</td>
+<td>0.543760</td>
+<td>4.610013e-01</td>
+</tr>
+<tr>
+<th>ROT</th>
+<td>1.987715e-04</td>
+<td>1.0</td>
+<td>0.517252</td>
+<td>4.721353e-01</td>
+</tr>
+<tr>
+<th>I(boat_weight ** 2)</th>
+<td>1.661189e-04</td>
+<td>1.0</td>
+<td>0.432282</td>
+<td>5.109785e-01</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** 2)</th>
+<td>1.487992e-04</td>
+<td>1.0</td>
+<td>0.387212</td>
+<td>5.338690e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** 2)</th>
+<td>1.442208e-04</td>
+<td>1.0</td>
+<td>0.375298</td>
+<td>5.402292e-01</td>
+</tr>
+<tr>
+<th>Heel_Abs</th>
+<td>1.413069e-04</td>
+<td>1.0</td>
+<td>0.367715</td>
+<td>5.443499e-01</td>
+</tr>
+<tr>
+<th>I(Heel_Abs ** (1 / 2))</th>
+<td>1.342468e-04</td>
+<td>1.0</td>
+<td>0.349343</td>
+<td>5.545798e-01</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** (1 / 2))</th>
+<td>8.423494e-05</td>
+<td>1.0</td>
+<td>0.219200</td>
+<td>6.397225e-01</td>
+</tr>
+<tr>
+<th>I(ROT ** (1 / 2))</th>
+<td>6.193910e-05</td>
+<td>1.0</td>
+<td>0.161181</td>
+<td>6.881326e-01</td>
+</tr>
+<tr>
+<th>I(Total_lines ** 2)</th>
+<td>5.285297e-05</td>
+<td>1.0</td>
+<td>0.137536</td>
+<td>7.107982e-01</td>
+</tr>
+<tr>
+<th>Total_lines</th>
+<td>5.059237e-05</td>
+<td>1.0</td>
+<td>0.131654</td>
+<td>7.167778e-01</td>
+</tr>
+<tr>
+<th>I(Total_lines ** (1 / 2))</th>
+<td>4.528742e-05</td>
+<td>1.0</td>
+<td>0.117849</td>
+<td>7.314304e-01</td>
+</tr>
+<tr>
+<th>I(gain_lateral ** 2)</th>
+<td>6.458017e-07</td>
+<td>1.0</td>
+<td>0.001681</td>
+<td>9.673062e-01</td>
+</tr>
+<tr>
+<th>Residual</th>
+<td>5.426085e-01</td>
+<td>1412.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32857308">
@@ -9526,7 +11430,7 @@ Shape after imputation: (31344, 15)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">resultats_coefs_downwind</span> <span class="o">=</span> <span class="n">analyser_modele_polynomial_final</span><span class="p">(</span><span class="n">df_numeric_downwind</span><span class="p">)</span>
@@ -9736,7 +11640,7 @@ Shape after imputation: (31344, 15)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
