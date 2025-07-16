@@ -8,6 +8,7 @@ from cog_analysis import load_boat_data
 from IPython.display import display
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pprint as pp
 
 def load_summary_intervals(summary_file="summary.json"):
     with open(summary_file, "r") as f:
@@ -69,6 +70,8 @@ def _empty_result():
     )
 
 # --- Core Analysis Functions ---
+import numpy as np
+import pandas as pd
 
 def compute_directional_gain(df1, df2):
     if df1.empty or df2.empty or len(df1) < 2 or len(df2) < 2:
@@ -91,7 +94,8 @@ def compute_directional_gain(df1, df2):
 
         initial_rel = pos1_start - pos2_start
         final_rel = pos1_end - pos2_end
-        progress = initial_rel - final_rel
+        # progress = initial_rel - final_rel
+        progress = final_rel - initial_rel
         duration_min = (df1["SecondsSince1970"].iloc[-1] - df1["SecondsSince1970"].iloc[0]) / 60 or np.nan
 
         def calc_gain(vec, sign=1):
@@ -107,7 +111,7 @@ def compute_directional_gain(df1, df2):
         }, index=['Initial Deficit', 'Final Deficit', 'Total Gain', 'Gain per Minute'])
 
     except Exception as e:
-        print(f"Error computing directional gain: {e}")
+        display(f"Error computing directional gain: {e}")
         return _empty_result()
 
 def merge_stats(stats1, stats2, label1, label2):
@@ -135,7 +139,6 @@ def display_all(merged_stats, summary_df, gain_table, boat1_name, boat2_name):
                     "Distance as Percentage of Straight Line [%]": "{:.4f}",
                 })
                 .set_caption("Distance Summary"))
-
     display(summary_df)
 
 
@@ -156,9 +159,9 @@ def display_all(merged_stats, summary_df, gain_table, boat1_name, boat2_name):
     styled_gain = styled_gain.set_caption(f"Gain of {boat1_name} with respect to {boat2_name}")
     display(styled_gain)  # Display the styled table for gain_table
 
-
-
 def load_and_reduce_boat_data(run_path, summary_dict):
+    import copy
+
     csv_files = sorted(f for f in os.listdir(run_path) if f.endswith(".csv"))
     if len(csv_files) < 2:
         raise ValueError("At least two CSV files are required.")
@@ -171,18 +174,29 @@ def load_and_reduce_boat_data(run_path, summary_dict):
         raise ValueError("One or both boat DataFrames are empty")
 
     run_name = os.path.basename(run_path)
-    intervals = summary_dict.get(run_name)
+    intervals = copy.deepcopy(summary_dict.get(run_name))
     if not intervals or len(intervals) < 2:
         raise ValueError(f"No or insufficient intervals for run: {run_name}")
 
+    # --- Ensure boat1 is always the master (boat1_master_leeward == True) ---
+    if not intervals[0]["boat1_master_leeward"]:
+        # Swap DataFrames
+        df1, df2 = df2, df1
+        name1, name2 = name2, name1
+
     return {
-        "full_df1": df1, "full_df2": df2,
+        "full_df1": df1,
+        "full_df2": df2,
         "reduced_boat1_int1_df": filter_interval(df1, intervals[0]["start_time"], intervals[0]["end_time"]),
         "reduced_boat2_int1_df": filter_interval(df2, intervals[0]["start_time"], intervals[0]["end_time"]),
         "reduced_boat1_int2_df": filter_interval(df1, intervals[1]["start_time"], intervals[1]["end_time"]),
         "reduced_boat2_int2_df": filter_interval(df2, intervals[1]["start_time"], intervals[1]["end_time"]),
-        "boat1_name": name1, "boat2_name": name2
+        "boat1_name": name1,
+        "boat2_name": name2
     }
+
+
+
 
 def compare_runs(df1, df2, label1, label2):
     cols = ["TWS", "TWD", "SOG", "VMG", "COG", "TWA_Abs", "Heel_Lwd", "Side_lines", "Line_C", "Total_lines"]
@@ -322,98 +336,6 @@ def style_comparative_wins(df, name1, name2):
         return styles
 
     return df.style.apply(highlight, axis=1)
-"""
-def plots(df1, df2, name1, name2, title):
-    # List of columns to plot
-    columns_to_plot = [
-        'SOG', 'Heel_Abs', 'Heel_Lwd', 'Lat',
-        'Leg', 'Line_C', 'Line_L', 'Line_R', 'Log', 'LogAlongCourse', 'Lon', 'ROT', 
-        'Side_lines', 'Total_lines', 'Trim', 'TWA_Abs', 
-        'VMC', 'VMG', 'Heel', 'COG', 
-        'TWD', 'TWS', 'TWA'
-    ]
-
-    # Calculate the number of rows and columns for subplots
-    n_columns = 3  # Set the number of columns
-    n_rows = (len(columns_to_plot) + n_columns - 1) // n_columns  # Calculate number of rows to fit all subplots
-
-    # Create subplots dynamically based on number of metrics
-    fig, axes = plt.subplots(n_rows, n_columns, figsize=(16, 5 * n_rows))
-    axes = axes.flatten()  # Flatten to easily iterate
-
-    # Iterate over all the columns and create a subplot for each
-    for i, col in enumerate(columns_to_plot):
-        ax = axes[i]
-        sns.lineplot(data=df1, x="SecondsSince1970"-start_time, y=col, label=f"{name1} {col}", color='blue', ax=ax)
-        sns.lineplot(data=df2, x="SecondsSince1970"-start_time, y=col, label=f"{name2} {col}", color='orange', ax=ax)
-        ax.set_xlabel("Time")
-        ax.set_ylabel(col)
-        ax.legend()
-        ax.grid()
-
-    # Set a single title for the entire figure
-    fig.suptitle(f"{title} - Comparison of Parameters", fontsize=16)
-
-    # Adjust layout to prevent overlap
-    plt.tight_layout()
-
-    # Adjust the space for the main title
-    plt.subplots_adjust(top=0.95)  # This creates space for the main title
-
-    plt.show()
-
-
-
-def plots(df1, df2, name1, name2, title):
-    # List of columns to plot
-    columns_to_plot = [
-        'SOG', 'Heel_Abs', 'Heel_Lwd', 'Lat',
-        'Leg', 'Line_C', 'Line_L', 'Line_R', 'Log', 'LogAlongCourse', 'Lon', 'ROT', 
-        'Side_lines', 'Total_lines', 'Trim', 'TWA_Abs', 
-        'VMC', 'VMG', 'Heel', 'COG', 
-        'TWD', 'TWS', 'TWA'
-    ]
-
-    # Calculate the number of rows and columns for subplots
-    n_columns = 8  # Set the number of columns
-    n_rows = (len(columns_to_plot) + n_columns - 1) // n_columns  # Calculate number of rows to fit all subplots
-
-    # Create subplots dynamically based on number of metrics
-    fig, axes = plt.subplots(n_rows, n_columns, figsize=(5 * n_rows, 5 * n_rows))
-    axes = axes.flatten()  # Flatten to easily iterate
-
-    # Convert 'ISODateTimeUTC' to seconds since the epoch for both dataframes
-    df1['ISODateTimeUTC'] = pd.to_datetime(df1['ISODateTimeUTC']).dt.tz_localize(None)  # Remove timezone if present
-    df2['ISODateTimeUTC'] = pd.to_datetime(df2['ISODateTimeUTC']).dt.tz_localize(None)  # Remove timezone if present
-
-    # Convert to seconds since the epoch
-    df1['SecondsSince1970'] = (df1['ISODateTimeUTC'] - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s')
-    df2['SecondsSince1970'] = (df2['ISODateTimeUTC'] - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s')
-
-    # Define start_time as the first timestamp from df1 (or df2)
-    start_time = df1['SecondsSince1970'].iloc[0]
-
-    # Iterate over all the columns and create a subplot for each
-    for i, col in enumerate(columns_to_plot):
-        ax = axes[i]
-        sns.lineplot(data=df1, x=df1["SecondsSince1970"] - start_time, y=col, label=f"{name1} {col}", color='blue', ax=ax, errorbar=None)
-        sns.lineplot(data=df2, x=df2["SecondsSince1970"] - start_time, y=col, label=f"{name2} {col}", color='orange', ax=ax, errorbar=None)
-        ax.set_xlabel("Time (Seconds Since Time 0)")
-        ax.set_ylabel(col)
-        ax.legend()
-        ax.grid()
-
-    # Set a single title for the entire figure
-    fig.suptitle(f"{title} - Parameters over time", fontsize=16)
-
-    # Adjust layout to prevent overlap
-    plt.tight_layout()
-
-    # Adjust the space for the main title
-    plt.subplots_adjust(top=0.95)  # This creates space for the main title
-
-    plt.show()
-"""
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -474,29 +396,15 @@ def plots(df1, df2, name1, name2, title):
 
     plt.show()
 
+
 def process_run(df1, df2, name1, name2, title):
     if df1.empty or df2.empty:
-        print(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
-        return
-    """ 
-    df1, df2 = df1.copy(), df2.copy()
-    df1["ISODateTimeUTC"] = pd.to_datetime(df1["ISODateTimeUTC"], errors="coerce")
-    df2["ISODateTimeUTC"] = pd.to_datetime(df2["ISODateTimeUTC"], errors="coerce")
-
-    if df1["ISODateTimeUTC"].isna().all() or df2["ISODateTimeUTC"].isna().all():
-        print(f"⚠️ Skipping {title} due to invalid timestamps: {name1} vs {name2}")
+        display(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
         return
 
-    start_time = df1["ISODateTimeUTC"].iloc[0].ceil("min")
-    df1 = df1[df1["ISODateTimeUTC"] >= start_time]
-    df2 = df2[df2["ISODateTimeUTC"] >= start_time]
-    if df1.empty or df2.empty:
-        print(f"⚠️ Skipping {title} after time alignment")
-        return
-    """
-    print("\n" + "="*80)
-    print(title)
-    print("="*80)
+    display("\n" + "="*80)
+    display(title)
+    display("="*80)
 
     stats1, stats2, summary = compare_runs(df1, df2, name1, name2)
     merged = merge_stats(stats1, stats2, name1, name2)
@@ -505,24 +413,48 @@ def process_run(df1, df2, name1, name2, title):
     display_all(merged, summary, gain, name1, name2)
     plots(df1, df2, name1, name2, title)
 
-def process_all_run(run_path, summary_path, tot = False):
+def process_all_run(run_path, summary_path, tot=False, onlyUpwind=False, onlyDownwind=False):
     summary_dict = load_summary_intervals(summary_path)
     data = load_and_reduce_boat_data(run_path, summary_dict)
     name1, name2 = data["boat1_name"], data["boat2_name"]
-    if tot:
-        print(f"Processing total run for {name1} vs {name2}")
-        process_run(data["full_df1"], data["full_df2"], name1, name2, "Total Run")
-    else:
-        print(f"Processing only reduced intervals for {name1} vs {name2}")
-        run_name = os.path.basename(run_path)
-        intervals = summary_dict.get(run_name, [])
-        
-        start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        title1 = f"Interval 1: Upwind from {start1} to {end1}: {name1} vs {name2}"
-        process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
 
-        start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-        title2 = f"Interval 2: Downwind from {start2} to {end2}: {name1} vs {name2}"
-        process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
+    run_name = os.path.basename(run_path)
+    display("\n\n\n\n" + "=" * 80)
+    display(f"Processing run: {run_name}")
+    display("=" * 80 + "\n")
+
+    if tot:
+        display("Processing total run (full data)...\n")
+        process_run(data["full_df1"], data["full_df2"], name1, name2, "Total Run")
+        return
+    intervals = summary_dict.get(run_name, [])
+
+    if not intervals or len(intervals) < 2:
+        display(f"Warning: Not enough interval data found for run '{run_name}'.\n")
+        return
+
+    # Upwind (interval 0)
+    if onlyUpwind or (not onlyUpwind and not onlyDownwind):
+        pp.pprint(intervals[0])
+        if intervals[0]["duration"] < 30:
+            display("\nSkipping Upwind interval: duration < 30 seconds.\n")
+        else:
+            start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title1 = f"Interval 1: Upwind from {start1} to {end1} — {name1} vs {name2}"
+            process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
+
+    # Downwind (interval 1)
+    if onlyDownwind or (not onlyUpwind and not onlyDownwind):
+        display("-" * 40)
+        display("Interval 2: Downwind")
+        display("-" * 40)
+        pp.pprint(intervals[1])
+        if intervals[1]["duration"] < 30:
+            display("\nSkipping Downwind interval: duration < 30 seconds.\n")
+        else:
+            start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title2 = f"Interval 2: Downwind from {start2} to {end2} — {name1} vs {name2}"
+            display(f"\nProcessing: {title2}\n")
+            process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
