@@ -9,6 +9,7 @@ from IPython.display import display
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pprint as pp
+
 def load_summary_intervals(summary_file="summary.json"):
     with open(summary_file, "r") as f:
         return {r["run"]: r["intervals"] for r in json.load(f)}
@@ -137,7 +138,6 @@ def display_all(merged_stats, summary_df, gain_table, boat1_name, boat2_name):
                     "Distance as Percentage of Straight Line [%]": "{:.4f}",
                 })
                 .set_caption("Distance Summary"))
-
     display(summary_df)
 
 
@@ -158,34 +158,6 @@ def display_all(merged_stats, summary_df, gain_table, boat1_name, boat2_name):
     styled_gain = styled_gain.set_caption(f"Gain of {boat1_name} with respect to {boat2_name}")
     display(styled_gain)  # Display the styled table for gain_table
 
-
-"""
-def load_and_reduce_boat_data(run_path, summary_dict):
-    csv_files = sorted(f for f in os.listdir(run_path) if f.endswith(".csv"))
-    if len(csv_files) < 2:
-        raise ValueError("At least two CSV files are required.")
-
-    df1, df2, name1, name2 = load_boat_data(
-        os.path.join(run_path, csv_files[0]),
-        os.path.join(run_path, csv_files[1])
-    )
-    if df1.empty or df2.empty:
-        raise ValueError("One or both boat DataFrames are empty")
-
-    run_name = os.path.basename(run_path)
-    intervals = summary_dict.get(run_name)
-    if not intervals or len(intervals) < 2:
-        raise ValueError(f"No or insufficient intervals for run: {run_name}")
-
-    return {
-        "full_df1": df1, "full_df2": df2,
-        "reduced_boat1_int1_df": filter_interval(df1, intervals[0]["start_time"], intervals[0]["end_time"]),
-        "reduced_boat2_int1_df": filter_interval(df2, intervals[0]["start_time"], intervals[0]["end_time"]),
-        "reduced_boat1_int2_df": filter_interval(df1, intervals[1]["start_time"], intervals[1]["end_time"]),
-        "reduced_boat2_int2_df": filter_interval(df2, intervals[1]["start_time"], intervals[1]["end_time"]),
-        "boat1_name": name1, "boat2_name": name2
-    }
-"""
 def load_and_reduce_boat_data(run_path, summary_dict):
     import copy
 
@@ -441,7 +413,7 @@ def plots(df1, df2, name1, name2, title):
     fig.legend(handles, labels, loc='upper center', ncol=3, fontsize=12, bbox_to_anchor=(0.5, -0.05))
 
     plt.show()
-
+    
 def process_run(df1, df2, name1, name2, title):
     if df1.empty or df2.empty:
         print(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
@@ -458,6 +430,7 @@ def process_run(df1, df2, name1, name2, title):
     display_all(merged, summary, gain, name1, name2)
     plots(df1, df2, name1, name2, title)
 
+"""
 def process_all_run(run_path, summary_path, tot = False):
     summary_dict = load_summary_intervals(summary_path)
     data = load_and_reduce_boat_data(run_path, summary_dict)
@@ -481,7 +454,7 @@ def process_all_run(run_path, summary_path, tot = False):
             title1 = f"Interval 1: Upwind from {start1} to {end1}: {name1} vs {name2}"
             process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
             
-        print(f"Interval 2 summary:")
+        print(f"\n Interval 2 summary:")
         pp.pprint(intervals[1])
         if intervals[1]["duration"] < 30:
             print(f"⚠️ Skipping {name1} vs {name2} second intervall due to insufficient high SOG duration in intervals.")
@@ -490,4 +463,50 @@ def process_all_run(run_path, summary_path, tot = False):
             start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
             end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
             title2 = f"Interval 2: Downwind from {start2} to {end2}: {name1} vs {name2}"
+            process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
+"""
+def process_all_run(run_path, summary_path, tot=False, onlyUpwind=False, onlyDownwind=False):
+    summary_dict = load_summary_intervals(summary_path)
+    data = load_and_reduce_boat_data(run_path, summary_dict)
+    name1, name2 = data["boat1_name"], data["boat2_name"]
+
+    run_name = os.path.basename(run_path)
+    print("\n\n\n\n" + "=" * 80)
+    print(f"Processing run: {run_name}")
+    print("=" * 80 + "\n")
+
+    if tot:
+        print("Processing total run (full data)...\n")
+        process_run(data["full_df1"], data["full_df2"], name1, name2, "Total Run")
+        return
+    intervals = summary_dict.get(run_name, [])
+
+    if not intervals or len(intervals) < 2:
+        print(f"Warning: Not enough interval data found for run '{run_name}'.\n")
+        return
+
+    # Upwind (interval 0)
+    if onlyUpwind or (not onlyUpwind and not onlyDownwind):
+        pp.pprint(intervals[0])
+        if intervals[0]["duration"] < 30:
+            print("\nSkipping Upwind interval: duration < 30 seconds.\n")
+        else:
+            start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title1 = f"Interval 1: Upwind from {start1} to {end1} — {name1} vs {name2}"
+            process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
+
+    # Downwind (interval 1)
+    if onlyDownwind or (not onlyUpwind and not onlyDownwind):
+        print("-" * 40)
+        print("Interval 2: Downwind")
+        print("-" * 40)
+        pp.pprint(intervals[1])
+        if intervals[1]["duration"] < 30:
+            print("\nSkipping Downwind interval: duration < 30 seconds.\n")
+        else:
+            start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+            title2 = f"Interval 2: Downwind from {start2} to {end2} — {name1} vs {name2}"
+            print(f"\nProcessing: {title2}\n")
             process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
