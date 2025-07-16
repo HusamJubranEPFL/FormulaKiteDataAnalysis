@@ -94,7 +94,8 @@ def compute_directional_gain(df1, df2):
 
         initial_rel = pos1_start - pos2_start
         final_rel = pos1_end - pos2_end
-        progress = initial_rel - final_rel
+        # progress = initial_rel - final_rel
+        progress = final_rel - initial_rel
         duration_min = (df1["SecondsSince1970"].iloc[-1] - df1["SecondsSince1970"].iloc[0]) / 60 or np.nan
 
         def calc_gain(vec, sign=1):
@@ -182,6 +183,7 @@ def load_and_reduce_boat_data(run_path, summary_dict):
         # Swap DataFrames
         df1, df2 = df2, df1
         name1, name2 = name2, name1
+        """
         # Swap interval metadata
         for interval in intervals:
             keys_to_swap = [
@@ -201,7 +203,7 @@ def load_and_reduce_boat_data(run_path, summary_dict):
                     boat1_key = key.replace("boat2", "boat1")
 
                 interval[boat1_key], interval[boat2_key] = interval[boat2_key], interval[boat1_key]
-
+            """
     return {
         "full_df1": df1,
         "full_df2": df2,
