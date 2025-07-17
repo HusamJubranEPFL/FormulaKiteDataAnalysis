@@ -415,7 +415,23 @@ def plots(df1, df2, name1, name2, title):
     fig.legend(handles, labels, loc='upper center', ncol=3, fontsize=12, bbox_to_anchor=(0.5, -0.05))
 
     plt.show()
-    
+"""    
+def process_run(df1, df2, name1, name2, title):
+    if df1.empty or df2.empty:
+        print(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
+        return
+
+    print("\n" + "="*80)
+    print(title)
+    print("="*80)
+
+    stats1, stats2, summary = compare_runs(df1, df2, name1, name2)
+    merged = merge_stats(stats1, stats2, name1, name2)
+    gain = compute_directional_gain(df1, df2)
+    merged = add_winner_columns(merged, name1, name2)
+    display_all(merged, summary, gain, name1, name2)
+    plots(df1, df2, name1, name2, title)"""
+
 def process_run(df1, df2, name1, name2, title):
     if df1.empty or df2.empty:
         print(f"⚠️ Skipping {title} due to empty data: {name1} vs {name2}")
@@ -431,43 +447,9 @@ def process_run(df1, df2, name1, name2, title):
     merged = add_winner_columns(merged, name1, name2)
     display_all(merged, summary, gain, name1, name2)
     plots(df1, df2, name1, name2, title)
+    return gain, merged
 
-"""
-def process_all_run(run_path, summary_path, tot = False):
-    summary_dict = load_summary_intervals(summary_path)
-    data = load_and_reduce_boat_data(run_path, summary_dict)
-    name1, name2 = data["boat1_name"], data["boat2_name"]
-    if tot:
-        print(f"Processing total run for {name1} vs {name2}")
-        process_run(data["full_df1"], data["full_df2"], name1, name2, "Total Run")
-    else:
-        print(f"Processing only reduced intervals for {name1} vs {name2}")
-        run_name = os.path.basename(run_path)
-        intervals = summary_dict.get(run_name, [])
-
-        print(f"Interval 1 summary:")
-        pp.pprint(intervals[0])
-        if intervals[0]["duration"] < 30:
-            print(f"⚠️ Skipping {name1} vs {name2} first intervall due to insufficient high SOG duration in intervals.")
-            return
-        else:
-            start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-            end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-            title1 = f"Interval 1: Upwind from {start1} to {end1}: {name1} vs {name2}"
-            process_run(data["reduced_boat1_int1_df"], data["reduced_boat2_int1_df"], name1, name2, title1)
-            
-        print(f"\n Interval 2 summary:")
-        pp.pprint(intervals[1])
-        if intervals[1]["duration"] < 30:
-            print(f"⚠️ Skipping {name1} vs {name2} second intervall due to insufficient high SOG duration in intervals.")
-            return
-        else:
-            start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
-            end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
-            title2 = f"Interval 2: Downwind from {start2} to {end2}: {name1} vs {name2}"
-            process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
-"""
-def process_all_run(run_path, summary_path, tot=False, onlyUpwind=False, onlyDownwind=False):
+"""def process_all_run(run_path, summary_path, tot=False, onlyUpwind=False, onlyDownwind=False):
     summary_dict = load_summary_intervals(summary_path)
     data = load_and_reduce_boat_data(run_path, summary_dict)
     name1, name2 = data["boat1_name"], data["boat2_name"]
@@ -512,3 +494,189 @@ def process_all_run(run_path, summary_path, tot=False, onlyUpwind=False, onlyDow
             title2 = f"Interval 2: Downwind from {start2} to {end2} — {name1} vs {name2}"
             print(f"\nProcessing: {title2}\n")
             process_run(data["reduced_boat1_int2_df"], data["reduced_boat2_int2_df"], name1, name2, title2)
+"""
+def process_all_run(run_path, summary_path, summary_results=None, tot=False, onlyUpwind=False, onlyDownwind=False):
+    if summary_results is None:
+        summary_results = []  # Initialize only if not passed in
+    summary_dict = load_summary_intervals(summary_path)
+    data = load_and_reduce_boat_data(run_path, summary_dict)
+    name1, name2 = data["boat1_name"], data["boat2_name"]
+
+    run_name = os.path.basename(run_path)
+    print("\n\n\n\n" + "=" * 80)
+    print(f"Processing run: {run_name}")
+    print("=" * 80 + "\n")
+
+    if tot:
+        print("Processing total run (full data)...\n")
+        gain, merged = process_run(data["full_df1"], data["full_df2"], name1, name2, "Total Run")
+        row = extract_summary_row(run_name, name1, name2, gain, merged)
+        summary_results.append(row)
+
+    else:
+        intervals = summary_dict.get(run_name, [])
+
+        if not intervals or len(intervals) < 2:
+            print(f"Warning: Not enough interval data found for run '{run_name}'.\n")
+            return
+
+        # Upwind (interval 0)
+        if onlyUpwind or (not onlyUpwind and not onlyDownwind):
+            pp.pprint(intervals[0])
+            if intervals[0]["duration"] < 30:
+                print("\nSkipping Upwind interval: duration < 30 seconds.\n")
+            else:
+                start1 = datetime.utcfromtimestamp(intervals[0]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+                end1 = datetime.utcfromtimestamp(intervals[0]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+                title1 = f"Interval 1: Upwind from {start1} to {end1} — {name1} vs {name2}"
+                gain, merged = process_run(
+                    data["reduced_boat1_int1_df"],
+                    data["reduced_boat2_int1_df"],
+                    name1, name2, title1
+                )
+                row = extract_summary_row(run_name + " (Upwind)", name1, name2, gain, merged)
+                summary_results.append(row)
+
+        # Downwind (interval 1)
+        if onlyDownwind or (not onlyUpwind and not onlyDownwind):
+            print("-" * 40)
+            print("Interval 2: Downwind")
+            print("-" * 40)
+            pp.pprint(intervals[1])
+            if intervals[1]["duration"] < 30:
+                print("\nSkipping Downwind interval: duration < 30 seconds.\n")
+            else:
+                start2 = datetime.utcfromtimestamp(intervals[1]["start_time"]).strftime("%Y-%m-%d %H:%M:%S")
+                end2 = datetime.utcfromtimestamp(intervals[1]["end_time"]).strftime("%Y-%m-%d %H:%M:%S")
+                title2 = f"Interval 2: Downwind from {start2} to {end2} — {name1} vs {name2}"
+                print(f"\nProcessing: {title2}\n")
+                gain, merged = process_run(
+                    data["reduced_boat1_int2_df"],
+                    data["reduced_boat2_int2_df"],
+                    name1, name2, title2
+                )
+                row = extract_summary_row(run_name + " (Downwind)", name1, name2, gain, merged)
+                summary_results.append(row)
+
+    # Display summary after all intervals
+    if summary_results:
+        df_summary = pd.DataFrame(summary_results)
+    else:
+        print("No valid runs to summarize.")
+
+def extract_summary_row(run_name, name1, name2, gain_table, merged_stats):
+    # Save original names for merged_stats lookup
+    orig_name1 = name1
+    orig_name2 = name2
+
+    # Mapping logic to determine who is on SenseBoard
+    name_map = {
+        "SenseBoard": None,
+        "Gian Stragiotti": "Karl Maeder*",
+        "Karl Maeder": "Gian Stragiotti*"
+    }
+
+    # Determine display names
+    display_name1 = name1
+    display_name2 = name2
+
+    if name1 == "SenseBoard":
+        display_name1 = name_map.get(name2, "SenseBoard*")
+    if name2 == "SenseBoard":
+        display_name2 = name_map.get(name1, "SenseBoard*")
+
+    master_name = display_name1
+    slave_name = display_name2
+
+    # --- Map winner names in merged_stats ---
+    def map_winner_name(winner):
+        if winner == "SenseBoard":
+            if orig_name1 == "SenseBoard":
+                return display_name1
+            elif orig_name2 == "SenseBoard":
+                return display_name2
+        return winner  # unchanged if not SenseBoard
+
+    winner_avg_sog = map_winner_name(merged_stats.at["SOG", "Winner (Avg)"])
+    winner_std_sog = map_winner_name(merged_stats.at["SOG", "Winner (StdDev)"])
+    winner_overall_sog = map_winner_name(merged_stats.at["SOG", "Winner (Overall)"])
+
+    winner_avg_vmg = map_winner_name(merged_stats.at["VMG", "Winner (Avg)"])
+    winner_std_vmg = map_winner_name(merged_stats.at["VMG", "Winner (StdDev)"])
+    winner_overall_vmg = map_winner_name(merged_stats.at["VMG", "Winner (Overall)"])
+
+    winner_avg_heel = map_winner_name(merged_stats.at["Heel_Lwd", "Winner (Avg)"])
+    winner_std_heel = map_winner_name(merged_stats.at["Heel_Lwd", "Winner (StdDev)"])
+    winner_overall_heel = map_winner_name(merged_stats.at["Heel_Lwd", "Winner (Overall)"])
+
+    winner_avg_sideLines = map_winner_name(merged_stats.at["Side_lines", "Winner (Avg)"])
+    winner_std_sideLines = map_winner_name(merged_stats.at["Side_lines", "Winner (StdDev)"])
+    winner_overall_sideLines = map_winner_name(merged_stats.at["Side_lines", "Winner (Overall)"])
+
+    winner_avg_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (Avg)"])
+    winner_std_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (StdDev)"])
+    winner_overall_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (Overall)"])
+
+    winner_avg_totalLines = map_winner_name(merged_stats.at["Total_lines", "Winner (Avg)"])
+    winner_std_totalLines = map_winner_name(merged_stats.at["Total_lines", "Winner (StdDev)"])
+    winner_overall_totalLines = map_winner_name(merged_stats.at["Total_lines", "Winner (Overall)"])
+    
+    row = {
+            "Run": run_name,
+            "Master": master_name,
+            "Slave": slave_name,
+
+            "Space1": "",  # séparateur visuel
+
+            "Lateral Gain (m)": gain_table.at["Total Gain", "Lateral"],
+            "Forward Gain (m)": gain_table.at["Total Gain", "Forward"],
+            "VMG Gain (m)": gain_table.at["Total Gain", "VMG"],
+
+            "Space2": "",
+            "Avg SOG (Master)": merged_stats.at["SOG", f"Avg ({orig_name1})"],
+            "Avg SOG (Slave)": merged_stats.at["SOG", f"Avg ({orig_name2})"],
+            "Winner Avg SOG": winner_avg_sog,
+            "Winner Std SOG": winner_std_sog,
+            "Winner Overall SOG": winner_overall_sog,
+
+            "Space3": "",
+            "Avg VMG (Master)": merged_stats.at["VMG", f"Avg ({orig_name1})"],
+            "Avg VMG (Slave)": merged_stats.at["VMG", f"Avg ({orig_name2})"],
+            "Winner Avg VMG": winner_avg_vmg,
+            "Winner Std VMG": winner_std_vmg,
+            "Winner Overall VMG": winner_overall_vmg,
+
+            "Space4": "",
+            "Avg Heel (Master)": merged_stats.at["Heel_Lwd", f"Avg ({orig_name1})"],
+            "Avg Heel (Slave)": merged_stats.at["Heel_Lwd", f"Avg ({orig_name2})"],
+            "Winner Avg Heel": winner_avg_heel,
+            "Winner Std Heel": winner_std_heel,
+            "Winner Overall Heel": winner_overall_heel,
+
+            "Space5": "",
+            "Avg Side_Lines (Master)": merged_stats.at["Side_lines", f"Avg ({orig_name1})"],
+            "Avg Side_Lines (Slave)": merged_stats.at["Side_lines", f"Avg ({orig_name2})"],
+            "Winner Avg Side_Lines": winner_avg_sideLines,
+            "Winner Std Side_Lines": winner_std_sideLines,
+            "Winner Overall Side_Lines": winner_overall_sideLines,
+
+            "Space6": "",
+            "Avg Line_C (Master)": merged_stats.at["Line_C", f"Avg ({orig_name1})"],
+            "Avg Line_C (Slave)": merged_stats.at["Line_C", f"Avg ({orig_name2})"],
+            "Winner Avg Line_C": winner_avg_lineC,
+            "Winner Std Line_C": winner_std_lineC,
+            "Winner Overall Line_C": winner_overall_lineC,
+
+            "Space7": "",
+            "Avg Total_Lines (Master)": merged_stats.at["Total_lines", f"Avg ({orig_name1})"],
+            "Avg Total_Lines (Slave)": merged_stats.at["Total_lines", f"Avg ({orig_name2})"],
+            "Winner Avg Total_Lines": winner_avg_totalLines,
+            "Winner Std Total_Lines": winner_std_totalLines,
+            "Winner Overall Total_Lines": winner_overall_totalLines,
+
+
+
+        }
+
+
+    return row
