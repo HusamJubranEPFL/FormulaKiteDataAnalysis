@@ -7561,27 +7561,24 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">senseboard_9juin</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">)</span> <span class="o">&amp;</span>
-    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"ISODateTimeUTC"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"2025-06-09"</span><span class="p">))]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_9juin</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"ISODateTimeUTC"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"2025-06-09"</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=abb37838">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d8a4522a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Upwind-Data-of-Gian-on-the-senseboard-on-the-9th-of-June">Upwind Data of Gian on the senseboard on the 9th of June<a class="anchor-link" href="#Upwind-Data-of-Gian-on-the-senseboard-on-the-9th-of-June">¶</a></h2>
+<h2 id="T-test-on-the-TWS-between-runs-5,6,7-where-Karl-holds-the-weights-and-runs-8,9,10,11-where-Gian-holds-6kgs">T test on the TWS between runs 5,6,7 where Karl holds the weights and runs 8,9,10,11 where Gian holds 6kgs<a class="anchor-link" href="#T-test-on-the-TWS-between-runs-5,6,7-where-Karl-holds-the-weights-and-runs-8,9,10,11-where-Gian-holds-6kgs">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=00b5f333">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=940f75e7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7589,69 +7586,14 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Upwind data</span>
-<span class="n">senseboard_9juin_upwind</span> <span class="o">=</span> <span class="n">senseboard_9juin</span><span class="p">[</span><span class="n">senseboard_9juin</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">nb_poids_differents_upwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nombre de poids différents utilisés par Senseboard (Gian) le 9 juin : </span><span class="si">{</span><span class="n">nb_poids_differents_upwind</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">poids_uniques_upwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Poids uniques: </span><span class="si">{</span><span class="n">poids_uniques_upwind</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">poids_uniques_upwind</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Erreur : il faut exactement deux poids pour effectuer le t-test."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">poids1_upwind</span><span class="p">,</span> <span class="n">poids2_upwind</span> <span class="o">=</span> <span class="n">poids_uniques_upwind</span>
-
-    <span class="n">groupe1_df_upwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">poids1_upwind</span><span class="p">]</span>
-    <span class="n">groupe2_df_upwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">poids2_upwind</span><span class="p">]</span>
-    <span class="n">t_test</span><span class="p">(</span><span class="n">groupe1_df_upwind</span><span class="p">,</span> <span class="n">groupe2_df_upwind</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Number of individuals in Group 1: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe1_df_upwind</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of individuals in Group 2: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe2_df_upwind</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Weight in Group 1: </span><span class="si">{</span><span class="n">poids1_upwind</span><span class="si">}</span><span class="s2">, Average SOG: </span><span class="si">{</span><span class="n">groupe1_df_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight in Group 2: </span><span class="si">{</span><span class="n">poids2_upwind</span><span class="si">}</span><span class="s2">, Average SOG: </span><span class="si">{</span><span class="n">groupe2_df_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">first_runs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"09_06_Run5"</span><span class="p">,</span><span class="s2">"09_06_Run6"</span><span class="p">,</span><span class="s2">"09_06_Run7"</span><span class="p">]</span>
+<span class="n">data_9juin_first_runs</span> <span class="o">=</span> <span class="n">data_9juin</span><span class="p">[</span><span class="n">data_9juin</span><span class="p">[</span><span class="s2">"run"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">first_runs</span><span class="p">)</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Nombre de poids différents utilisés par Senseboard (Gian) le 9 juin : 2
-Poids uniques: [109.09 115.09]
-
-T-statistic: 5.647, p-value: 0.000000017156318
-The difference is statistically significant, keeping data split.
-
-Number of individuals in Group 1: 2683
-Number of individuals in Group 2: 2588
-
-Weight in Group 1: 109.09, Average SOG: 23.3155795751025
-Weight in Group 2: 115.09, Average SOG: 23.180486862442038
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3bca3d29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Downwind-Data-of-Gian-on-the-senseboard-on-the-9th-of-June">Downwind Data of Gian on the senseboard on the 9th of June<a class="anchor-link" href="#Downwind-Data-of-Gian-on-the-senseboard-on-the-9th-of-June">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=844b0ead">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9d8982fa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7659,69 +7601,14 @@ Weight in Group 2: 115.09, Average SOG: 23.180486862442038
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Downwind data</span>
-<span class="n">senseboard_9juin_downwind</span> <span class="o">=</span> <span class="n">senseboard_9juin</span><span class="p">[</span><span class="n">senseboard_9juin</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">nb_poids_differents_downwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nombre de poids différents utilisés par Senseboard (Gian) le 9 juin : </span><span class="si">{</span><span class="n">nb_poids_differents_downwind</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">poids_uniques_downwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Poids uniques: </span><span class="si">{</span><span class="n">poids_uniques_downwind</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">poids_uniques_downwind</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Erreur : il faut exactement deux poids pour effectuer le t-test."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">poids1_downwind</span><span class="p">,</span> <span class="n">poids2_downwind</span> <span class="o">=</span> <span class="n">poids_uniques_downwind</span>
-
-    <span class="n">groupe1_df_downwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">poids1_downwind</span><span class="p">]</span>
-    <span class="n">groupe2_df_downwind</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">poids2_downwind</span><span class="p">]</span>
-    <span class="n">t_test</span><span class="p">(</span><span class="n">groupe1_df_downwind</span><span class="p">,</span> <span class="n">groupe2_df_downwind</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Number of individuals in Group 1: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe1_df_downwind</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of individuals in Group 2: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe2_df_downwind</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Weight in Group 1: </span><span class="si">{</span><span class="n">poids1_downwind</span><span class="si">}</span><span class="s2">, Average SOG: </span><span class="si">{</span><span class="n">groupe1_df_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight in Group 2: </span><span class="si">{</span><span class="n">poids2_downwind</span><span class="si">}</span><span class="s2">, Average SOG: </span><span class="si">{</span><span class="n">groupe2_df_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">last_runs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"09_06_Run8"</span><span class="p">,</span><span class="s2">"09_06_Run9"</span><span class="p">,</span><span class="s2">"09_06_Run10"</span><span class="p">,</span><span class="s2">"09_06_Run11"</span><span class="p">]</span>
+<span class="n">data_9juin_last_runs</span> <span class="o">=</span> <span class="n">data_9juin</span><span class="p">[</span><span class="n">data_9juin</span><span class="p">[</span><span class="s2">"run"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">last_runs</span><span class="p">)</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Nombre de poids différents utilisés par Senseboard (Gian) le 9 juin : 2
-Poids uniques: [109.09 115.09]
-
-T-statistic: 18.690, p-value: 0.000000000000000
-The difference is statistically significant, keeping data split.
-
-Number of individuals in Group 1: 1257
-Number of individuals in Group 2: 2034
-
-Weight in Group 1: 109.09, Average SOG: 27.65552903739061
-Weight in Group 2: 115.09, Average SOG: 26.918731563421826
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1991f70">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="General-Data-of-Gian-on-the-senseboard-on-the-9th-of-June;-simple-biaised-mean-and-balanced-means">General Data of Gian on the senseboard on the 9th of June; simple biaised mean and balanced means<a class="anchor-link" href="#General-Data-of-Gian-on-the-senseboard-on-the-9th-of-June;-simple-biaised-mean-and-balanced-means">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c472d07f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=870da5ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7729,106 +7616,8 @@ Weight in Group 2: 115.09, Average SOG: 26.918731563421826
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># --- 1. Identify the two weight configurations used ---</span>
-<span class="n">unique_weights</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">senseboard_9juin</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">num_weights</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_weights</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of distinct weights used on June 9th: </span><span class="si">{</span><span class="n">num_weights</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight values: </span><span class="si">{</span><span class="n">unique_weights</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">num_weights</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: This analysis requires exactly two weight configurations."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">light_weight</span><span class="p">,</span> <span class="n">heavy_weight</span> <span class="o">=</span> <span class="n">unique_weights</span>
-
-    <span class="c1"># --- 2. Global analysis without directional separation ---</span>
-    <span class="n">group_light</span> <span class="o">=</span> <span class="n">senseboard_9juin</span><span class="p">[</span><span class="n">senseboard_9juin</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">light_weight</span><span class="p">]</span>
-    <span class="n">group_heavy</span> <span class="o">=</span> <span class="n">senseboard_9juin</span><span class="p">[</span><span class="n">senseboard_9juin</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">heavy_weight</span><span class="p">]</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- T-test on overall (unstratified) data ---"</span><span class="p">)</span>
-    <span class="n">t_test</span><span class="p">(</span><span class="n">group_light</span><span class="p">,</span> <span class="n">group_heavy</span><span class="p">)</span>
-
-    <span class="n">mean_light</span> <span class="o">=</span> <span class="n">group_light</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">mean_heavy</span> <span class="o">=</span> <span class="n">group_heavy</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">n_light</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_light</span><span class="p">)</span>
-    <span class="n">n_heavy</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_heavy</span><span class="p">)</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="n">n_light</span> <span class="o">+</span> <span class="n">n_heavy</span>
-    <span class="n">pct_light</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">n_light</span> <span class="o">/</span> <span class="n">total</span>
-    <span class="n">pct_heavy</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">n_heavy</span> <span class="o">/</span> <span class="n">total</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Global statistics ---"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Light group: </span><span class="si">{</span><span class="n">n_light</span><span class="si">}</span><span class="s2"> samples (</span><span class="si">{</span><span class="n">pct_light</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%), weight = </span><span class="si">{</span><span class="n">light_weight</span><span class="si">}</span><span class="s2">, average SOG = </span><span class="si">{</span><span class="n">mean_light</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Heavy group: </span><span class="si">{</span><span class="n">n_heavy</span><span class="si">}</span><span class="s2"> samples (</span><span class="si">{</span><span class="n">pct_heavy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%), weight = </span><span class="si">{</span><span class="n">heavy_weight</span><span class="si">}</span><span class="s2">, average SOG = </span><span class="si">{</span><span class="n">mean_heavy</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-    <span class="c1"># --- 3. Directional breakdown with weighted average (50% upwind / 50% downwind) ---</span>
-    <span class="n">upwind_light</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">light_weight</span><span class="p">]</span>
-    <span class="n">upwind_heavy</span> <span class="o">=</span> <span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="n">senseboard_9juin_upwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">heavy_weight</span><span class="p">]</span>
-    <span class="n">downwind_light</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">light_weight</span><span class="p">]</span>
-    <span class="n">downwind_heavy</span> <span class="o">=</span> <span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="n">senseboard_9juin_downwind</span><span class="p">[</span><span class="s2">"boat_weight"</span><span class="p">]</span> <span class="o">==</span> <span class="n">heavy_weight</span><span class="p">]</span>
-
-    <span class="n">mean_up_light</span> <span class="o">=</span> <span class="n">upwind_light</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">mean_up_heavy</span> <span class="o">=</span> <span class="n">upwind_heavy</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">mean_down_light</span> <span class="o">=</span> <span class="n">downwind_light</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">mean_down_heavy</span> <span class="o">=</span> <span class="n">downwind_heavy</span><span class="p">[</span><span class="s2">"SOG"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-    <span class="n">sog_light_weighted</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">mean_up_light</span> <span class="o">+</span> <span class="n">mean_down_light</span><span class="p">)</span>
-    <span class="n">sog_heavy_weighted</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">mean_up_heavy</span> <span class="o">+</span> <span class="n">mean_down_heavy</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Weighted average by direction (50</span><span class="si">% u</span><span class="s2">pwind / 50</span><span class="si">% d</span><span class="s2">ownwind) ---"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Light weight SOG (weighted): </span><span class="si">{</span><span class="n">sog_light_weighted</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Heavy weight SOG (weighted): </span><span class="si">{</span><span class="n">sog_heavy_weighted</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-    <span class="c1"># --- 4. Balanced sampling: same sample count in each group and direction ---</span>
-    <span class="n">n_up</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">upwind_light</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">upwind_heavy</span><span class="p">))</span>
-    <span class="n">n_down</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">downwind_light</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">downwind_heavy</span><span class="p">))</span>
-
-    <span class="n">up_light_sample</span> <span class="o">=</span> <span class="n">upwind_light</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_up</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">up_heavy_sample</span> <span class="o">=</span> <span class="n">upwind_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_up</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">down_light_sample</span> <span class="o">=</span> <span class="n">downwind_light</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_down</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">down_heavy_sample</span> <span class="o">=</span> <span class="n">downwind_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_down</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-    <span class="n">sample_light</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">up_light_sample</span><span class="p">,</span> <span class="n">down_light_sample</span><span class="p">])</span>
-    <span class="n">sample_heavy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">up_heavy_sample</span><span class="p">,</span> <span class="n">down_heavy_sample</span><span class="p">])</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Balanced directional sampling (equal number of samples per direction and weight) ---"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Light weight SOG (balanced): </span><span class="si">{</span><span class="n">sample_light</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Heavy weight SOG (balanced): </span><span class="si">{</span><span class="n">sample_heavy</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- T-test on balanced directional samples ---"</span><span class="p">)</span>
-    <span class="n">t_test</span><span class="p">(</span><span class="n">sample_light</span><span class="p">,</span> <span class="n">sample_heavy</span><span class="p">)</span>
-
-    <span class="c1"># --- 5. Detection of Simpson's paradox due to direction imbalance ---</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Directional sample counts by weight ---"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Upwind   - Light: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">upwind_light</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Upwind   - Heavy: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">upwind_heavy</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Downwind - Light: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">downwind_light</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Downwind - Heavy: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">downwind_heavy</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">)</span>
-
-    <span class="n">total_light</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">upwind_light</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">downwind_light</span><span class="p">)</span>
-    <span class="n">total_heavy</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">upwind_heavy</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">downwind_heavy</span><span class="p">)</span>
-
-    <span class="n">pct_up_light</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">upwind_light</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_light</span> <span class="k">if</span> <span class="n">total_light</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">pct_down_light</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">downwind_light</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_light</span> <span class="k">if</span> <span class="n">total_light</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">pct_up_heavy</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">upwind_heavy</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_heavy</span> <span class="k">if</span> <span class="n">total_heavy</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">pct_down_heavy</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">downwind_heavy</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_heavy</span> <span class="k">if</span> <span class="n">total_heavy</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Proportion of upwind/downwind in each weight group ---"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Light weight: </span><span class="si">{</span><span class="n">pct_up_light</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% upwind, </span><span class="si">{</span><span class="n">pct_down_light</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% downwind"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Heavy weight: </span><span class="si">{</span><span class="n">pct_up_heavy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% upwind, </span><span class="si">{</span><span class="n">pct_down_heavy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% downwind"</span><span class="p">)</span>
-
-    <span class="n">heavier_slower_in_up</span> <span class="o">=</span> <span class="n">mean_up_heavy</span> <span class="o">&lt;</span> <span class="n">mean_up_light</span>
-    <span class="n">heavier_slower_in_down</span> <span class="o">=</span> <span class="n">mean_down_heavy</span> <span class="o">&lt;</span> <span class="n">mean_down_light</span>
-    <span class="n">heavier_faster_globally</span> <span class="o">=</span> <span class="n">mean_heavy</span> <span class="o">&gt;</span> <span class="n">mean_light</span>
-
-    <span class="k">if</span> <span class="n">heavier_slower_in_up</span> <span class="ow">and</span> <span class="n">heavier_slower_in_down</span> <span class="ow">and</span> <span class="n">heavier_faster_globally</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Simpson's paradox detected:"</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"- In both upwind and downwind segments, the heavier configuration performs worse."</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"- Yet, the overall average suggests the heavier configuration is faster."</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"- This discrepancy arises from an imbalance in the directional distribution between weight groups."</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"- Heavier samples may dominate faster downwind segments, skewing the global average."</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"- Directionally stratified or balanced analyses are necessary to remove this bias."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">No Simpson's paradox detected. Direction-specific results align with the overall trend."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">,</span><span class="n">data_9juin_last_runs</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"TWS"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"TWS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"TWS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -7841,61 +7630,986 @@ Weight in Group 2: 115.09, Average SOG: 26.918731563421826
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Number of distinct weights used on June 9th: 2
-Weight values: [109.09, 115.09]
-
-
---- T-test on overall (unstratified) data ---
-T-statistic: -2.676, p-value: 0.007467354374147
+<pre>T-statistic: -20.004, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
-
---- Global statistics ---
-Light group: 3940 samples (46.0%), weight = 109.09, average SOG = 24.700
-Heavy group: 4622 samples (54.0%), weight = 115.09, average SOG = 24.826
-
---- Weighted average by direction (50% upwind / 50% downwind) ---
-Light weight SOG (weighted): 25.486
-Heavy weight SOG (weighted): 25.050
-
---- Balanced directional sampling (equal number of samples per direction and weight) ---
-Light weight SOG (balanced): 24.737
-Heavy weight SOG (balanced): 24.415
-
---- T-test on balanced directional samples ---
-T-statistic: 6.639, p-value: 0.000000000033665
-The difference is statistically significant, keeping data split.
-
---- Directional sample counts by weight ---
-Upwind   - Light: 2683 samples
-Upwind   - Heavy: 2588 samples
-Downwind - Light: 1257 samples
-Downwind - Heavy: 2034 samples
-
---- Proportion of upwind/downwind in each weight group ---
-Light weight: 68.1% upwind, 31.9% downwind
-Heavy weight: 56.0% upwind, 44.0% downwind
-
-Simpson's paradox detected:
-- In both upwind and downwind segments, the heavier configuration performs worse.
-- Yet, the overall average suggests the heavier configuration is faster.
-- This discrepancy arises from an imbalance in the directional distribution between weight groups.
-- Heavier samples may dominate faster downwind segments, skewing the global average.
-- Directionally stratified or balanced analyses are necessary to remove this bias.
+7.2590247128437175 7.541569498486814
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cfe2928">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=317cc52c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="t-test-karl-heavy-vs-karl-not-heavy">t test karl heavy vs karl not heavy<a class="anchor-link" href="#t-test-karl-heavy-vs-karl-not-heavy">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e79a58ca">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_karl_first_runs_heavy</span> <span class="o">=</span> <span class="n">data_9juin_first_runs</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">((</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Senseboard"</span><span class="p">)</span> <span class="o">&amp;</span> 
+     <span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">only_karl_first_runs_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ISODateTimeUTC</th>
+<th>SecondsSince1970</th>
+<th>Heel_Abs</th>
+<th>Heel_Lwd</th>
+<th>Lat</th>
+<th>LatBow</th>
+<th>LatCenter</th>
+<th>LatStern</th>
+<th>Leg</th>
+<th>Line_C</th>
+<th>...</th>
+<th>run</th>
+<th>interval_id</th>
+<th>boat_name</th>
+<th>opponent_name</th>
+<th>boat_role</th>
+<th>boat_weight</th>
+<th>interval_duration</th>
+<th>gain_forward</th>
+<th>gain_lateral</th>
+<th>gain_vmg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>47074</th>
+<td>2025-06-09T12:54:10.452Z</td>
+<td>1.749474e+09</td>
+<td>52.5</td>
+<td>52.5</td>
+<td>43.507987</td>
+<td>43.507985</td>
+<td>43.507991</td>
+<td>43.507997</td>
+<td>NaN</td>
+<td>127.100</td>
+<td>...</td>
+<td>09_06_Run7</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>master</td>
+<td>106.975</td>
+<td>68.880</td>
+<td>1.943861</td>
+<td>0.053298</td>
+<td>1.321254</td>
+</tr>
+<tr>
+<th>43822</th>
+<td>2025-06-09T12:38:33.359Z</td>
+<td>1.749473e+09</td>
+<td>55.6</td>
+<td>55.6</td>
+<td>43.503502</td>
+<td>43.503500</td>
+<td>43.503506</td>
+<td>43.503513</td>
+<td>NaN</td>
+<td>126.500</td>
+<td>...</td>
+<td>09_06_Run5</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>master</td>
+<td>106.975</td>
+<td>68.713</td>
+<td>0.049684</td>
+<td>2.280999</td>
+<td>1.730463</td>
+</tr>
+<tr>
+<th>46355</th>
+<td>2025-06-09T12:49:03.561Z</td>
+<td>1.749473e+09</td>
+<td>56.0</td>
+<td>56.0</td>
+<td>43.505760</td>
+<td>43.505762</td>
+<td>43.505756</td>
+<td>43.505750</td>
+<td>1.0</td>
+<td>105.057</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>106.975</td>
+<td>47.292</td>
+<td>7.535773</td>
+<td>-1.407823</td>
+<td>-6.510781</td>
+</tr>
+<tr>
+<th>46249</th>
+<td>2025-06-09T12:48:52.960Z</td>
+<td>1.749473e+09</td>
+<td>47.4</td>
+<td>47.4</td>
+<td>43.504547</td>
+<td>43.504549</td>
+<td>43.504543</td>
+<td>43.504538</td>
+<td>1.0</td>
+<td>89.000</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>106.975</td>
+<td>47.292</td>
+<td>0.944424</td>
+<td>-1.857902</td>
+<td>-1.953402</td>
+</tr>
+<tr>
+<th>46272</th>
+<td>2025-06-09T12:48:55.252Z</td>
+<td>1.749473e+09</td>
+<td>43.8</td>
+<td>43.8</td>
+<td>43.504807</td>
+<td>43.504809</td>
+<td>43.504803</td>
+<td>43.504797</td>
+<td>1.0</td>
+<td>100.458</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>106.975</td>
+<td>47.292</td>
+<td>2.341997</td>
+<td>0.002062</td>
+<td>-1.712383</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 48 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c739264b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_karl_last_runs_light</span> <span class="o">=</span> <span class="n">data_9juin_last_runs</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">((</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span> 
+     <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">only_karl_last_runs_light</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ISODateTimeUTC</th>
+<th>SecondsSince1970</th>
+<th>Heel_Abs</th>
+<th>Heel_Lwd</th>
+<th>Lat</th>
+<th>LatBow</th>
+<th>LatCenter</th>
+<th>LatStern</th>
+<th>Leg</th>
+<th>Line_C</th>
+<th>...</th>
+<th>run</th>
+<th>interval_id</th>
+<th>boat_name</th>
+<th>opponent_name</th>
+<th>boat_role</th>
+<th>boat_weight</th>
+<th>interval_duration</th>
+<th>gain_forward</th>
+<th>gain_lateral</th>
+<th>gain_vmg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>53781</th>
+<td>2025-06-09T13:24:44.654Z</td>
+<td>1.749475e+09</td>
+<td>55.4</td>
+<td>55.4</td>
+<td>43.507835</td>
+<td>43.507833</td>
+<td>43.507839</td>
+<td>43.507846</td>
+<td>1.0</td>
+<td>84.5</td>
+<td>...</td>
+<td>09_06_Run10</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>100.975</td>
+<td>61.205</td>
+<td>0.676656</td>
+<td>0.654939</td>
+<td>0.937048</td>
+</tr>
+<tr>
+<th>49316</th>
+<td>2025-06-09T13:05:50.561Z</td>
+<td>1.749474e+09</td>
+<td>52.9</td>
+<td>52.9</td>
+<td>43.505969</td>
+<td>43.505967</td>
+<td>43.505973</td>
+<td>43.505979</td>
+<td>NaN</td>
+<td>126.5</td>
+<td>...</td>
+<td>09_06_Run8</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>100.975</td>
+<td>61.789</td>
+<td>9.604028</td>
+<td>1.366960</td>
+<td>6.669500</td>
+</tr>
+<tr>
+<th>56260</th>
+<td>2025-06-09T13:34:45.061Z</td>
+<td>1.749476e+09</td>
+<td>51.6</td>
+<td>51.6</td>
+<td>43.505294</td>
+<td>43.505292</td>
+<td>43.505299</td>
+<td>43.505305</td>
+<td>NaN</td>
+<td>115.1</td>
+<td>...</td>
+<td>09_06_Run11</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>master</td>
+<td>100.975</td>
+<td>67.090</td>
+<td>1.550345</td>
+<td>-3.722573</td>
+<td>-1.929907</td>
+</tr>
+<tr>
+<th>54094</th>
+<td>2025-06-09T13:25:15.960Z</td>
+<td>1.749476e+09</td>
+<td>47.8</td>
+<td>47.8</td>
+<td>43.504496</td>
+<td>43.504494</td>
+<td>43.504500</td>
+<td>43.504507</td>
+<td>1.0</td>
+<td>113.6</td>
+<td>...</td>
+<td>09_06_Run10</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>100.975</td>
+<td>61.205</td>
+<td>8.005888</td>
+<td>3.491369</td>
+<td>7.525193</td>
+</tr>
+<tr>
+<th>54041</th>
+<td>2025-06-09T13:25:10.655Z</td>
+<td>1.749476e+09</td>
+<td>61.8</td>
+<td>61.8</td>
+<td>43.505074</td>
+<td>43.505072</td>
+<td>43.505078</td>
+<td>43.505084</td>
+<td>1.0</td>
+<td>129.0</td>
+<td>...</td>
+<td>09_06_Run10</td>
+<td>1</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>100.975</td>
+<td>61.205</td>
+<td>5.649076</td>
+<td>1.270432</td>
+<td>4.322307</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 48 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=db884252">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">,</span><span class="n">only_karl_last_runs_light</span><span class="p">)</span> <span class="c1">#general</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: -7.879, p-value: 0.000000000000004
+The difference is statistically significant, keeping data split.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5ebc8618">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">],</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#upwind</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: -1.138, p-value: 0.255372507601836
+The difference is not statistically significant, keeping data combined.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5bea5989">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">],</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#downwind</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: 18.894, p-value: 0.000000000000000
+The difference is statistically significant, keeping data split.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d8a92605">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="t-test-karl-heavy-vs-karl-not-heavy">t test karl heavy vs karl not heavy<a class="anchor-link" href="#t-test-karl-heavy-vs-karl-not-heavy">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72fe28db">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_first_runs_light</span> <span class="o">=</span> <span class="n">data_9juin_first_runs</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">((</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span> 
+     <span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">only_gian_first_runs_light</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ISODateTimeUTC</th>
+<th>SecondsSince1970</th>
+<th>Heel_Abs</th>
+<th>Heel_Lwd</th>
+<th>Lat</th>
+<th>LatBow</th>
+<th>LatCenter</th>
+<th>LatStern</th>
+<th>Leg</th>
+<th>Line_C</th>
+<th>...</th>
+<th>run</th>
+<th>interval_id</th>
+<th>boat_name</th>
+<th>opponent_name</th>
+<th>boat_role</th>
+<th>boat_weight</th>
+<th>interval_duration</th>
+<th>gain_forward</th>
+<th>gain_lateral</th>
+<th>gain_vmg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>44662</th>
+<td>2025-06-09T12:38:48.560Z</td>
+<td>1.749473e+09</td>
+<td>41.3</td>
+<td>41.3</td>
+<td>43.502049</td>
+<td>43.502047</td>
+<td>43.502053</td>
+<td>43.502059</td>
+<td>1.0</td>
+<td>4.3</td>
+<td>...</td>
+<td>09_06_Run5</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.713</td>
+<td>-5.925147</td>
+<td>-3.369733</td>
+<td>-6.451412</td>
+</tr>
+<tr>
+<th>47709</th>
+<td>2025-06-09T12:54:05.072Z</td>
+<td>1.749474e+09</td>
+<td>58.2</td>
+<td>58.2</td>
+<td>43.508599</td>
+<td>43.508597</td>
+<td>43.508603</td>
+<td>43.508609</td>
+<td>1.0</td>
+<td>3.5</td>
+<td>...</td>
+<td>09_06_Run7</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.880</td>
+<td>1.199545</td>
+<td>-0.751558</td>
+<td>0.138641</td>
+</tr>
+<tr>
+<th>47783</th>
+<td>2025-06-09T12:54:12.454Z</td>
+<td>1.749474e+09</td>
+<td>51.3</td>
+<td>51.3</td>
+<td>43.507862</td>
+<td>43.507860</td>
+<td>43.507866</td>
+<td>43.507872</td>
+<td>1.0</td>
+<td>4.1</td>
+<td>...</td>
+<td>09_06_Run7</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.880</td>
+<td>0.299937</td>
+<td>0.651817</td>
+<td>0.687388</td>
+</tr>
+<tr>
+<th>48063</th>
+<td>2025-06-09T12:54:40.454Z</td>
+<td>1.749474e+09</td>
+<td>53.1</td>
+<td>53.1</td>
+<td>43.505044</td>
+<td>43.505042</td>
+<td>43.505048</td>
+<td>43.505054</td>
+<td>1.0</td>
+<td>6.3</td>
+<td>...</td>
+<td>09_06_Run7</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.880</td>
+<td>3.000509</td>
+<td>-3.914507</td>
+<td>-1.053662</td>
+</tr>
+<tr>
+<th>48978</th>
+<td>2025-06-09T12:56:57.558Z</td>
+<td>1.749474e+09</td>
+<td>49.8</td>
+<td>49.8</td>
+<td>43.505180</td>
+<td>43.505182</td>
+<td>43.505176</td>
+<td>43.505171</td>
+<td>NaN</td>
+<td>3.7</td>
+<td>...</td>
+<td>09_06_Run7</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>34.293</td>
+<td>-1.469370</td>
+<td>-7.079916</td>
+<td>-3.171103</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 48 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e9fb6bb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_last_runs_heavy</span> <span class="o">=</span> <span class="n">data_9juin_last_runs</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">((</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span> 
+     <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">only_gian_last_runs_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ISODateTimeUTC</th>
+<th>SecondsSince1970</th>
+<th>Heel_Abs</th>
+<th>Heel_Lwd</th>
+<th>Lat</th>
+<th>LatBow</th>
+<th>LatCenter</th>
+<th>LatStern</th>
+<th>Leg</th>
+<th>Line_C</th>
+<th>...</th>
+<th>run</th>
+<th>interval_id</th>
+<th>boat_name</th>
+<th>opponent_name</th>
+<th>boat_role</th>
+<th>boat_weight</th>
+<th>interval_duration</th>
+<th>gain_forward</th>
+<th>gain_lateral</th>
+<th>gain_vmg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>55882</th>
+<td>2025-06-09T13:28:19.048Z</td>
+<td>1.749476e+09</td>
+<td>56.2</td>
+<td>56.2</td>
+<td>43.507671</td>
+<td>43.507673</td>
+<td>43.507667</td>
+<td>43.507661</td>
+<td>NaN</td>
+<td>7.070</td>
+<td>...</td>
+<td>09_06_Run10</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>master</td>
+<td>115.09</td>
+<td>49.802</td>
+<td>7.389096</td>
+<td>3.503061</td>
+<td>-3.545179</td>
+</tr>
+<tr>
+<th>54790</th>
+<td>2025-06-09T13:25:24.257Z</td>
+<td>1.749476e+09</td>
+<td>57.7</td>
+<td>57.7</td>
+<td>43.503416</td>
+<td>43.503414</td>
+<td>43.503420</td>
+<td>43.503426</td>
+<td>NaN</td>
+<td>7.500</td>
+<td>...</td>
+<td>09_06_Run10</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>master</td>
+<td>115.09</td>
+<td>61.205</td>
+<td>9.883618</td>
+<td>3.785563</td>
+<td>8.942836</td>
+</tr>
+<tr>
+<th>57004</th>
+<td>2025-06-09T13:34:52.358Z</td>
+<td>1.749476e+09</td>
+<td>45.0</td>
+<td>45.0</td>
+<td>43.504591</td>
+<td>43.504589</td>
+<td>43.504596</td>
+<td>43.504602</td>
+<td>1.0</td>
+<td>4.800</td>
+<td>...</td>
+<td>09_06_Run11</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>115.09</td>
+<td>67.090</td>
+<td>0.415306</td>
+<td>-3.354227</td>
+<td>-2.367493</td>
+</tr>
+<tr>
+<th>53580</th>
+<td>2025-06-09T13:19:21.053Z</td>
+<td>1.749475e+09</td>
+<td>54.3</td>
+<td>54.3</td>
+<td>43.507223</td>
+<td>43.507225</td>
+<td>43.507219</td>
+<td>43.507213</td>
+<td>NaN</td>
+<td>6.800</td>
+<td>...</td>
+<td>09_06_Run9</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>115.09</td>
+<td>53.803</td>
+<td>-15.134212</td>
+<td>-0.388986</td>
+<td>11.861712</td>
+</tr>
+<tr>
+<th>58266</th>
+<td>2025-06-09T13:38:02.359Z</td>
+<td>1.749476e+09</td>
+<td>25.9</td>
+<td>25.9</td>
+<td>43.507805</td>
+<td>43.507806</td>
+<td>43.507801</td>
+<td>43.507795</td>
+<td>NaN</td>
+<td>2.052</td>
+<td>...</td>
+<td>09_06_Run11</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>115.09</td>
+<td>52.596</td>
+<td>-11.372068</td>
+<td>3.261420</td>
+<td>11.028102</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 48 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4e9fc136">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">,</span><span class="n">only_gian_last_runs_heavy</span><span class="p">)</span> <span class="c1">#general</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: -11.650, p-value: 0.000000000000000
+The difference is statistically significant, keeping data split.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77f77fef">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">],</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#upwind</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: -8.572, p-value: 0.000000000000000
+The difference is statistically significant, keeping data split.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ea00775e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">],</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#downwind</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>T-statistic: 10.288, p-value: 0.000000000000000
+The difference is statistically significant, keeping data split.
+
+The difference is statistically significant, keeping data split.
+</pre>
 </div>
 </div>
 </div>
