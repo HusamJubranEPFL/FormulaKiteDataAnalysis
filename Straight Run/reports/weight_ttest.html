@@ -7618,6 +7618,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">,</span><span class="n">data_9juin_last_runs</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"TWS"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"TWS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"TWS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average TWS in Group 1: </span><span class="si">{</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s1">'TWS'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average TWS in Group 2: </span><span class="si">{</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s1">'TWS'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7633,6 +7635,8 @@ a.anchor-link {
 <pre>T-statistic: -20.004, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
 7.2590247128437175 7.541569498486814
+Average TWS in Group 1: 7.2590247128437175
+Average TWS in Group 2: 7.541569498486814
 </pre>
 </div>
 </div>
@@ -7718,17 +7722,41 @@ The difference is statistically significant, keeping data split.
 </thead>
 <tbody>
 <tr>
-<th>47074</th>
-<td>2025-06-09T12:54:10.452Z</td>
+<th>46091</th>
+<td>2025-06-09T12:48:37.160Z</td>
+<td>1.749473e+09</td>
+<td>48.7</td>
+<td>48.7</td>
+<td>43.502618</td>
+<td>43.502620</td>
+<td>43.502614</td>
+<td>43.502608</td>
+<td>1.0</td>
+<td>108.711</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>106.975</td>
+<td>47.292</td>
+<td>-1.337407</td>
+<td>0.308470</td>
+<td>1.183110</td>
+</tr>
+<tr>
+<th>47029</th>
+<td>2025-06-09T12:54:05.950Z</td>
 <td>1.749474e+09</td>
-<td>52.5</td>
-<td>52.5</td>
-<td>43.507987</td>
-<td>43.507985</td>
-<td>43.507991</td>
-<td>43.507997</td>
+<td>57.1</td>
+<td>57.1</td>
+<td>43.508425</td>
+<td>43.508423</td>
+<td>43.508429</td>
+<td>43.508435</td>
 <td>NaN</td>
-<td>127.100</td>
+<td>98.489</td>
 <td>...</td>
 <td>09_06_Run7</td>
 <td>1</td>
@@ -7737,22 +7765,22 @@ The difference is statistically significant, keeping data split.
 <td>master</td>
 <td>106.975</td>
 <td>68.880</td>
-<td>1.943861</td>
-<td>0.053298</td>
-<td>1.321254</td>
+<td>2.695760</td>
+<td>-1.321438</td>
+<td>0.678176</td>
 </tr>
 <tr>
-<th>43822</th>
-<td>2025-06-09T12:38:33.359Z</td>
+<th>43349</th>
+<td>2025-06-09T12:37:46.048Z</td>
 <td>1.749473e+09</td>
-<td>55.6</td>
-<td>55.6</td>
-<td>43.503502</td>
-<td>43.503500</td>
-<td>43.503506</td>
-<td>43.503513</td>
+<td>59.2</td>
+<td>59.2</td>
+<td>43.508346</td>
+<td>43.508344</td>
+<td>43.508350</td>
+<td>43.508356</td>
 <td>NaN</td>
-<td>126.500</td>
+<td>113.600</td>
 <td>...</td>
 <td>09_06_Run5</td>
 <td>1</td>
@@ -7761,22 +7789,22 @@ The difference is statistically significant, keeping data split.
 <td>master</td>
 <td>106.975</td>
 <td>68.713</td>
-<td>0.049684</td>
-<td>2.280999</td>
-<td>1.730463</td>
+<td>0.899553</td>
+<td>0.903813</td>
+<td>1.271079</td>
 </tr>
 <tr>
-<th>46355</th>
-<td>2025-06-09T12:49:03.561Z</td>
+<th>46257</th>
+<td>2025-06-09T12:48:53.760Z</td>
 <td>1.749473e+09</td>
-<td>56.0</td>
-<td>56.0</td>
-<td>43.505760</td>
-<td>43.505762</td>
-<td>43.505756</td>
-<td>43.505750</td>
+<td>55.1</td>
+<td>55.1</td>
+<td>43.504638</td>
+<td>43.504640</td>
+<td>43.504634</td>
+<td>43.504628</td>
 <td>1.0</td>
-<td>105.057</td>
+<td>103.012</td>
 <td>...</td>
 <td>09_06_Run6</td>
 <td>2</td>
@@ -7785,57 +7813,33 @@ The difference is statistically significant, keeping data split.
 <td>slave</td>
 <td>106.975</td>
 <td>47.292</td>
-<td>7.535773</td>
-<td>-1.407823</td>
-<td>-6.510781</td>
+<td>1.346843</td>
+<td>-1.326910</td>
+<td>-1.889737</td>
 </tr>
 <tr>
-<th>46249</th>
-<td>2025-06-09T12:48:52.960Z</td>
+<th>44951</th>
+<td>2025-06-09T12:46:16.757Z</td>
 <td>1.749473e+09</td>
-<td>47.4</td>
-<td>47.4</td>
-<td>43.504547</td>
-<td>43.504549</td>
-<td>43.504543</td>
-<td>43.504538</td>
+<td>53.6</td>
+<td>53.6</td>
+<td>43.506068</td>
+<td>43.506066</td>
+<td>43.506072</td>
+<td>43.506078</td>
 <td>1.0</td>
-<td>89.000</td>
+<td>119.100</td>
 <td>...</td>
 <td>09_06_Run6</td>
-<td>2</td>
+<td>1</td>
 <td>Karl Maeder</td>
 <td>SenseBoard</td>
 <td>slave</td>
 <td>106.975</td>
-<td>47.292</td>
-<td>0.944424</td>
-<td>-1.857902</td>
-<td>-1.953402</td>
-</tr>
-<tr>
-<th>46272</th>
-<td>2025-06-09T12:48:55.252Z</td>
-<td>1.749473e+09</td>
-<td>43.8</td>
-<td>43.8</td>
-<td>43.504807</td>
-<td>43.504809</td>
-<td>43.504803</td>
-<td>43.504797</td>
-<td>1.0</td>
-<td>100.458</td>
-<td>...</td>
-<td>09_06_Run6</td>
-<td>2</td>
-<td>Karl Maeder</td>
-<td>SenseBoard</td>
-<td>slave</td>
-<td>106.975</td>
-<td>47.292</td>
-<td>2.341997</td>
-<td>0.002062</td>
-<td>-1.712383</td>
+<td>68.000</td>
+<td>2.289035</td>
+<td>2.921140</td>
+<td>3.691264</td>
 </tr>
 </tbody>
 </table>
@@ -7914,17 +7918,41 @@ The difference is statistically significant, keeping data split.
 </thead>
 <tbody>
 <tr>
-<th>53781</th>
-<td>2025-06-09T13:24:44.654Z</td>
+<th>50674</th>
+<td>2025-06-09T13:08:49.655Z</td>
 <td>1.749475e+09</td>
-<td>55.4</td>
-<td>55.4</td>
-<td>43.507835</td>
-<td>43.507833</td>
-<td>43.507839</td>
-<td>43.507846</td>
+<td>46.1</td>
+<td>46.1</td>
+<td>43.506608</td>
+<td>43.506610</td>
+<td>43.506604</td>
+<td>43.506598</td>
+<td>NaN</td>
+<td>84.2</td>
+<td>...</td>
+<td>09_06_Run8</td>
+<td>2</td>
+<td>Karl Maeder</td>
+<td>SenseBoard</td>
+<td>slave</td>
+<td>100.975</td>
+<td>47.191</td>
+<td>21.472612</td>
+<td>2.527678</td>
+<td>-14.951709</td>
+</tr>
+<tr>
+<th>54301</th>
+<td>2025-06-09T13:25:36.655Z</td>
+<td>1.749476e+09</td>
+<td>53.4</td>
+<td>53.4</td>
+<td>43.502254</td>
+<td>43.502252</td>
+<td>43.502258</td>
+<td>43.502264</td>
 <td>1.0</td>
-<td>84.5</td>
+<td>94.7</td>
 <td>...</td>
 <td>09_06_Run10</td>
 <td>1</td>
@@ -7933,70 +7961,46 @@ The difference is statistically significant, keeping data split.
 <td>slave</td>
 <td>100.975</td>
 <td>61.205</td>
-<td>0.676656</td>
-<td>0.654939</td>
-<td>0.937048</td>
+<td>11.314043</td>
+<td>2.822467</td>
+<td>9.025646</td>
 </tr>
 <tr>
-<th>49316</th>
-<td>2025-06-09T13:05:50.561Z</td>
-<td>1.749474e+09</td>
-<td>52.9</td>
-<td>52.9</td>
-<td>43.505969</td>
-<td>43.505967</td>
-<td>43.505973</td>
-<td>43.505979</td>
+<th>51861</th>
+<td>2025-06-09T13:16:38.454Z</td>
+<td>1.749475e+09</td>
+<td>55.5</td>
+<td>55.5</td>
+<td>43.502559</td>
+<td>43.502557</td>
+<td>43.502563</td>
+<td>43.502569</td>
 <td>NaN</td>
-<td>126.5</td>
+<td>131.1</td>
 <td>...</td>
-<td>09_06_Run8</td>
-<td>1</td>
-<td>Karl Maeder</td>
-<td>SenseBoard</td>
-<td>slave</td>
-<td>100.975</td>
-<td>61.789</td>
-<td>9.604028</td>
-<td>1.366960</td>
-<td>6.669500</td>
-</tr>
-<tr>
-<th>56260</th>
-<td>2025-06-09T13:34:45.061Z</td>
-<td>1.749476e+09</td>
-<td>51.6</td>
-<td>51.6</td>
-<td>43.505294</td>
-<td>43.505292</td>
-<td>43.505299</td>
-<td>43.505305</td>
-<td>NaN</td>
-<td>115.1</td>
-<td>...</td>
-<td>09_06_Run11</td>
+<td>09_06_Run9</td>
 <td>1</td>
 <td>Karl Maeder</td>
 <td>SenseBoard</td>
 <td>master</td>
 <td>100.975</td>
-<td>67.090</td>
-<td>1.550345</td>
-<td>-3.722573</td>
-<td>-1.929907</td>
+<td>68.692</td>
+<td>-12.627291</td>
+<td>-4.414760</td>
+<td>-12.379944</td>
 </tr>
 <tr>
-<th>54094</th>
-<td>2025-06-09T13:25:15.960Z</td>
+<th>54101</th>
+<td>2025-06-09T13:25:16.644Z</td>
 <td>1.749476e+09</td>
-<td>47.8</td>
-<td>47.8</td>
-<td>43.504496</td>
-<td>43.504494</td>
-<td>43.504500</td>
-<td>43.504507</td>
+<td>50.2</td>
+<td>50.2</td>
+<td>43.504420</td>
+<td>43.504418</td>
+<td>43.504424</td>
+<td>43.504431</td>
 <td>1.0</td>
-<td>113.6</td>
+<td>139.8</td>
 <td>...</td>
 <td>09_06_Run10</td>
 <td>1</td>
@@ -8005,33 +8009,33 @@ The difference is statistically significant, keeping data split.
 <td>slave</td>
 <td>100.975</td>
 <td>61.205</td>
-<td>8.005888</td>
-<td>3.491369</td>
-<td>7.525193</td>
+<td>6.808597</td>
+<td>3.149813</td>
+<td>6.547861</td>
 </tr>
 <tr>
-<th>54041</th>
-<td>2025-06-09T13:25:10.655Z</td>
-<td>1.749476e+09</td>
-<td>61.8</td>
-<td>61.8</td>
-<td>43.505074</td>
-<td>43.505072</td>
-<td>43.505078</td>
-<td>43.505084</td>
-<td>1.0</td>
-<td>129.0</td>
+<th>53157</th>
+<td>2025-06-09T13:19:32.653Z</td>
+<td>1.749475e+09</td>
+<td>45.8</td>
+<td>45.8</td>
+<td>43.508272</td>
+<td>43.508274</td>
+<td>43.508268</td>
+<td>43.508262</td>
+<td>NaN</td>
+<td>102.3</td>
 <td>...</td>
-<td>09_06_Run10</td>
-<td>1</td>
+<td>09_06_Run9</td>
+<td>2</td>
 <td>Karl Maeder</td>
 <td>SenseBoard</td>
-<td>slave</td>
+<td>master</td>
 <td>100.975</td>
-<td>61.205</td>
-<td>5.649076</td>
-<td>1.270432</td>
-<td>4.322307</td>
+<td>53.803</td>
+<td>-19.747757</td>
+<td>2.024746</td>
+<td>16.767345</td>
 </tr>
 </tbody>
 </table>
@@ -8050,6 +8054,10 @@ The difference is statistically significant, keeping data split.
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">,</span><span class="n">only_karl_last_runs_light</span><span class="p">)</span> <span class="c1">#general</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Upwind and downwind for Karl:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Weight of Karl on the first runs: </span><span class="si">{</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Karl on the last runs: </span><span class="si">{</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8064,6 +8072,11 @@ The difference is statistically significant, keeping data split.
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>T-statistic: -7.879, p-value: 0.000000000000004
 The difference is statistically significant, keeping data split.
+
+Upwind and downwind for Karl:
+
+Weight of Karl on the first runs: 106.97500000000001, average SOG: 24.09159415245388
+Weight of Karl on the last runs: 100.975, average SOG: 24.09159415245388
 </pre>
 </div>
 </div>
@@ -8077,7 +8090,14 @@ The difference is statistically significant, keeping data split.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">],</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#upwind</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_karl_first_runs_heavy_upwind</span> <span class="o">=</span> <span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">only_karl_last_runs_light_upwind</span> <span class="o">=</span> <span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy_upwind</span><span class="p">,</span><span class="n">only_karl_last_runs_light_upwind</span><span class="p">)</span> <span class="c1">#upwind</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Upwind for Karl:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Karl on the first runs: </span><span class="si">{</span><span class="n">only_karl_first_runs_heavy_upwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_karl_first_runs_heavy_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Karl on the last runs: </span><span class="si">{</span><span class="n">only_karl_last_runs_light_upwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_karl_last_runs_light_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8092,6 +8112,10 @@ The difference is statistically significant, keeping data split.
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>T-statistic: -1.138, p-value: 0.255372507601836
 The difference is not statistically significant, keeping data combined.
+
+Upwind for Karl:
+Weight of Karl on the first runs: 106.97499999999997, average SOG: 22.72190383681399
+Weight of Karl on the last runs: 100.97500000000001, average SOG: 22.74386574074074
 </pre>
 </div>
 </div>
@@ -8105,7 +8129,13 @@ The difference is not statistically significant, keeping data combined.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">],</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#downwind</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_karl_first_runs_heavy_downwind</span> <span class="o">=</span> <span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="n">only_karl_first_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">only_karl_last_runs_light_downwind</span> <span class="o">=</span> <span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="n">only_karl_last_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">t_test</span><span class="p">(</span><span class="n">only_karl_first_runs_heavy_downwind</span><span class="p">,</span> <span class="n">only_karl_last_runs_light_downwind</span><span class="p">)</span>  <span class="c1"># downwind</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Downwind for Karl:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Karl on the first runs: </span><span class="si">{</span><span class="n">only_karl_first_runs_heavy_downwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_karl_first_runs_heavy_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Karl on the last runs: </span><span class="si">{</span><span class="n">only_karl_last_runs_light_downwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_karl_last_runs_light_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8120,6 +8150,10 @@ The difference is not statistically significant, keeping data combined.
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>T-statistic: 18.894, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
+
+Downwind for Karl:
+Weight of Karl on the first runs: 106.97499999999998, average SOG: 27.031662591687045
+Weight of Karl on the last runs: 100.97499999999998, average SOG: 26.32492639842983
 </pre>
 </div>
 </div>
@@ -8132,7 +8166,7 @@ The difference is statistically significant, keeping data split.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="t-test-karl-heavy-vs-karl-not-heavy">t test karl heavy vs karl not heavy<a class="anchor-link" href="#t-test-karl-heavy-vs-karl-not-heavy">¶</a></h2>
+<h2 id="t-test-Gian-heavy-vs-karl-not-heavy">t test Gian heavy vs karl not heavy<a class="anchor-link" href="#t-test-Gian-heavy-vs-karl-not-heavy">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8141,7 +8175,7 @@ The difference is statistically significant, keeping data split.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_first_runs_light</span> <span class="o">=</span> <span class="n">data_9juin_first_runs</span><span class="p">[</span>
@@ -8150,6 +8184,202 @@ The difference is statistically significant, keeping data split.
      <span class="p">(</span><span class="n">data_9juin_first_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">))</span>
 <span class="p">]</span>
 <span class="n">only_gian_first_runs_light</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ISODateTimeUTC</th>
+<th>SecondsSince1970</th>
+<th>Heel_Abs</th>
+<th>Heel_Lwd</th>
+<th>Lat</th>
+<th>LatBow</th>
+<th>LatCenter</th>
+<th>LatStern</th>
+<th>Leg</th>
+<th>Line_C</th>
+<th>...</th>
+<th>run</th>
+<th>interval_id</th>
+<th>boat_name</th>
+<th>opponent_name</th>
+<th>boat_role</th>
+<th>boat_weight</th>
+<th>interval_duration</th>
+<th>gain_forward</th>
+<th>gain_lateral</th>
+<th>gain_vmg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>44371</th>
+<td>2025-06-09T12:38:19.456Z</td>
+<td>1.749473e+09</td>
+<td>42.4</td>
+<td>42.4</td>
+<td>43.504992</td>
+<td>43.504990</td>
+<td>43.504996</td>
+<td>43.505003</td>
+<td>1.0</td>
+<td>1.1</td>
+<td>...</td>
+<td>09_06_Run5</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.713</td>
+<td>-5.199725</td>
+<td>0.118895</td>
+<td>-3.353212</td>
+</tr>
+<tr>
+<th>45435</th>
+<td>2025-06-09T12:45:57.055Z</td>
+<td>1.749473e+09</td>
+<td>60.4</td>
+<td>60.4</td>
+<td>43.507987</td>
+<td>43.507985</td>
+<td>43.507991</td>
+<td>43.507997</td>
+<td>1.0</td>
+<td>7.4</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>master</td>
+<td>109.09</td>
+<td>68.000</td>
+<td>2.001387</td>
+<td>-0.767304</td>
+<td>0.781318</td>
+</tr>
+<tr>
+<th>44602</th>
+<td>2025-06-09T12:38:42.561Z</td>
+<td>1.749473e+09</td>
+<td>60.8</td>
+<td>60.8</td>
+<td>43.502660</td>
+<td>43.502658</td>
+<td>43.502664</td>
+<td>43.502670</td>
+<td>1.0</td>
+<td>6.0</td>
+<td>...</td>
+<td>09_06_Run5</td>
+<td>1</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>109.09</td>
+<td>68.713</td>
+<td>-3.598339</td>
+<td>0.180059</td>
+<td>-2.260228</td>
+</tr>
+<tr>
+<th>46762</th>
+<td>2025-06-09T12:48:56.959Z</td>
+<td>1.749473e+09</td>
+<td>52.2</td>
+<td>52.2</td>
+<td>43.504982</td>
+<td>43.504984</td>
+<td>43.504978</td>
+<td>43.504972</td>
+<td>1.0</td>
+<td>7.2</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>master</td>
+<td>109.09</td>
+<td>47.292</td>
+<td>5.028872</td>
+<td>0.779634</td>
+<td>-3.140703</td>
+</tr>
+<tr>
+<th>46571</th>
+<td>2025-06-09T12:48:37.855Z</td>
+<td>1.749473e+09</td>
+<td>52.0</td>
+<td>52.0</td>
+<td>43.502633</td>
+<td>43.502635</td>
+<td>43.502628</td>
+<td>43.502622</td>
+<td>1.0</td>
+<td>3.8</td>
+<td>...</td>
+<td>09_06_Run6</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>master</td>
+<td>109.09</td>
+<td>47.292</td>
+<td>-1.195539</td>
+<td>0.019377</td>
+<td>0.876787</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 48 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e9fb6bb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_last_runs_heavy</span> <span class="o">=</span> <span class="n">data_9juin_last_runs</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">((</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span> 
+     <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">only_gian_last_runs_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8205,237 +8435,41 @@ The difference is statistically significant, keeping data split.
 </thead>
 <tbody>
 <tr>
-<th>44662</th>
-<td>2025-06-09T12:38:48.560Z</td>
-<td>1.749473e+09</td>
-<td>41.3</td>
-<td>41.3</td>
-<td>43.502049</td>
-<td>43.502047</td>
-<td>43.502053</td>
-<td>43.502059</td>
+<th>52295</th>
+<td>2025-06-09T13:16:13.160Z</td>
+<td>1.749475e+09</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>43.505233</td>
+<td>43.505231</td>
+<td>43.505237</td>
+<td>43.505244</td>
 <td>1.0</td>
-<td>4.3</td>
+<td>7.363</td>
 <td>...</td>
-<td>09_06_Run5</td>
+<td>09_06_Run9</td>
 <td>1</td>
 <td>SenseBoard</td>
 <td>Karl Maeder</td>
 <td>slave</td>
-<td>109.09</td>
-<td>68.713</td>
-<td>-5.925147</td>
-<td>-3.369733</td>
-<td>-6.451412</td>
-</tr>
-<tr>
-<th>47709</th>
-<td>2025-06-09T12:54:05.072Z</td>
-<td>1.749474e+09</td>
-<td>58.2</td>
-<td>58.2</td>
-<td>43.508599</td>
-<td>43.508597</td>
-<td>43.508603</td>
-<td>43.508609</td>
-<td>1.0</td>
-<td>3.5</td>
-<td>...</td>
-<td>09_06_Run7</td>
-<td>1</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>109.09</td>
-<td>68.880</td>
-<td>1.199545</td>
-<td>-0.751558</td>
-<td>0.138641</td>
-</tr>
-<tr>
-<th>47783</th>
-<td>2025-06-09T12:54:12.454Z</td>
-<td>1.749474e+09</td>
-<td>51.3</td>
-<td>51.3</td>
-<td>43.507862</td>
-<td>43.507860</td>
-<td>43.507866</td>
-<td>43.507872</td>
-<td>1.0</td>
-<td>4.1</td>
-<td>...</td>
-<td>09_06_Run7</td>
-<td>1</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>109.09</td>
-<td>68.880</td>
-<td>0.299937</td>
-<td>0.651817</td>
-<td>0.687388</td>
-</tr>
-<tr>
-<th>48063</th>
-<td>2025-06-09T12:54:40.454Z</td>
-<td>1.749474e+09</td>
-<td>53.1</td>
-<td>53.1</td>
-<td>43.505044</td>
-<td>43.505042</td>
-<td>43.505048</td>
-<td>43.505054</td>
-<td>1.0</td>
-<td>6.3</td>
-<td>...</td>
-<td>09_06_Run7</td>
-<td>1</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>109.09</td>
-<td>68.880</td>
-<td>3.000509</td>
-<td>-3.914507</td>
-<td>-1.053662</td>
-</tr>
-<tr>
-<th>48978</th>
-<td>2025-06-09T12:56:57.558Z</td>
-<td>1.749474e+09</td>
-<td>49.8</td>
-<td>49.8</td>
-<td>43.505180</td>
-<td>43.505182</td>
-<td>43.505176</td>
-<td>43.505171</td>
-<td>NaN</td>
-<td>3.7</td>
-<td>...</td>
-<td>09_06_Run7</td>
-<td>2</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>109.09</td>
-<td>34.293</td>
-<td>-1.469370</td>
-<td>-7.079916</td>
-<td>-3.171103</td>
-</tr>
-</tbody>
-</table>
-<p>5 rows × 48 columns</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e9fb6bb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_last_runs_heavy</span> <span class="o">=</span> <span class="n">data_9juin_last_runs</span><span class="p">[</span>
-    <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Gian Stragiotti"</span><span class="p">)</span> <span class="o">|</span>
-    <span class="p">((</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"boat_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"SenseBoard"</span><span class="p">)</span> <span class="o">&amp;</span> 
-     <span class="p">(</span><span class="n">data_9juin_last_runs</span><span class="p">[</span><span class="s2">"opponent_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Karl Maeder"</span><span class="p">))</span>
-<span class="p">]</span>
-<span class="n">only_gian_last_runs_heavy</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>ISODateTimeUTC</th>
-<th>SecondsSince1970</th>
-<th>Heel_Abs</th>
-<th>Heel_Lwd</th>
-<th>Lat</th>
-<th>LatBow</th>
-<th>LatCenter</th>
-<th>LatStern</th>
-<th>Leg</th>
-<th>Line_C</th>
-<th>...</th>
-<th>run</th>
-<th>interval_id</th>
-<th>boat_name</th>
-<th>opponent_name</th>
-<th>boat_role</th>
-<th>boat_weight</th>
-<th>interval_duration</th>
-<th>gain_forward</th>
-<th>gain_lateral</th>
-<th>gain_vmg</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>55882</th>
-<td>2025-06-09T13:28:19.048Z</td>
-<td>1.749476e+09</td>
-<td>56.2</td>
-<td>56.2</td>
-<td>43.507671</td>
-<td>43.507673</td>
-<td>43.507667</td>
-<td>43.507661</td>
-<td>NaN</td>
-<td>7.070</td>
-<td>...</td>
-<td>09_06_Run10</td>
-<td>2</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>master</td>
 <td>115.09</td>
-<td>49.802</td>
-<td>7.389096</td>
-<td>3.503061</td>
-<td>-3.545179</td>
+<td>68.692</td>
+<td>-0.413968</td>
+<td>-3.474327</td>
+<td>-2.609055</td>
 </tr>
 <tr>
-<th>54790</th>
-<td>2025-06-09T13:25:24.257Z</td>
+<th>54914</th>
+<td>2025-06-09T13:25:36.654Z</td>
 <td>1.749476e+09</td>
-<td>57.7</td>
-<td>57.7</td>
-<td>43.503416</td>
-<td>43.503414</td>
-<td>43.503420</td>
-<td>43.503426</td>
+<td>54.1</td>
+<td>54.1</td>
+<td>43.502050</td>
+<td>43.502048</td>
+<td>43.502054</td>
+<td>43.502061</td>
 <td>NaN</td>
-<td>7.500</td>
+<td>5.700</td>
 <td>...</td>
 <td>09_06_Run10</td>
 <td>1</td>
@@ -8444,70 +8478,22 @@ The difference is statistically significant, keeping data split.
 <td>master</td>
 <td>115.09</td>
 <td>61.205</td>
-<td>9.883618</td>
-<td>3.785563</td>
-<td>8.942836</td>
+<td>12.488795</td>
+<td>2.697842</td>
+<td>9.627938</td>
 </tr>
 <tr>
-<th>57004</th>
-<td>2025-06-09T13:34:52.358Z</td>
+<th>57809</th>
+<td>2025-06-09T13:37:16.656Z</td>
 <td>1.749476e+09</td>
-<td>45.0</td>
-<td>45.0</td>
-<td>43.504591</td>
-<td>43.504589</td>
-<td>43.504596</td>
-<td>43.504602</td>
-<td>1.0</td>
-<td>4.800</td>
-<td>...</td>
-<td>09_06_Run11</td>
-<td>1</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>115.09</td>
-<td>67.090</td>
-<td>0.415306</td>
-<td>-3.354227</td>
-<td>-2.367493</td>
-</tr>
-<tr>
-<th>53580</th>
-<td>2025-06-09T13:19:21.053Z</td>
-<td>1.749475e+09</td>
-<td>54.3</td>
-<td>54.3</td>
-<td>43.507223</td>
-<td>43.507225</td>
-<td>43.507219</td>
-<td>43.507213</td>
+<td>55.1</td>
+<td>55.1</td>
+<td>43.502413</td>
+<td>43.502415</td>
+<td>43.502408</td>
+<td>43.502402</td>
 <td>NaN</td>
-<td>6.800</td>
-<td>...</td>
-<td>09_06_Run9</td>
-<td>2</td>
-<td>SenseBoard</td>
-<td>Karl Maeder</td>
-<td>slave</td>
-<td>115.09</td>
-<td>53.803</td>
-<td>-15.134212</td>
-<td>-0.388986</td>
-<td>11.861712</td>
-</tr>
-<tr>
-<th>58266</th>
-<td>2025-06-09T13:38:02.359Z</td>
-<td>1.749476e+09</td>
-<td>25.9</td>
-<td>25.9</td>
-<td>43.507805</td>
-<td>43.507806</td>
-<td>43.507801</td>
-<td>43.507795</td>
-<td>NaN</td>
-<td>2.052</td>
+<td>1.700</td>
 <td>...</td>
 <td>09_06_Run11</td>
 <td>2</td>
@@ -8516,9 +8502,57 @@ The difference is statistically significant, keeping data split.
 <td>slave</td>
 <td>115.09</td>
 <td>52.596</td>
-<td>-11.372068</td>
-<td>3.261420</td>
-<td>11.028102</td>
+<td>-0.116968</td>
+<td>-0.589723</td>
+<td>-0.248163</td>
+</tr>
+<tr>
+<th>53373</th>
+<td>2025-06-09T13:19:00.358Z</td>
+<td>1.749475e+09</td>
+<td>47.3</td>
+<td>47.3</td>
+<td>43.504768</td>
+<td>43.504770</td>
+<td>43.504764</td>
+<td>43.504758</td>
+<td>NaN</td>
+<td>4.400</td>
+<td>...</td>
+<td>09_06_Run9</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>115.09</td>
+<td>53.803</td>
+<td>-8.741625</td>
+<td>-4.336081</td>
+<td>4.654789</td>
+</tr>
+<tr>
+<th>58073</th>
+<td>2025-06-09T13:37:43.056Z</td>
+<td>1.749476e+09</td>
+<td>44.8</td>
+<td>44.8</td>
+<td>43.505549</td>
+<td>43.505551</td>
+<td>43.505544</td>
+<td>43.505538</td>
+<td>NaN</td>
+<td>5.000</td>
+<td>...</td>
+<td>09_06_Run11</td>
+<td>2</td>
+<td>SenseBoard</td>
+<td>Karl Maeder</td>
+<td>slave</td>
+<td>115.09</td>
+<td>52.596</td>
+<td>-4.758939</td>
+<td>-5.808654</td>
+<td>0.271709</td>
 </tr>
 </tbody>
 </table>
@@ -8533,10 +8567,14 @@ The difference is statistically significant, keeping data split.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">,</span><span class="n">only_gian_last_runs_heavy</span><span class="p">)</span> <span class="c1">#general</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Upwind and downwind for Gian:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Weight of Gian on the first runs: </span><span class="si">{</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Gian on the last runs: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8551,6 +8589,11 @@ The difference is statistically significant, keeping data split.
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>T-statistic: -11.650, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
+
+Upwind and downwind for Gian:
+
+Weight of Gian on the first runs: 109.08999999999999, average SOG: 24.236319275008714
+Weight of Gian on the last runs: 115.08999999999999, average SOG: 24.825573344872346
 </pre>
 </div>
 </div>
@@ -8561,10 +8604,17 @@ The difference is statistically significant, keeping data split.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">],</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#upwind</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_first_runs_light_upwind</span> <span class="o">=</span> <span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">only_gian_last_runs_heavy_upwind</span> <span class="o">=</span> <span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light_upwind</span><span class="p">,</span><span class="n">only_gian_last_runs_heavy_upwind</span><span class="p">)</span> <span class="c1">#upwind</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Upwind for Gian:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Gian on the first runs: </span><span class="si">{</span><span class="n">only_gian_first_runs_light_upwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_first_runs_light_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Gian on the last runs: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy_upwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy_upwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8579,6 +8629,10 @@ The difference is statistically significant, keeping data split.
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>T-statistic: -8.572, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
+
+Upwind for Gian:
+Weight of Gian on the first runs: 109.08999999999997, average SOG: 22.98097323600973
+Weight of Gian on the last runs: 115.09000000000002, average SOG: 23.180486862442038
 </pre>
 </div>
 </div>
@@ -8589,10 +8643,16 @@ The difference is statistically significant, keeping data split.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">],</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#downwind</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">only_gian_first_runs_light_downwind</span> <span class="o">=</span> <span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="n">only_gian_first_runs_light</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">only_gian_last_runs_heavy_downwind</span> <span class="o">=</span> <span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="n">only_gian_last_runs_heavy</span><span class="p">[</span><span class="s2">"TWA"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">t_test</span><span class="p">(</span><span class="n">only_gian_first_runs_light_downwind</span><span class="p">,</span> <span class="n">only_gian_last_runs_heavy_downwind</span><span class="p">)</span>  <span class="c1"># downwind</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Downwind for Gian:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Gian on the first runs: </span><span class="si">{</span><span class="n">only_gian_first_runs_light_downwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_first_runs_light_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weight of Gian on the last runs: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy_downwind</span><span class="p">[</span><span class="s1">'boat_weight'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, average SOG: </span><span class="si">{</span><span class="n">only_gian_last_runs_heavy_downwind</span><span class="p">[</span><span class="s1">'SOG'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8608,7 +8668,9 @@ The difference is statistically significant, keeping data split.
 <pre>T-statistic: 10.288, p-value: 0.000000000000000
 The difference is statistically significant, keeping data split.
 
-The difference is statistically significant, keeping data split.
+Downwind for Gian:
+Weight of Gian on the first runs: 109.08999999999999, average SOG: 27.405528255528253
+Weight of Gian on the last runs: 115.08999999999997, average SOG: 26.918731563421826
 </pre>
 </div>
 </div>
