@@ -219,7 +219,7 @@ def load_and_reduce_boat_data(run_path, summary_dict):
 
 
 def compare_runs(df1, df2, label1, label2):
-    cols = ["TWS", "TWD", "SOG", "VMG", "COG", "TWA_Abs", "Heel_Lwd", "Side_lines", "Line_C", "Total_lines"]
+    cols = ["TWS", "TWD", "SOG", "VMG", "COG", "TWA_Abs", "Heel_Lwd", "side_line2", "Line_C", "total_line2"]
     stats1 = compute_stats(df1, cols)
     stats2 = compute_stats(df2, cols)
     dist1 = compute_distance_series(df1["Lat"], df1["Lon"])
