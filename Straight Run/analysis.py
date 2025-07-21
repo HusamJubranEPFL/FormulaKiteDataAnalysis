@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+from IPython.display import display
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
@@ -105,7 +105,7 @@ def t_test(df1, df2, target="SOG"):
     else:
         print("The difference is not statistically significant, keeping data combined.")
 
-def clean(df, target="SOG", max_null_ratio=0.2):
+def clean(df, target, max_null_ratio):
     df_copy = df.copy()
 
     # Initial columns and NaN analysis
@@ -142,8 +142,8 @@ def clean(df, target="SOG", max_null_ratio=0.2):
     return df_clean
 
 
-def full_analysis(df_numeric, target_variable="SOG",max_null_ratio=0.2):
-    df_clean = clean(df_numeric, target=target_variable,max_null_ratio=0.2)
+def full_analysis(df_numeric, target_variable,max_null_ratio):
+    df_clean = clean(df_numeric, target_variable, max_null_ratio)
     print(f"\nCorrelation with {target_variable}:")
     show_target_correlation(df_clean, variable=target_variable)
 
