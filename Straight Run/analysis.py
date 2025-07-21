@@ -52,7 +52,7 @@ def compute_anova(df, target="SOG", max_null_ratio=0.2):
         print(f"\nError in ANOVA computation: {str(e)}")
         return pd.DataFrame()
     
-def linear_regression(df, target="SOG", degree=1, top_coefs=30, max_null_ratio=0.2):
+"""def linear_regression(df, target="SOG", degree=1, top_coefs=30, max_null_ratio=0.2):
     df_copy = df.copy()
     cols = df_copy.columns.drop(target)
     # Model setup
@@ -93,7 +93,37 @@ def linear_regression(df, target="SOG", degree=1, top_coefs=30, max_null_ratio=0
     for _, row in top_terms.iterrows():
         print(f"{row['coefficient']:.3f} * {row['feature']}")
     
-    return coef_df.head(top_coefs)
+    return coef_df.head(top_coefs)"""
+
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+
+def linear_regression(df, target="SOG"):
+    """
+    Fits a linear regression to describe relationships in the dataset.
+    No train-test split (assumes descriptive use only).
+    """
+    # Drop rows with missing target values
+    df_clean = df.dropna(subset=[target]).copy()
+    X = df_clean.drop(columns=[target])
+    y = df_clean[target]
+    
+    # Fit model
+    model = LinearRegression()
+    model.fit(X, y)
+    
+    # Get coefficients
+    coef_df = pd.DataFrame({
+        'feature': X.columns,
+        'coefficient': model.coef_
+    }).sort_values('coefficient', key=abs, ascending=False)
+    
+    # Print summary
+    print(f"R² (entire dataset): {model.score(X, y):.3f}")
+    print("\nTop coefficients:")
+    print(coef_df.head(10).to_string(index=False))
+    
+    return coef_df
 
 def t_test(df1, df2, target="SOG"):
     t_stat, p_value = stats.ttest_ind(df1[target].dropna(), df2[target].dropna())
