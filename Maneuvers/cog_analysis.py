@@ -475,11 +475,6 @@ def detect_maneuvers_from_sog_minima(
             mtype = "empannage"
         elif twa_start < twa_threshold and twa_end < twa_threshold:
             mtype = "virement"
-        else:
-            if abs(twa_end - twa_start) > twa_threshold:
-                mtype = "virement_empannage"
-            else:
-                mtype = "changement_vitesse"
 
         maneuvers.append({
             'start_time': start_time,
