@@ -119,7 +119,7 @@ def linear_regression(df, target="SOG"):
     }).sort_values('coefficient', key=abs, ascending=False)
     
     # Print summary
-    print(f"R² (entire dataset): {model.score(X, y):.3f}")
+    print(f"R²: {model.score(X, y):.3f}")
     print("\nTop coefficients:")
     print(coef_df.head(10).to_string(index=False))
     

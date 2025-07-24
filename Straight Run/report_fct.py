@@ -257,30 +257,31 @@ def load_and_reduce_boat_data(run_path, summary_dict):
 
     return stats1, stats2, summary"""
 
+def assign_sorted_lines(df):
+    if {"Line_C", "Line_L", "Line_R"}.issubset(df.columns):
+        lines_array = df[["Line_C", "Line_L", "Line_R"]].values
+        sorted_lines = np.sort(lines_array, axis=1)
+
+        # Assign: largest -> Line_C2, middle -> Line_L2, smallest -> Line_R2
+        df["Line_C2"] = sorted_lines[:, 2]  # max
+        df["Line_L2"] = sorted_lines[:, 1]  # middle
+        df["Line_R2"] = sorted_lines[:, 0]  # min
+
+        df["side_line2"] = df["Line_L2"] + df["Line_R2"]
+        df["total_line2"] = df["side_line2"] + df["Line_C2"]
+    else:
+        df["Line_C2"] = df["Line_L2"] = df["Line_R2"] = np.nan
+        df["side_line2"] = df["total_line2"] = np.nan
+
 
 def compare_runs(df1, df2, label1, label2):
-    # Compute new columns before analysis
-    if "Line_L" in df1.columns and "Line_R" in df1.columns:
-        df1["side_line2"] = df1["Line_L"] + df1["Line_R"]
-    else:
-        df1["side_line2"] = np.nan  # or handle appropriately
+    assign_sorted_lines(df1)
+    assign_sorted_lines(df2)
 
-    if "Line_L" in df2.columns and "Line_R" in df2.columns:
-        df2["side_line2"] = df2["Line_L"] + df2["Line_R"]
-    else:
-        df2["side_line2"] = np.nan
-
-    if "Line_C" in df1.columns:
-        df1["total_line2"] = df1["side_line2"] + df1["Line_C"]
-    else:
-        df1["total_line2"] = np.nan
-
-    if "Line_C" in df2.columns:
-        df2["total_line2"] = df2["side_line2"] + df2["Line_C"]
-    else:
-        df2["total_line2"] = np.nan
-
-    cols = ["TWS", "TWD", "SOG", "VMG", "COG", "TWA_Abs", "Heel_Lwd", "side_line2", "Line_C", "total_line2"]
+    cols = [
+        "TWS", "TWD", "SOG", "VMG", "COG", "TWA_Abs", "Heel_Lwd",
+        "side_line2", "Line_C2", "total_line2"
+    ]
 
     stats1 = compute_stats(df1, cols)
     stats2 = compute_stats(df2, cols)
@@ -307,7 +308,7 @@ def add_winner_columns(merged_stats, name1, name2):
         "Heel_Lwd": {"Avg": "max", "StdDev": "min"},
         "total_line2": {"Avg": "max", "StdDev": "min"},
         "side_line2": {"Avg": "max", "StdDev": "min"},
-        "Line_C": {"Avg": "max", "StdDev": "min"},
+        "Line_C2": {"Avg": "max", "StdDev": "min"},
     }
 
     winner_avg = []
@@ -376,17 +377,7 @@ def style_comparative_wins(df, name1, name2):
         "Heel_Lwd": {"Avg": "max", "StdDev": "min"},
         "total_line2": {"Avg": "max", "StdDev": "min"},
         "side_line2": {"Avg": "max", "StdDev": "min"},
-        "Line_C": {"Avg": "max", "StdDev": "min"},
-    }
-def style_comparative_wins(df, name1, name2):
-    rules = {
-        "SOG": {"Avg": "max", "StdDev": "min"},
-        "VMG": {"Avg": "max", "StdDev": "min"},
-        "COG": {"StdDev": "min"},
-        "Heel_Lwd": {"Avg": "max", "StdDev": "min"},
-        "total_line2": {"Avg": "max", "StdDev": "min"},
-        "side_line2": {"Avg": "max", "StdDev": "min"},
-        "Line_C": {"Avg": "max", "StdDev": "min"},
+        "Line_C2": {"Avg": "max", "StdDev": "min"},
     }
 
     def highlight(row):
@@ -430,7 +421,7 @@ def plots(df1, df2, name1, name2, title):
     # List of columns to plot
     columns_to_plot = [
         'SOG', 'Heel_Abs', 'Heel_Lwd', 'Lat',
-        'Leg', 'Line_C', 'Line_L', 'Line_R', 'Log', 'LogAlongCourse', 'Lon', 'ROT', 
+        'Leg', 'Line_C2', 'Line_L', 'Line_R', 'Log', 'LogAlongCourse', 'Lon', 'ROT', 
         'side_line2', 'total_line2', 'Trim', 'TWA_Abs', 
         'VMC', 'VMG', 'Heel', 'COG', 
         'TWD', 'TWS', 'TWA'
@@ -677,9 +668,9 @@ def extract_summary_row(run_name, name1, name2, gain_table, merged_stats):
     winner_std_sideLines = map_winner_name(merged_stats.at["side_line2", "Winner (StdDev)"])
     winner_overall_sideLines = map_winner_name(merged_stats.at["side_line2", "Winner (Overall)"])
 
-    winner_avg_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (Avg)"])
-    winner_std_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (StdDev)"])
-    winner_overall_lineC = map_winner_name(merged_stats.at["Line_C", "Winner (Overall)"])
+    winner_avg_lineC = map_winner_name(merged_stats.at["Line_C2", "Winner (Avg)"])
+    winner_std_lineC = map_winner_name(merged_stats.at["Line_C2", "Winner (StdDev)"])
+    winner_overall_lineC = map_winner_name(merged_stats.at["Line_C2", "Winner (Overall)"])
 
     winner_avg_totalLines = map_winner_name(merged_stats.at["total_line2", "Winner (Avg)"])
     winner_std_totalLines = map_winner_name(merged_stats.at["total_line2", "Winner (StdDev)"])
@@ -725,11 +716,11 @@ def extract_summary_row(run_name, name1, name2, gain_table, merged_stats):
             "Winner Overall side_line2": winner_overall_sideLines,
 
             "Space6": "",
-            "Avg Line_C (Master)": merged_stats.at["Line_C", f"Avg ({orig_name1})"],
-            "Avg Line_C (Slave)": merged_stats.at["Line_C", f"Avg ({orig_name2})"],
-            "Winner Avg Line_C": winner_avg_lineC,
-            "Winner Std Line_C": winner_std_lineC,
-            "Winner Overall Line_C": winner_overall_lineC,
+            "Avg Line_C2 (Master)": merged_stats.at["Line_C2", f"Avg ({orig_name1})"],
+            "Avg Line_C2 (Slave)": merged_stats.at["Line_C2", f"Avg ({orig_name2})"],
+            "Winner Avg Line_C2": winner_avg_lineC,
+            "Winner Std Line_C2": winner_std_lineC,
+            "Winner Overall Line_C2": winner_overall_lineC,
 
             "Space7": "",
             "Avg total_line2 (Master)": merged_stats.at["total_line2", f"Avg ({orig_name1})"],
