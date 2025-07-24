@@ -163,7 +163,6 @@ def compute_longest_intervals(
     return sorted(intervals, 
                  key=lambda x: (-x['duration'], -x['stability_score']))[:top_n]
 
-
 import matplotlib.dates as mdates
 import matplotlib.gridspec as gridspec
 
@@ -267,7 +266,10 @@ def analyze_session(boat1_path: str, boat2_path: str) -> list[dict]:
     )
     
     # Add average TWA per boat
-    add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
+    longest_intervals = add_avg_twa_to_intervals(longest_intervals, boat1_df, boat2_df)
+
+    # Sort intervals chronologically for display and export
+    longest_intervals = sorted(longest_intervals, key=lambda x: x['start_time'])
 
     # Plot the longest trajectory segments
     # plot_longest_segments(boat1_df, boat2_df, longest_intervals, boat1_name, boat2_name)
