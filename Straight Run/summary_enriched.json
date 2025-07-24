@@ -17,8 +17,10 @@
         "avg TWA boat2": 48.517577751196164,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749217898.756,
@@ -35,8 +37,10 @@
         "avg TWA boat2": -123.79282664526484,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -58,8 +62,10 @@
         "avg TWA boat2": 60.07042340168877,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749218687.453,
@@ -76,8 +82,10 @@
         "avg TWA boat2": -122.11107220708448,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -99,8 +107,10 @@
         "avg TWA boat2": 52.82867917675545,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749219294.36,
@@ -117,8 +127,10 @@
         "avg TWA boat2": -139.84990634920635,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -140,8 +152,10 @@
         "avg TWA boat2": 52.53241598915989,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749219850.357,
@@ -158,8 +172,10 @@
         "avg TWA boat2": -149.42426890756303,
         "boat1_total_weight": 106.77,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -181,8 +197,10 @@
         "avg TWA boat2": 48.25772996300863,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749220933.563,
@@ -199,8 +217,10 @@
         "avg TWA boat2": -152.49173459715638,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -222,8 +242,10 @@
         "avg TWA boat2": 45.63624157303371,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749221546.368,
@@ -240,8 +262,10 @@
         "avg TWA boat2": -145.07276936936935,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -263,8 +287,10 @@
         "avg TWA boat2": 47.25475518134715,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749222066.453,
@@ -281,8 +307,10 @@
         "avg TWA boat2": -148.5991231884058,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -304,8 +332,10 @@
         "avg TWA boat2": 51.41245709570957,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749222550.76,
@@ -322,8 +352,10 @@
         "avg TWA boat2": -155.94574083769635,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -345,8 +377,10 @@
         "avg TWA boat2": 50.378325688073396,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749297154.257,
@@ -363,8 +397,10 @@
         "avg TWA boat2": -143.34568008474577,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -386,8 +422,10 @@
         "avg TWA boat2": 48.998265765765765,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749297696.957,
@@ -404,8 +442,10 @@
         "avg TWA boat2": -151.13577572016462,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -427,8 +467,10 @@
         "avg TWA boat2": 44.034191935483875,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749298672.858,
@@ -445,8 +487,10 @@
         "avg TWA boat2": -153.6456282352941,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -468,8 +512,10 @@
         "avg TWA boat2": 44.21044623655914,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -491,8 +537,10 @@
         "avg TWA boat2": 37.37355455904335,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749299957.076,
@@ -509,8 +557,10 @@
         "avg TWA boat2": -142.77557522123894,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -532,8 +582,10 @@
         "avg TWA boat2": 53.41760173913043,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749300594.157,
@@ -550,8 +602,10 @@
         "avg TWA boat2": -142.37469473684212,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -573,8 +627,10 @@
         "avg TWA boat2": 47.540169616519165,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749301415.658,
@@ -591,8 +647,10 @@
         "avg TWA boat2": -142.24757004830917,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -614,8 +672,10 @@
         "avg TWA boat2": 41.890666129032255,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749301914.859,
@@ -632,8 +692,10 @@
         "avg TWA boat2": -147.50978510638302,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -655,8 +717,10 @@
         "avg TWA boat2": 37.22738155802862,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749302396.448,
@@ -673,8 +737,10 @@
         "avg TWA boat2": -146.5883696145125,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -696,8 +762,10 @@
         "avg TWA boat2": 44.74569767441861,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -719,8 +787,10 @@
         "avg TWA boat2": 45.016159375,
         "boat1_total_weight": 108.19,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 100.97500000000001,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -746,8 +816,10 @@
         "avg TWA boat2": 49.00578980891719,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749472268.356,
@@ -764,8 +836,10 @@
         "avg TWA boat2": -134.72823702031604,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -787,8 +861,10 @@
         "avg TWA boat2": 48.23567103347889,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -810,8 +886,10 @@
         "avg TWA boat2": 47.65900294117647,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749473314.961,
@@ -828,8 +906,10 @@
         "avg TWA boat2": -137.814531779661,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -851,8 +931,10 @@
         "avg TWA boat2": 47.80012354651163,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749473793.36,
@@ -869,8 +951,10 @@
         "avg TWA boat2": -141.92563450292397,
         "boat1_total_weight": 106.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -892,8 +976,10 @@
         "avg TWA boat2": 56.132697411003235,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749474493.854,
@@ -910,8 +996,10 @@
         "avg TWA boat2": -142.49367940552017,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -933,8 +1021,10 @@
         "avg TWA boat2": 41.441870451237264,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749475120.453,
@@ -951,8 +1041,10 @@
         "avg TWA boat2": -141.8663840445269,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -974,8 +1066,10 @@
         "avg TWA boat2": 53.313418300653595,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749475654.454,
@@ -992,8 +1086,10 @@
         "avg TWA boat2": -141.35800401606423,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1015,8 +1111,10 @@
         "avg TWA boat2": 52.12876154992549,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749476236.256,
@@ -1033,8 +1131,10 @@
         "avg TWA boat2": -144.06554562737642,
         "boat1_total_weight": 100.97500000000001,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Levi",
         "boat2_total_weight": 115.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1056,8 +1156,10 @@
         "avg TWA boat2": 52.74440927694407,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749558678.071,
@@ -1074,8 +1176,10 @@
         "avg TWA boat2": -125.1762262773723,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1097,8 +1201,10 @@
         "avg TWA boat2": 52.145245980707394,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749559167.753,
@@ -1115,8 +1221,10 @@
         "avg TWA boat2": -127.0197661141805,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1138,8 +1246,10 @@
         "avg TWA boat2": 50.876849710982654,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749559627.953,
@@ -1156,8 +1266,10 @@
         "avg TWA boat2": -132.24709917355372,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1179,8 +1291,10 @@
         "avg TWA boat2": -135.27015759849908,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749559968.055,
@@ -1197,8 +1311,10 @@
         "avg TWA boat2": 54.93533461538461,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1220,8 +1336,10 @@
         "avg TWA boat2": 53.518686274509804,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749560724.157,
@@ -1238,8 +1356,10 @@
         "avg TWA boat2": -138.84397703549064,
         "boat1_total_weight": 106.195,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 102.89,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1261,8 +1381,10 @@
         "avg TWA boat2": 51.89534557595993,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749561363.049,
@@ -1279,8 +1401,10 @@
         "avg TWA boat2": -138.77927251184835,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1302,8 +1426,10 @@
         "avg TWA boat2": 52.44766371681416,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749561924.157,
@@ -1320,8 +1446,10 @@
         "avg TWA boat2": -140.84758984375,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1343,8 +1471,10 @@
         "avg TWA boat2": 46.02180990415335,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749562537.657,
@@ -1361,8 +1491,10 @@
         "avg TWA boat2": -141.80634728033473,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1384,8 +1516,10 @@
         "avg TWA boat2": 48.93901812688822,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       },
       {
         "start_time": 1749562948.459,
@@ -1402,8 +1536,10 @@
         "avg TWA boat2": -142.04973931623934,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": true,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": false
+        "boat2_master_leeward": false,
+        "boat2_mast_brand": "Levi"
       }
     ]
   },
@@ -1425,8 +1561,10 @@
         "avg TWA boat2": 51.04122941176472,
         "boat1_total_weight": 99.995,
         "boat1_master_leeward": false,
+        "boat1_mast_brand": "Chub",
         "boat2_total_weight": 109.08999999999999,
-        "boat2_master_leeward": true
+        "boat2_master_leeward": true,
+        "boat2_mast_brand": "Levi"
       }
     ]
   }
