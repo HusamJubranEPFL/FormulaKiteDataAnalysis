@@ -437,8 +437,8 @@ def detect_maneuvers_from_sog_minima(
         min_time = time[min_idx]
 
         # Define asymmetrical window
-        pre_window = 6.0
-        post_window = 2.0
+        pre_window = 10.0
+        post_window = 5.0
 
         min_time = time[min_idx]
         start_time = min_time - pre_window
