@@ -350,7 +350,7 @@ def load_boat_data(boat1_path: str, boat2_path: str) -> tuple[pd.DataFrame, pd.D
     boat2_name = extract_boat_name(boat2_path)
 
     return boat1_df, boat2_df, boat1_name, boat2_name
-
+"""
 def analyze_session(boat1_path: str, boat2_path: str = None) -> list[dict]:
     boat1_df = pd.read_csv(boat1_path)
     boat1_name = extract_boat_name(boat1_path)
@@ -405,87 +405,84 @@ def analyze_session(boat1_path: str, boat2_path: str = None) -> list[dict]:
         add_avg_twa_to_intervals(intervals, boat1_df, boat2_df)
         plot_sog_with_intervals(boat1_df, boat2_df, intervals, boat1_name, boat2_name)
 
+        return intervals"""
+
+def analyze_session(
+    boat1_path: str, boat2_path: str = None, 
+    cog_threshold: float = 30.0, window: int = 30, 
+    sog_smoothing_window: int = 100, sog_prominence: float = 0.3, 
+    sog_min_duration: float = 5.0, twa_threshold: float = 90.0, 
+    cog_inversion_threshold: float = 45.0, min_minima_distance: float = 5.0, 
+    top_n_intervals: int = 2, min_duration_sec: float = 30.0, 
+    sog_derivative_threshold: float = 0.2, smoothing_window: int = 300
+) -> list[dict]:
+    boat1_df = pd.read_csv(boat1_path)
+    boat1_name = extract_boat_name(boat1_path)
+
+    if boat2_path is None:
+        # --- Mono-bateau ---
+        # Étapes : COG → SOG → Fusion logique
+        boat1_changes = detect_COG_changes_rolling_mean(boat1_df, value_col='COG', threshold=cog_threshold, window=window)
+        maneuvers = detect_maneuvers_from_sog_minima(
+            boat1_df, 
+            smoothing_window=sog_smoothing_window, 
+            prominence=sog_prominence, 
+            min_duration=sog_min_duration, 
+            twa_threshold=twa_threshold, 
+            cog_inversion_threshold=cog_inversion_threshold, 
+            min_minima_distance=min_minima_distance
+        )
+
+        # Identifier les manœuvres pertinentes (SOG + COG)
+        valid_maneuver_map, summary = get_valid_maneuvers_with_cog(maneuvers, boat1_changes)
+
+        # Plot avec toutes les manœuvres SOG, mais seules les valides ont un numéro
+        plot_trajectories(
+            boat1_df,
+            boat1_changes,
+            boat1_name=boat1_name,
+            boat1_sog_maneuvers=maneuvers  # on passe tout
+        )
+
+        if summary:
+            # Affichage SOG zoomé sur les segments valides
+            plot_sog_with_intervals(boat1_df, None, [m for m in maneuvers if m['maneuver_time'] in valid_maneuver_map], boat1_name)
+            return summary
+        else:
+            print("⚠️ Aucune manœuvre SOG détectée proche d’un changement de COG.")
+            return []
+
+    else:
+        # --- Deux bateaux : logique inchangée ---
+        boat2_df = pd.read_csv(boat2_path)
+        boat2_name = extract_boat_name(boat2_path)
+
+        boat1_changes = detect_COG_changes_rolling_mean(boat1_df, value_col='COG', threshold=cog_threshold, window=window)
+        boat2_changes = detect_COG_changes_rolling_mean(boat2_df, value_col='COG', threshold=cog_threshold, window=window)
+
+        plot_trajectories(
+            boat1_df, boat1_changes,
+            boat2_df=boat2_df, boat2_changes=boat2_changes,
+            boat1_name=boat1_name, boat2_name=boat2_name
+        )
+
+        intervals = compute_longest_intervals(
+            boat1_changes, boat2_changes,
+            boat1_df, boat2_df,
+            top_n=top_n_intervals,
+            boat1_name=boat1_name,
+            boat2_name=boat2_name,
+            min_duration_sec=min_duration_sec,
+            sog_derivative_threshold=sog_derivative_threshold,
+            smoothing_window=smoothing_window
+        )
+
+        add_avg_twa_to_intervals(intervals, boat1_df, boat2_df)
+        plot_sog_with_intervals(boat1_df, boat2_df, intervals, boat1_name, boat2_name)
+
         return intervals
 
-"""
-def detect_maneuvers_from_sog_minima(
-    boat_df: pd.DataFrame,
-    smoothing_window: int = 100,
-    prominence: float = 0.3,
-    min_duration: float = 5.0,
-    twa_threshold: float = 90.0
-) -> list[dict]:
-    if 'SOG_smoothed' not in boat_df.columns:
-        boat_df['SOG_smoothed'] = boat_df['SOG'].rolling(window=smoothing_window, center=True, min_periods=1).mean()
 
-    sog = boat_df['SOG_smoothed'].values
-    time = boat_df['SecondsSince1970'].values
-    twa = boat_df['TWA'].values
-
-    # Minima detection via inverted peaks
-    minima_idx, _ = find_peaks(-sog, prominence=prominence)
-    maxima_idx, _ = find_peaks(sog, prominence=prominence)
-
-    maneuvers = []
-    for min_idx in minima_idx:
-        # Find closest maxima before and after this minimum
-        left_max_candidates = [m for m in maxima_idx if m < min_idx]
-        right_max_candidates = [m for m in maxima_idx if m > min_idx]
-
-        if not left_max_candidates or not right_max_candidates:
-            continue  # Skip if no flanking maxima
-        min_time = time[min_idx]
-
-        # Define asymmetrical window
-        pre_window = 8.0
-        post_window = 3.0
-
-        min_time = time[min_idx]
-        start_time = min_time - pre_window
-        end_time = min_time + post_window
-
-        # Clip to actual data range
-        start_time = max(start_time, time[0])
-        end_time = min(end_time, time[-1])
-
-        # Get closest indices
-        i1 = np.searchsorted(time, start_time, side='left')
-        i2 = np.searchsorted(time, end_time, side='right')
-
-        start_time = time[i1]
-        end_time = time[i2]
-        duration = end_time - start_time
-
-        if duration < min_duration:
-            continue
-
-        # Extract TWA at boundaries
-        twa_start = abs(twa[i1])
-        twa_min = abs(twa[min_idx])
-        twa_end = abs(twa[i2])
-
-        # Maneuver classification
-        if (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
-            mtype = "buoy"
-        elif twa_start > twa_threshold and twa_end > twa_threshold:
-            mtype = "empannage"
-        elif twa_start < twa_threshold and twa_end < twa_threshold:
-            mtype = "virement"
-
-        maneuvers.append({
-            'start_time': start_time,
-            'end_time': end_time,
-            'duration': duration,
-            'maneuver_time': time[min_idx],
-            'min_SOG': sog[min_idx],
-            'TWA_start': twa_start,
-            'TWA_min': twa_min,
-            'TWA_end': twa_end,
-            'maneuver_type': mtype
-        })
-
-    return maneuvers
-"""
 def merge_maneuvers_and_cog_changes(
     maneuvers: list[dict],
     cog_changes: pd.DataFrame
@@ -547,92 +544,6 @@ def get_valid_maneuvers_with_cog(
             counter += 1
 
     return valid_maneuvers, summary
-"""
-
-def detect_maneuvers_from_sog_minima(
-    boat_df: pd.DataFrame,
-    smoothing_window: int = 100,
-    prominence: float = 0.3,
-    min_duration: float = 5.0,
-    twa_threshold: float = 90.0,
-    cog_inversion_threshold: float = 45.0  # seuil de changement de cap significatif
-) -> list[dict]:
-    if 'SOG_smoothed' not in boat_df.columns:
-        boat_df['SOG_smoothed'] = boat_df['SOG'].rolling(window=smoothing_window, center=True, min_periods=1).mean()
-
-    sog = boat_df['SOG_smoothed'].values
-    time = boat_df['SecondsSince1970'].values
-    twa = boat_df['TWA'].values
-    cog = boat_df['COG'].values
-
-    # Détection des minima (inversion de SOG)
-    minima_idx, _ = find_peaks(-sog, prominence=prominence)
-    maxima_idx, _ = find_peaks(sog, prominence=prominence)
-
-    maneuvers = []
-    for min_idx in minima_idx:
-        # Maxima avant et après le minimum
-        left_max_candidates = [m for m in maxima_idx if m < min_idx]
-        right_max_candidates = [m for m in maxima_idx if m > min_idx]
-        if not left_max_candidates or not right_max_candidates:
-            continue
-
-        min_time = time[min_idx]
-        pre_window = 8.0
-        post_window = 3.0
-        start_time = max(min_time - pre_window, time[0])
-        end_time = min(min_time + post_window, time[-1])
-
-        i1 = np.searchsorted(time, start_time, side='left')
-        i2 = np.searchsorted(time, end_time, side='right')
-        start_time = time[i1]
-        end_time = time[i2]
-        duration = end_time - start_time
-        if duration < min_duration:
-            continue
-
-        twa_start = abs(twa[i1])
-        twa_min = abs(twa[min_idx])
-        twa_end = abs(twa[i2])
-        cog_start = cog[i1]
-        cog_end = cog[i2]
-
-        # Calcul de la différence angulaire COG (avec gestion du wrap-around)
-        cog_delta = abs(cog_end - cog_start)
-        cog_delta = min(cog_delta, 360 - cog_delta)
-        print(f"COG delta: {cog_delta}°")
-        
-        if cog_delta < cog_inversion_threshold:
-            print(f"COG delta: {cog_delta}°")
-            continue  # Pas de vraie inversion de cap
-
-        # Classification de la manœuvre
-        if (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
-            mtype = "buoy"
-        elif twa_start > twa_threshold and twa_end > twa_threshold:
-            mtype = "empannage"
-        elif twa_start < twa_threshold and twa_end < twa_threshold:
-            mtype = "virement"
-        else:
-            mtype = "unknown"
-
-        maneuvers.append({
-            'start_time': start_time,
-            'end_time': end_time,
-            'duration': duration,
-            'maneuver_time': time[min_idx],
-            'min_SOG': sog[min_idx],
-            'TWA_start': twa_start,
-            'TWA_min': twa_min,
-            'TWA_end': twa_end,
-            'COG_start': cog_start,
-            'COG_end': cog_end,
-            'COG_delta': cog_delta,
-            'maneuver_type': mtype
-        })
-
-    return maneuvers
-"""
 
 def detect_maneuvers_from_sog_minima(
     boat_df: pd.DataFrame,
