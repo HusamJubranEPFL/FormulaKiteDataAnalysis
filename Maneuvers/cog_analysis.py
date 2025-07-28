@@ -407,7 +407,7 @@ def analyze_session(boat1_path: str, boat2_path: str = None) -> list[dict]:
 
         return intervals
 
-
+"""
 def detect_maneuvers_from_sog_minima(
     boat_df: pd.DataFrame,
     smoothing_window: int = 100,
@@ -437,8 +437,8 @@ def detect_maneuvers_from_sog_minima(
         min_time = time[min_idx]
 
         # Define asymmetrical window
-        pre_window = 10.0
-        post_window = 5.0
+        pre_window = 8.0
+        post_window = 3.0
 
         min_time = time[min_idx]
         start_time = min_time - pre_window
@@ -451,10 +451,6 @@ def detect_maneuvers_from_sog_minima(
         # Get closest indices
         i1 = np.searchsorted(time, start_time, side='left')
         i2 = np.searchsorted(time, end_time, side='right')
-
-        duration = end_time - start_time
-        if duration < min_duration:
-            continue
 
         start_time = time[i1]
         end_time = time[i2]
@@ -489,7 +485,7 @@ def detect_maneuvers_from_sog_minima(
         })
 
     return maneuvers
-
+"""
 def merge_maneuvers_and_cog_changes(
     maneuvers: list[dict],
     cog_changes: pd.DataFrame
@@ -551,4 +547,187 @@ def get_valid_maneuvers_with_cog(
             counter += 1
 
     return valid_maneuvers, summary
+"""
 
+def detect_maneuvers_from_sog_minima(
+    boat_df: pd.DataFrame,
+    smoothing_window: int = 100,
+    prominence: float = 0.3,
+    min_duration: float = 5.0,
+    twa_threshold: float = 90.0,
+    cog_inversion_threshold: float = 45.0  # seuil de changement de cap significatif
+) -> list[dict]:
+    if 'SOG_smoothed' not in boat_df.columns:
+        boat_df['SOG_smoothed'] = boat_df['SOG'].rolling(window=smoothing_window, center=True, min_periods=1).mean()
+
+    sog = boat_df['SOG_smoothed'].values
+    time = boat_df['SecondsSince1970'].values
+    twa = boat_df['TWA'].values
+    cog = boat_df['COG'].values
+
+    # Détection des minima (inversion de SOG)
+    minima_idx, _ = find_peaks(-sog, prominence=prominence)
+    maxima_idx, _ = find_peaks(sog, prominence=prominence)
+
+    maneuvers = []
+    for min_idx in minima_idx:
+        # Maxima avant et après le minimum
+        left_max_candidates = [m for m in maxima_idx if m < min_idx]
+        right_max_candidates = [m for m in maxima_idx if m > min_idx]
+        if not left_max_candidates or not right_max_candidates:
+            continue
+
+        min_time = time[min_idx]
+        pre_window = 8.0
+        post_window = 3.0
+        start_time = max(min_time - pre_window, time[0])
+        end_time = min(min_time + post_window, time[-1])
+
+        i1 = np.searchsorted(time, start_time, side='left')
+        i2 = np.searchsorted(time, end_time, side='right')
+        start_time = time[i1]
+        end_time = time[i2]
+        duration = end_time - start_time
+        if duration < min_duration:
+            continue
+
+        twa_start = abs(twa[i1])
+        twa_min = abs(twa[min_idx])
+        twa_end = abs(twa[i2])
+        cog_start = cog[i1]
+        cog_end = cog[i2]
+
+        # Calcul de la différence angulaire COG (avec gestion du wrap-around)
+        cog_delta = abs(cog_end - cog_start)
+        cog_delta = min(cog_delta, 360 - cog_delta)
+        print(f"COG delta: {cog_delta}°")
+        
+        if cog_delta < cog_inversion_threshold:
+            print(f"COG delta: {cog_delta}°")
+            continue  # Pas de vraie inversion de cap
+
+        # Classification de la manœuvre
+        if (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
+            mtype = "buoy"
+        elif twa_start > twa_threshold and twa_end > twa_threshold:
+            mtype = "empannage"
+        elif twa_start < twa_threshold and twa_end < twa_threshold:
+            mtype = "virement"
+        else:
+            mtype = "unknown"
+
+        maneuvers.append({
+            'start_time': start_time,
+            'end_time': end_time,
+            'duration': duration,
+            'maneuver_time': time[min_idx],
+            'min_SOG': sog[min_idx],
+            'TWA_start': twa_start,
+            'TWA_min': twa_min,
+            'TWA_end': twa_end,
+            'COG_start': cog_start,
+            'COG_end': cog_end,
+            'COG_delta': cog_delta,
+            'maneuver_type': mtype
+        })
+
+    return maneuvers
+"""
+
+def detect_maneuvers_from_sog_minima(
+    boat_df: pd.DataFrame,
+    smoothing_window: int = 100,
+    prominence: float = 0.3,
+    min_duration: float = 5.0,
+    twa_threshold: float = 90.0,
+    cog_inversion_threshold: float = 45.0,  # Seuil de changement de cap significatif
+    min_minima_distance: float = 5.0  # Minimum time difference (in seconds) between two minima
+) -> list[dict]:
+    if 'SOG_smoothed' not in boat_df.columns:
+        boat_df['SOG_smoothed'] = boat_df['SOG'].rolling(window=smoothing_window, center=True, min_periods=1).mean()
+
+    sog = boat_df['SOG_smoothed'].values
+    time = boat_df['SecondsSince1970'].values
+    twa = boat_df['TWA'].values
+    cog = boat_df['COG'].values
+
+    # Détection des minima (inversion de SOG)
+    minima_idx, _ = find_peaks(-sog, prominence=prominence)
+    maxima_idx, _ = find_peaks(sog, prominence=prominence)
+
+    # Merge closely spaced minima
+    merged_minima = []
+    for i, min_idx in enumerate(minima_idx):
+        if i == 0:  # Always add the first minima
+            merged_minima.append(min_idx)
+        else:
+            # Check the time difference between the current minima and the last merged minima
+            time_diff = time[min_idx] - time[merged_minima[-1]]
+            if time_diff < min_minima_distance:
+                # Merge this minima with the previous one by skipping it
+                continue
+            else:
+                # No overlap, add this minima
+                merged_minima.append(min_idx)
+
+    maneuvers = []
+    for min_idx in merged_minima:
+        left_max_candidates = [m for m in maxima_idx if m < min_idx]
+        right_max_candidates = [m for m in maxima_idx if m > min_idx]
+
+        if not left_max_candidates or not right_max_candidates:
+            continue  # Skip if no flanking maxima
+
+        min_time = time[min_idx]
+        pre_window = 8.0
+        post_window = 3.0
+        start_time = max(min_time - pre_window, time[0])
+        end_time = min(min_time + post_window, time[-1])
+
+        i1 = np.searchsorted(time, start_time, side='left')
+        i2 = np.searchsorted(time, end_time, side='right')
+        start_time = time[i1]
+        end_time = time[i2]
+        duration = end_time - start_time
+        if duration < min_duration:
+            continue
+
+        twa_start = abs(twa[i1])
+        twa_min = abs(twa[min_idx])
+        twa_end = abs(twa[i2])
+        cog_start = cog[i1]
+        cog_end = cog[i2]
+
+        # Calcul de la différence angulaire COG (avec gestion du wrap-around)
+        cog_delta = abs(cog_end - cog_start)
+        cog_delta = min(cog_delta, 360 - cog_delta)
+
+        if cog_delta < cog_inversion_threshold:
+            continue  # Pas de vraie inversion de cap
+
+        # Classification de la manœuvre
+        if (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
+            mtype = "buoy"
+        elif twa_start > twa_threshold and twa_end > twa_threshold:
+            mtype = "Jibe"
+        elif twa_start < twa_threshold and twa_end < twa_threshold:
+            mtype = "Tack"
+        else:
+            mtype = "unknown"
+
+        maneuvers.append({
+            'start_time': start_time,
+            'end_time': end_time,
+            'duration': duration,
+            'maneuver_time': time[min_idx],
+            'min_SOG': sog[min_idx],
+            'TWA_start': twa_start,
+            'TWA_min': twa_min,
+            'TWA_end': twa_end,
+            'COG_start': cog_start,
+            'COG_end': cog_end,
+            'COG_delta': cog_delta,
+            'maneuver_type': mtype
+        })
+
+    return maneuvers
