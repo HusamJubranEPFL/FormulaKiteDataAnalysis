@@ -414,8 +414,10 @@ def analyze_session(
     sog_min_duration: float = 5.0, twa_threshold: float = 90.0, 
     cog_inversion_threshold: float = 45.0, min_minima_distance: float = 5.0, 
     top_n_intervals: int = 2, min_duration_sec: float = 30.0, 
-    sog_derivative_threshold: float = 0.2, smoothing_window: int = 300
+    sog_derivative_threshold: float = 0.2, smoothing_window: int = 300,
+    pre_window: float = 10.0, post_window: float = 5.0, min_sog_entry_threshold: float = 18.0
 ) -> list[dict]:
+
     boat1_df = pd.read_csv(boat1_path)
     boat1_name = extract_boat_name(boat1_path)
 
@@ -430,8 +432,9 @@ def analyze_session(
             min_duration=sog_min_duration, 
             twa_threshold=twa_threshold, 
             cog_inversion_threshold=cog_inversion_threshold, 
-            min_minima_distance=min_minima_distance
-        )
+            min_minima_distance=min_minima_distance,pre_window=pre_window, 
+            post_window=post_window, min_sog_entry_threshold=min_sog_entry_threshold)
+
 
         # Identifier les manœuvres pertinentes (SOG + COG)
         valid_maneuver_map, summary = get_valid_maneuvers_with_cog(maneuvers, boat1_changes)
@@ -552,8 +555,12 @@ def detect_maneuvers_from_sog_minima(
     min_duration: float = 5.0,
     twa_threshold: float = 90.0,
     cog_inversion_threshold: float = 45.0,  # Seuil de changement de cap significatif
-    min_minima_distance: float = 5.0  # Minimum time difference (in seconds) between two minima
+    min_minima_distance: float = 5.0,       # Minimum time difference (in seconds) between two minima
+    pre_window: float = 8.0,                # Temps avant le minimum SOG pour définir la manœuvre
+    post_window: float = 3.0,                # Temps après le minimum SOG pour définir la manœuvre
+    min_sog_entry_threshold: float = 18.0  # New: Minimum entry speed in knots
 ) -> list[dict]:
+    
     if 'SOG_smoothed' not in boat_df.columns:
         boat_df['SOG_smoothed'] = boat_df['SOG'].rolling(window=smoothing_window, center=True, min_periods=1).mean()
 
@@ -568,18 +575,17 @@ def detect_maneuvers_from_sog_minima(
 
     # Merge closely spaced minima
     merged_minima = []
-    for i, min_idx in enumerate(minima_idx):
-        if i == 0:  # Always add the first minima
+    for min_idx in minima_idx:
+        if sog[min_idx] < min_sog_entry_threshold:
+            continue  # Skip minima below threshold
+
+        if not merged_minima:
             merged_minima.append(min_idx)
         else:
-            # Check the time difference between the current minima and the last merged minima
             time_diff = time[min_idx] - time[merged_minima[-1]]
-            if time_diff < min_minima_distance:
-                # Merge this minima with the previous one by skipping it
-                continue
-            else:
-                # No overlap, add this minima
+            if time_diff >= min_minima_distance:
                 merged_minima.append(min_idx)
+
 
     maneuvers = []
     for min_idx in merged_minima:
@@ -590,8 +596,6 @@ def detect_maneuvers_from_sog_minima(
             continue  # Skip if no flanking maxima
 
         min_time = time[min_idx]
-        pre_window = 8.0
-        post_window = 3.0
         start_time = max(min_time - pre_window, time[0])
         end_time = min(min_time + post_window, time[-1])
 

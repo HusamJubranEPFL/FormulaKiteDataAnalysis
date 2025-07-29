@@ -6,115 +6,27 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749369723.756,
-        "maneuver_type": "Tack",
-        "duration": 11.014999866485596,
-        "start_time": 1749369715.844,
-        "end_time": 1749369726.859
+        "maneuver_time": 1749369797.155,
+        "maneuver_type": "Jibe",
+        "duration": 14.098999977111816,
+        "start_time": 1749369790.157,
+        "end_time": 1749369804.256
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749369738.661,
-        "maneuver_type": "Tack",
-        "duration": 11.001999855041504,
-        "start_time": 1749369730.755,
-        "end_time": 1749369741.757
+        "maneuver_time": 1749369823.556,
+        "maneuver_type": "Jibe",
+        "duration": 14.005000114440918,
+        "start_time": 1749369816.656,
+        "end_time": 1749369830.661
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749369753.756,
-        "maneuver_type": "Tack",
-        "duration": 11.09500002861023,
-        "start_time": 1749369745.76,
-        "end_time": 1749369756.855
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749369773.267,
-        "maneuver_type": "Tack",
-        "duration": 11.009999990463257,
-        "start_time": 1749369765.354,
-        "end_time": 1749369776.364
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749369798.257,
+        "maneuver_time": 1749369969.358,
         "maneuver_type": "Jibe",
-        "duration": 11.097000122070312,
-        "start_time": 1749369790.257,
-        "end_time": 1749369801.354
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749369824.157,
-        "maneuver_type": "Jibe",
-        "duration": 11.003999948501587,
-        "start_time": 1749369816.256,
-        "end_time": 1749369827.26
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749369838.655,
-        "maneuver_type": "buoy",
-        "duration": 10.994999885559082,
-        "start_time": 1749369830.661,
-        "end_time": 1749369841.656
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749369854.256,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749369846.256,
-        "end_time": 1749369857.259
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749369872.446,
-        "maneuver_type": "Tack",
-        "duration": 10.990000009536743,
-        "start_time": 1749369864.466,
-        "end_time": 1749369875.456
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749369889.556,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749369881.657,
-        "end_time": 1749369892.66
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749369913.556,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749369905.658,
-        "end_time": 1749369916.657
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749369937.063,
-        "maneuver_type": "Jibe",
-        "duration": 10.91700005531311,
-        "start_time": 1749369929.158,
-        "end_time": 1749369940.075
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749369969.747,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749369961.756,
-        "end_time": 1749369972.756
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749369985.556,
-        "maneuver_type": "buoy",
-        "duration": 11.08899998664856,
-        "start_time": 1749369977.556,
-        "end_time": 1749369988.645
+        "duration": 14.098000049591064,
+        "start_time": 1749369962.358,
+        "end_time": 1749369976.456
       }
     ]
   },
@@ -125,123 +37,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749370484.148,
-        "maneuver_type": "Tack",
-        "duration": 11.002000093460083,
-        "start_time": 1749370476.155,
-        "end_time": 1749370487.157
+        "maneuver_time": 1749370579.446,
+        "maneuver_type": "Jibe",
+        "duration": 14.01799988746643,
+        "start_time": 1749370572.446,
+        "end_time": 1749370586.464
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749370503.356,
-        "maneuver_type": "Tack",
-        "duration": 11.091000080108643,
-        "start_time": 1749370495.356,
-        "end_time": 1749370506.447
+        "maneuver_time": 1749370612.857,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749370605.858,
+        "end_time": 1749370619.858
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749370520.956,
-        "maneuver_type": "Tack",
-        "duration": 11.125,
-        "start_time": 1749370512.956,
-        "end_time": 1749370524.081
+        "maneuver_time": 1749370717.447,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749370710.457,
+        "end_time": 1749370724.457
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749370542.956,
-        "maneuver_type": "Tack",
-        "duration": 10.993000030517578,
-        "start_time": 1749370535.063,
-        "end_time": 1749370546.056
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749370557.456,
-        "maneuver_type": "Tack",
-        "duration": 11.087999820709229,
-        "start_time": 1749370549.456,
-        "end_time": 1749370560.544
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749370580.358,
+        "maneuver_time": 1749370748.456,
         "maneuver_type": "Jibe",
-        "duration": 10.913999795913696,
-        "start_time": 1749370572.446,
-        "end_time": 1749370583.36
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749370614.156,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749370606.157,
-        "end_time": 1749370617.157
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749370627.157,
-        "maneuver_type": "buoy",
-        "duration": 10.993000030517578,
-        "start_time": 1749370619.267,
-        "end_time": 1749370630.26
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749370641.459,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749370633.556,
-        "end_time": 1749370644.555
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749370667.156,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749370659.157,
-        "end_time": 1749370670.157
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749370686.746,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749370678.755,
-        "end_time": 1749370689.755
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749370698.548,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749370690.555,
-        "end_time": 1749370701.555
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749370718.65,
-        "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749370710.657,
-        "end_time": 1749370721.658
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749370749.359,
-        "maneuver_type": "Jibe",
-        "duration": 11.003000020980835,
+        "duration": 14.095999956130981,
         "start_time": 1749370741.46,
-        "end_time": 1749370752.463
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749370765.066,
-        "maneuver_type": "buoy",
-        "duration": 10.995999813079834,
-        "start_time": 1749370757.16,
-        "end_time": 1749370768.156
+        "end_time": 1749370755.556
       }
     ]
   },
@@ -252,123 +76,19 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749371029.658,
-        "maneuver_type": "Tack",
-        "duration": 10.996999979019165,
-        "start_time": 1749371021.756,
-        "end_time": 1749371032.753
+        "maneuver_time": 1749371128.355,
+        "maneuver_type": "Jibe",
+        "duration": 14.1010000705719,
+        "start_time": 1749371121.355,
+        "end_time": 1749371135.456
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749371051.359,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371043.456,
-        "end_time": 1749371054.456
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749371068.064,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371060.155,
-        "end_time": 1749371071.155
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749371085.249,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749371077.26,
-        "end_time": 1749371088.259
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749371100.657,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749371092.657,
-        "end_time": 1749371103.753
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749371128.753,
+        "maneuver_time": 1749371160.257,
         "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749371120.753,
-        "end_time": 1749371131.755
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749371160.657,
-        "maneuver_type": "Jibe",
-        "duration": 11.098000049591064,
-        "start_time": 1749371152.657,
-        "end_time": 1749371163.755
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749371174.155,
-        "maneuver_type": "buoy",
-        "duration": 11.000999927520752,
-        "start_time": 1749371166.155,
-        "end_time": 1749371177.156
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749371187.953,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749371179.956,
-        "end_time": 1749371190.954
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749371207.857,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749371199.86,
-        "end_time": 1749371210.859
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749371231.357,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371223.456,
-        "end_time": 1749371234.456
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749371243.953,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371235.956,
-        "end_time": 1749371246.956
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749371268.256,
-        "maneuver_type": "Jibe",
-        "duration": 11.003999948501587,
-        "start_time": 1749371260.256,
-        "end_time": 1749371271.26
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749371302.059,
-        "maneuver_type": "Jibe",
-        "duration": 11.00600004196167,
-        "start_time": 1749371294.062,
-        "end_time": 1749371305.068
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749371313.056,
-        "maneuver_type": "buoy",
-        "duration": 10.996999979019165,
-        "start_time": 1749371305.068,
-        "end_time": 1749371316.065
+        "duration": 13.995000123977661,
+        "start_time": 1749371153.264,
+        "end_time": 1749371167.259
       }
     ]
   },
@@ -379,115 +99,11 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749371623.657,
-        "maneuver_type": "Tack",
-        "duration": 10.99399995803833,
-        "start_time": 1749371615.664,
-        "end_time": 1749371626.658
-      },
-      {
-        "maneuver_index": 2,
-        "maneuver_time": 1749371643.157,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749371635.257,
-        "end_time": 1749371646.256
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749371661.753,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749371653.858,
-        "end_time": 1749371664.859
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749371670.257,
-        "maneuver_type": "Tack",
-        "duration": 10.90499997138977,
-        "start_time": 1749371662.354,
-        "end_time": 1749371673.259
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749371695.247,
+        "maneuver_time": 1749371934.257,
         "maneuver_type": "Jibe",
-        "duration": 11.006999969482422,
-        "start_time": 1749371687.257,
-        "end_time": 1749371698.264
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749371775.052,
-        "maneuver_type": "Tack",
-        "duration": 10.984999895095825,
-        "start_time": 1749371767.079,
-        "end_time": 1749371778.064
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749371798.941,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749371790.953,
-        "end_time": 1749371801.953
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749371817.851,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371809.858,
-        "end_time": 1749371820.858
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749371842.456,
-        "maneuver_type": "Tack",
-        "duration": 11.002000093460083,
-        "start_time": 1749371834.553,
-        "end_time": 1749371845.555
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749371864.753,
-        "maneuver_type": "Tack",
-        "duration": 10.8989999294281,
-        "start_time": 1749371856.857,
-        "end_time": 1749371867.756
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749371882.953,
-        "maneuver_type": "Tack",
-        "duration": 11.125999927520752,
-        "start_time": 1749371874.953,
-        "end_time": 1749371886.079
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749371903.456,
-        "maneuver_type": "Jibe",
-        "duration": 11.003999948501587,
-        "start_time": 1749371895.552,
-        "end_time": 1749371906.556
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749371935.354,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749371927.456,
-        "end_time": 1749371938.456
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749371956.752,
-        "maneuver_type": "buoy",
-        "duration": 11.000999927520752,
-        "start_time": 1749371948.752,
-        "end_time": 1749371959.753
+        "duration": 14.09500002861023,
+        "start_time": 1749371927.26,
+        "end_time": 1749371941.355
       }
     ]
   },
@@ -498,123 +114,27 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749372292.953,
-        "maneuver_type": "Tack",
-        "duration": 11.098999977111816,
-        "start_time": 1749372284.953,
-        "end_time": 1749372296.052
+        "maneuver_time": 1749372403.354,
+        "maneuver_type": "Jibe",
+        "duration": 14.1010000705719,
+        "start_time": 1749372396.355,
+        "end_time": 1749372410.456
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749372319.357,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749372311.456,
-        "end_time": 1749372322.457
+        "maneuver_time": 1749372560.26,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749372553.354,
+        "end_time": 1749372567.354
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749372343.257,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749372335.257,
-        "end_time": 1749372346.355
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749372364.553,
-        "maneuver_type": "Tack",
-        "duration": 11.102999925613403,
-        "start_time": 1749372356.553,
-        "end_time": 1749372367.656
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749372381.354,
-        "maneuver_type": "buoy",
-        "duration": 11.1010000705719,
-        "start_time": 1749372373.355,
-        "end_time": 1749372384.456
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749372403.444,
+        "maneuver_time": 1749372596.454,
         "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749372395.454,
-        "end_time": 1749372406.456
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749372438.081,
-        "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749372430.154,
-        "end_time": 1749372441.155
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749372453.857,
-        "maneuver_type": "buoy",
-        "duration": 10.999000072479248,
-        "start_time": 1749372445.954,
-        "end_time": 1749372456.953
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749372476.753,
-        "maneuver_type": "Tack",
-        "duration": 11.105000019073486,
-        "start_time": 1749372468.753,
-        "end_time": 1749372479.858
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749372502.256,
-        "maneuver_type": "Tack",
-        "duration": 11.09500002861023,
-        "start_time": 1749372494.26,
-        "end_time": 1749372505.355
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749372520.656,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749372512.657,
-        "end_time": 1749372523.753
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749372536.657,
-        "maneuver_type": "Tack",
-        "duration": 11.009999990463257,
-        "start_time": 1749372528.743,
-        "end_time": 1749372539.753
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749372561.355,
-        "maneuver_type": "Jibe",
-        "duration": 10.98799991607666,
-        "start_time": 1749372553.456,
-        "end_time": 1749372564.444
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749372597.354,
-        "maneuver_type": "Jibe",
-        "duration": 11.101999998092651,
-        "start_time": 1749372589.354,
-        "end_time": 1749372600.456
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749372614.154,
-        "maneuver_type": "buoy",
-        "duration": 10.999000072479248,
-        "start_time": 1749372606.257,
-        "end_time": 1749372617.256
+        "duration": 14.098000049591064,
+        "start_time": 1749372589.454,
+        "end_time": 1749372603.552
       }
     ]
   },
@@ -625,139 +145,43 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749368867.757,
-        "maneuver_type": "Tack",
-        "duration": 10.900000095367432,
-        "start_time": 1749368859.859,
-        "end_time": 1749368870.759
+        "maneuver_time": 1749368939.359,
+        "maneuver_type": "Jibe",
+        "duration": 14.098000049591064,
+        "start_time": 1749368932.359,
+        "end_time": 1749368946.457
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749368884.759,
-        "maneuver_type": "Tack",
-        "duration": 11.098999977111816,
-        "start_time": 1749368876.759,
-        "end_time": 1749368887.858
+        "maneuver_time": 1749368954.052,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749368947.062,
+        "end_time": 1749368961.062
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749368898.658,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749368890.759,
-        "end_time": 1749368901.757
+        "maneuver_time": 1749368966.161,
+        "maneuver_type": "Jibe",
+        "duration": 14.002000093460083,
+        "start_time": 1749368959.26,
+        "end_time": 1749368973.262
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749368917.859,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749368909.86,
-        "end_time": 1749368920.86
+        "maneuver_time": 1749369111.459,
+        "maneuver_type": "Jibe",
+        "duration": 14.002000093460083,
+        "start_time": 1749369104.559,
+        "end_time": 1749369118.561
       },
       {
         "maneuver_index": 5,
-        "maneuver_time": 1749368940.368,
+        "maneuver_time": 1749369137.959,
         "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749368932.459,
-        "end_time": 1749368943.459
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749368955.26,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749368947.26,
-        "end_time": 1749368958.262
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749368967.076,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749368959.158,
-        "end_time": 1749368970.16
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749368993.161,
-        "maneuver_type": "buoy",
-        "duration": 10.904000043869019,
-        "start_time": 1749368985.26,
-        "end_time": 1749368996.164
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749369005.959,
-        "maneuver_type": "buoy",
-        "duration": 11.103999853134155,
-        "start_time": 1749368997.959,
-        "end_time": 1749369009.063
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749369029.563,
-        "maneuver_type": "Tack",
-        "duration": 11.08899998664856,
-        "start_time": 1749369021.568,
-        "end_time": 1749369032.657
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749369046.858,
-        "maneuver_type": "Tack",
-        "duration": 11.100000143051147,
-        "start_time": 1749369038.859,
-        "end_time": 1749369049.959
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749369062.36,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749369054.457,
-        "end_time": 1749369065.46
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749369086.559,
-        "maneuver_type": "Tack",
-        "duration": 11.098999977111816,
-        "start_time": 1749369078.559,
-        "end_time": 1749369089.658
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749369112.658,
-        "maneuver_type": "Jibe",
-        "duration": 10.900000095367432,
-        "start_time": 1749369104.76,
-        "end_time": 1749369115.66
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749369126.859,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749369118.86,
-        "end_time": 1749369129.86
-      },
-      {
-        "maneuver_index": 16,
-        "maneuver_time": 1749369137.359,
-        "maneuver_type": "Jibe",
-        "duration": 11.099000215530396,
-        "start_time": 1749369129.36,
-        "end_time": 1749369140.459
-      },
-      {
-        "maneuver_index": 17,
-        "maneuver_time": 1749369174.66,
-        "maneuver_type": "buoy",
-        "duration": 10.901999950408936,
-        "start_time": 1749369166.759,
-        "end_time": 1749369177.661
+        "duration": 14.0,
+        "start_time": 1749369130.96,
+        "end_time": 1749369144.96
       }
     ]
   },
@@ -768,123 +192,19 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749369658.76,
-        "maneuver_type": "buoy",
-        "duration": 11.099999904632568,
-        "start_time": 1749369650.76,
-        "end_time": 1749369661.86
+        "maneuver_time": 1749369771.86,
+        "maneuver_type": "Jibe",
+        "duration": 14.000999927520752,
+        "start_time": 1749369764.959,
+        "end_time": 1749369778.96
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749369697.457,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749369689.459,
-        "end_time": 1749369700.459
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749369716.961,
-        "maneuver_type": "Tack",
-        "duration": 10.99400019645691,
-        "start_time": 1749369709.064,
-        "end_time": 1749369720.058
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749369729.076,
-        "maneuver_type": "Tack",
-        "duration": 11.003999948501587,
-        "start_time": 1749369721.16,
-        "end_time": 1749369732.164
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749369744.859,
-        "maneuver_type": "Tack",
-        "duration": 11.100000143051147,
-        "start_time": 1749369736.859,
-        "end_time": 1749369747.959
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749369772.658,
+        "maneuver_time": 1749369932.164,
         "maneuver_type": "Jibe",
-        "duration": 11.005000114440918,
-        "start_time": 1749369764.658,
-        "end_time": 1749369775.663
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749369810.148,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749369802.16,
-        "end_time": 1749369813.16
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749369824.457,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749369816.459,
-        "end_time": 1749369827.459
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749369840.559,
-        "maneuver_type": "Tack",
-        "duration": 11.1010000705719,
-        "start_time": 1749369832.562,
-        "end_time": 1749369843.663
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749369855.561,
-        "maneuver_type": "Tack",
-        "duration": 11.093000173568726,
-        "start_time": 1749369847.564,
-        "end_time": 1749369858.657
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749369881.358,
-        "maneuver_type": "Tack",
-        "duration": 11.1010000705719,
-        "start_time": 1749369873.36,
-        "end_time": 1749369884.461
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749369903.459,
-        "maneuver_type": "Jibe",
-        "duration": 11.096999883651733,
-        "start_time": 1749369895.459,
-        "end_time": 1749369906.556
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749369932.064,
-        "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749369924.16,
-        "end_time": 1749369935.161
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749369951.26,
-        "maneuver_type": "buoy",
-        "duration": 11.099999904632568,
-        "start_time": 1749369943.26,
-        "end_time": 1749369954.36
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749369976.163,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749369968.167,
-        "end_time": 1749369979.265
+        "duration": 13.997999906539917,
+        "start_time": 1749369925.262,
+        "end_time": 1749369939.26
       }
     ]
   },
@@ -895,123 +215,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749370299.365,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749370291.459,
-        "end_time": 1749370302.459
+        "maneuver_time": 1749370408.46,
+        "maneuver_type": "Jibe",
+        "duration": 14.003000020980835,
+        "start_time": 1749370401.556,
+        "end_time": 1749370415.559
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749370336.556,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749370328.556,
-        "end_time": 1749370339.559
+        "maneuver_time": 1749370438.757,
+        "maneuver_type": "Jibe",
+        "duration": 14.101999998092651,
+        "start_time": 1749370431.757,
+        "end_time": 1749370445.859
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749370351.263,
-        "maneuver_type": "Tack",
-        "duration": 11.094000101089478,
-        "start_time": 1749370343.264,
-        "end_time": 1749370354.358
+        "maneuver_time": 1749370554.157,
+        "maneuver_type": "Jibe",
+        "duration": 14.002000093460083,
+        "start_time": 1749370547.26,
+        "end_time": 1749370561.262
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749370365.858,
-        "maneuver_type": "Tack",
-        "duration": 11.001999855041504,
-        "start_time": 1749370357.858,
-        "end_time": 1749370368.86
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749370385.25,
-        "maneuver_type": "Tack",
-        "duration": 11.003999948501587,
-        "start_time": 1749370377.26,
-        "end_time": 1749370388.264
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749370408.46,
+        "maneuver_time": 1749370583.762,
         "maneuver_type": "Jibe",
-        "duration": 11.015000104904175,
-        "start_time": 1749370400.546,
-        "end_time": 1749370411.561
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749370439.956,
-        "maneuver_type": "Jibe",
-        "duration": 11.095999956130981,
-        "start_time": 1749370431.956,
-        "end_time": 1749370443.052
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749370456.657,
-        "maneuver_type": "buoy",
-        "duration": 11.098999977111816,
-        "start_time": 1749370448.657,
-        "end_time": 1749370459.756
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749370471.756,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749370463.756,
-        "end_time": 1749370474.858
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749370489.858,
-        "maneuver_type": "Tack",
-        "duration": 11.098999977111816,
-        "start_time": 1749370481.858,
-        "end_time": 1749370492.957
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749370508.46,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749370500.558,
-        "end_time": 1749370511.556
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749370529.762,
-        "maneuver_type": "Tack",
-        "duration": 10.98799991607666,
-        "start_time": 1749370521.858,
-        "end_time": 1749370532.846
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749370554.157,
-        "maneuver_type": "Jibe",
-        "duration": 11.00600004196167,
-        "start_time": 1749370546.157,
-        "end_time": 1749370557.163
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749370584.759,
-        "maneuver_type": "Jibe",
-        "duration": 10.999000072479248,
+        "duration": 14.0,
         "start_time": 1749370576.859,
-        "end_time": 1749370587.858
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749370599.559,
-        "maneuver_type": "buoy",
-        "duration": 11.003000020980835,
-        "start_time": 1749370591.658,
-        "end_time": 1749370602.661
+        "end_time": 1749370590.859
       }
     ]
   },
@@ -1022,107 +254,27 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749370910.164,
-        "maneuver_type": "Tack",
-        "duration": 11.010999917984009,
-        "start_time": 1749370902.252,
-        "end_time": 1749370913.263
+        "maneuver_time": 1749370988.558,
+        "maneuver_type": "Jibe",
+        "duration": 13.998000144958496,
+        "start_time": 1749370981.563,
+        "end_time": 1749370995.561
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749370925.061,
-        "maneuver_type": "Tack",
-        "duration": 11.009999990463257,
-        "start_time": 1749370917.158,
-        "end_time": 1749370928.168
+        "maneuver_time": 1749371140.558,
+        "maneuver_type": "Jibe",
+        "duration": 13.999000072479248,
+        "start_time": 1749371133.56,
+        "end_time": 1749371147.559
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749370939.36,
-        "maneuver_type": "Tack",
-        "duration": 11.100000143051147,
-        "start_time": 1749370931.36,
-        "end_time": 1749370942.46
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749370956.459,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749370948.562,
-        "end_time": 1749370959.56
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749370989.457,
+        "maneuver_time": 1749371172.848,
         "maneuver_type": "Jibe",
-        "duration": 11.003000020980835,
-        "start_time": 1749370981.457,
-        "end_time": 1749370992.46
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749371024.359,
-        "maneuver_type": "Jibe",
-        "duration": 10.998999834060669,
-        "start_time": 1749371016.361,
-        "end_time": 1749371027.36
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749371035.36,
-        "maneuver_type": "buoy",
-        "duration": 11.097000122070312,
-        "start_time": 1749371027.36,
-        "end_time": 1749371038.457
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749371053.16,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749371045.164,
-        "end_time": 1749371056.163
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749371069.26,
-        "maneuver_type": "Tack",
-        "duration": 10.904000043869019,
-        "start_time": 1749371061.36,
-        "end_time": 1749371072.264
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749371085.759,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371077.858,
-        "end_time": 1749371088.858
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749371110.263,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749371102.263,
-        "end_time": 1749371113.359
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749371140.16,
-        "maneuver_type": "Jibe",
-        "duration": 11.095999956130981,
-        "start_time": 1749371132.164,
-        "end_time": 1749371143.26
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749371185.158,
-        "maneuver_type": "buoy",
-        "duration": 10.996000051498413,
-        "start_time": 1749371177.164,
-        "end_time": 1749371188.16
+        "duration": 13.999000072479248,
+        "start_time": 1749371165.859,
+        "end_time": 1749371179.858
       }
     ]
   },
@@ -1133,123 +285,11 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749371513.358,
-        "maneuver_type": "buoy",
-        "duration": 11.097000122070312,
-        "start_time": 1749371505.36,
-        "end_time": 1749371516.457
-      },
-      {
-        "maneuver_index": 2,
-        "maneuver_time": 1749371549.459,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749371541.558,
-        "end_time": 1749371552.559
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749371563.158,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749371555.161,
-        "end_time": 1749371566.16
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749371577.959,
-        "maneuver_type": "Tack",
-        "duration": 10.993000030517578,
-        "start_time": 1749371570.062,
-        "end_time": 1749371581.055
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749371596.657,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749371588.657,
-        "end_time": 1749371599.658
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749371622.957,
+        "maneuver_time": 1749371622.66,
         "maneuver_type": "Jibe",
-        "duration": 10.994999885559082,
-        "start_time": 1749371615.058,
-        "end_time": 1749371626.053
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749371673.072,
-        "maneuver_type": "buoy",
-        "duration": 10.996999979019165,
-        "start_time": 1749371665.16,
-        "end_time": 1749371676.157
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749371694.26,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749371686.357,
-        "end_time": 1749371697.357
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749371710.157,
-        "maneuver_type": "Tack",
-        "duration": 11.092999935150146,
-        "start_time": 1749371702.164,
-        "end_time": 1749371713.257
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749371725.16,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749371717.164,
-        "end_time": 1749371728.26
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749371742.858,
-        "maneuver_type": "Tack",
-        "duration": 11.001999855041504,
-        "start_time": 1749371734.858,
-        "end_time": 1749371745.86
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749371756.956,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749371748.959,
-        "end_time": 1749371759.96
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749371790.857,
-        "maneuver_type": "Jibe",
-        "duration": 10.902999877929688,
-        "start_time": 1749371782.956,
-        "end_time": 1749371793.859
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749371824.06,
-        "maneuver_type": "Jibe",
-        "duration": 11.09500002861023,
-        "start_time": 1749371816.063,
-        "end_time": 1749371827.158
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749371845.076,
-        "maneuver_type": "buoy",
-        "duration": 10.99399995803833,
-        "start_time": 1749371837.163,
-        "end_time": 1749371848.157
+        "duration": 13.999000072479248,
+        "start_time": 1749371615.757,
+        "end_time": 1749371629.756
       }
     ]
   },
@@ -1260,131 +300,27 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749372191.356,
-        "maneuver_type": "buoy",
-        "duration": 11.098999977111816,
-        "start_time": 1749372183.357,
-        "end_time": 1749372194.456
+        "maneuver_time": 1749372356.657,
+        "maneuver_type": "Jibe",
+        "duration": 14.098999977111816,
+        "start_time": 1749372349.657,
+        "end_time": 1749372363.756
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749372208.457,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749372200.556,
-        "end_time": 1749372211.556
+        "maneuver_time": 1749372518.053,
+        "maneuver_type": "Jibe",
+        "duration": 14.104000091552734,
+        "start_time": 1749372511.053,
+        "end_time": 1749372525.157
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749372258.157,
-        "maneuver_type": "Tack",
-        "duration": 11.102999925613403,
-        "start_time": 1749372250.157,
-        "end_time": 1749372261.26
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749372275.356,
-        "maneuver_type": "Tack",
-        "duration": 10.90399980545044,
-        "start_time": 1749372267.456,
-        "end_time": 1749372278.36
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749372293.956,
-        "maneuver_type": "Tack",
-        "duration": 11.006999969482422,
-        "start_time": 1749372285.956,
-        "end_time": 1749372296.963
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749372315.357,
-        "maneuver_type": "Tack",
-        "duration": 11.102999925613403,
-        "start_time": 1749372307.357,
-        "end_time": 1749372318.46
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749372330.065,
-        "maneuver_type": "buoy",
-        "duration": 10.999000072479248,
-        "start_time": 1749372322.158,
-        "end_time": 1749372333.157
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749372356.052,
+        "maneuver_time": 1749372550.26,
         "maneuver_type": "Jibe",
-        "duration": 10.905999898910522,
-        "start_time": 1749372348.157,
-        "end_time": 1749372359.063
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749372388.857,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749372380.858,
-        "end_time": 1749372391.858
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749372429.262,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749372421.357,
-        "end_time": 1749372432.358
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749372447.26,
-        "maneuver_type": "Tack",
-        "duration": 11.085999965667725,
-        "start_time": 1749372439.26,
-        "end_time": 1749372450.346
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749372462.956,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749372454.956,
-        "end_time": 1749372466.052
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749372490.556,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749372482.657,
-        "end_time": 1749372493.657
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749372518.16,
-        "maneuver_type": "Jibe",
-        "duration": 10.901999950408936,
-        "start_time": 1749372510.259,
-        "end_time": 1749372521.161
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749372550.657,
-        "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749372542.657,
-        "end_time": 1749372553.658
-      },
-      {
-        "maneuver_index": 16,
-        "maneuver_time": 1749372565.357,
-        "maneuver_type": "buoy",
-        "duration": 10.990000009536743,
-        "start_time": 1749372557.456,
-        "end_time": 1749372568.446
+        "duration": 14.001999855041504,
+        "start_time": 1749372543.262,
+        "end_time": 1749372557.264
       }
     ]
   },
@@ -1395,123 +331,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749644537.959,
-        "maneuver_type": "buoy",
-        "duration": 11.11899995803833,
-        "start_time": 1749644529.959,
-        "end_time": 1749644541.078
+        "maneuver_time": 1749644683.756,
+        "maneuver_type": "Jibe",
+        "duration": 14.1010000705719,
+        "start_time": 1749644676.757,
+        "end_time": 1749644690.858
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749644590.66,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749644582.756,
-        "end_time": 1749644593.756
+        "maneuver_time": 1749644714.061,
+        "maneuver_type": "Jibe",
+        "duration": 13.90499997138977,
+        "start_time": 1749644707.16,
+        "end_time": 1749644721.065
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749644614.359,
-        "maneuver_type": "Tack",
-        "duration": 11.01200008392334,
-        "start_time": 1749644606.448,
-        "end_time": 1749644617.46
+        "maneuver_time": 1749644852.446,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749644845.456,
+        "end_time": 1749644859.456
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749644630.456,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749644622.46,
-        "end_time": 1749644633.558
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749644655.658,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749644647.757,
-        "end_time": 1749644658.756
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749644683.858,
+        "maneuver_time": 1749644878.556,
         "maneuver_type": "Jibe",
-        "duration": 11.097000122070312,
-        "start_time": 1749644675.859,
-        "end_time": 1749644686.956
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749644714.36,
-        "maneuver_type": "Jibe",
-        "duration": 11.100000143051147,
-        "start_time": 1749644706.36,
-        "end_time": 1749644717.46
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749644736.561,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749644728.657,
-        "end_time": 1749644739.657
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749644757.257,
-        "maneuver_type": "Tack",
-        "duration": 11.088000059127808,
-        "start_time": 1749644749.257,
-        "end_time": 1749644760.345
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749644779.16,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749644771.26,
-        "end_time": 1749644782.26
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749644791.161,
-        "maneuver_type": "Tack",
-        "duration": 10.994999885559082,
-        "start_time": 1749644783.262,
-        "end_time": 1749644794.257
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749644821.757,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749644813.759,
-        "end_time": 1749644824.857
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749644852.756,
-        "maneuver_type": "Jibe",
-        "duration": 11.089999914169312,
-        "start_time": 1749644844.756,
-        "end_time": 1749644855.846
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749644879.656,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
+        "duration": 13.998999834060669,
         "start_time": 1749644871.657,
-        "end_time": 1749644882.657
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749644904.857,
-        "maneuver_type": "buoy",
-        "duration": 11.097000122070312,
-        "start_time": 1749644896.859,
-        "end_time": 1749644907.956
+        "end_time": 1749644885.656
       }
     ]
   },
@@ -1522,115 +370,19 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749645648.357,
-        "maneuver_type": "buoy",
-        "duration": 11.000999927520752,
-        "start_time": 1749645640.357,
-        "end_time": 1749645651.358
+        "maneuver_time": 1749645810.157,
+        "maneuver_type": "Jibe",
+        "duration": 14.09500002861023,
+        "start_time": 1749645803.164,
+        "end_time": 1749645817.259
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749645676.556,
-        "maneuver_type": "Tack",
-        "duration": 11.002000093460083,
-        "start_time": 1749645668.556,
-        "end_time": 1749645679.558
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749645697.657,
-        "maneuver_type": "Tack",
-        "duration": 11.099999904632568,
-        "start_time": 1749645689.657,
-        "end_time": 1749645700.757
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749645717.857,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749645709.858,
-        "end_time": 1749645720.858
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749645741.956,
-        "maneuver_type": "Tack",
-        "duration": 11.007999897003174,
-        "start_time": 1749645733.956,
-        "end_time": 1749645744.964
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749645773.164,
+        "maneuver_time": 1749645949.257,
         "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749645765.259,
-        "end_time": 1749645776.26
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749645809.556,
-        "maneuver_type": "Jibe",
-        "duration": 11.098999977111816,
-        "start_time": 1749645801.558,
-        "end_time": 1749645812.657
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749645829.959,
-        "maneuver_type": "buoy",
-        "duration": 11.010999917984009,
-        "start_time": 1749645822.049,
-        "end_time": 1749645833.06
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749645846.657,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749645838.756,
-        "end_time": 1749645849.756
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749645876.157,
-        "maneuver_type": "Tack",
-        "duration": 11.099999904632568,
-        "start_time": 1749645868.157,
-        "end_time": 1749645879.257
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749645894.846,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749645886.858,
-        "end_time": 1749645897.857
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749645915.357,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749645907.357,
-        "end_time": 1749645918.358
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749645950.454,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749645942.457,
-        "end_time": 1749645953.457
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749645997.756,
-        "maneuver_type": "buoy",
-        "duration": 10.998000144958496,
-        "start_time": 1749645989.859,
-        "end_time": 1749646000.857
+        "duration": 13.996999979019165,
+        "start_time": 1749645942.262,
+        "end_time": 1749645956.259
       }
     ]
   },
@@ -1641,115 +393,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749646370.858,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749646362.956,
-        "end_time": 1749646373.954
+        "maneuver_time": 1749646463.344,
+        "maneuver_type": "Jibe",
+        "duration": 13.998999834060669,
+        "start_time": 1749646456.357,
+        "end_time": 1749646470.356
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749646391.657,
-        "maneuver_type": "Tack",
-        "duration": 11.089999914169312,
-        "start_time": 1749646383.657,
-        "end_time": 1749646394.747
+        "maneuver_time": 1749646501.156,
+        "maneuver_type": "Jibe",
+        "duration": 14.105000019073486,
+        "start_time": 1749646494.157,
+        "end_time": 1749646508.262
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749646410.956,
-        "maneuver_type": "Tack",
-        "duration": 11.108000040054321,
-        "start_time": 1749646402.957,
-        "end_time": 1749646414.065
+        "maneuver_time": 1749646637.459,
+        "maneuver_type": "Jibe",
+        "duration": 14.003999948501587,
+        "start_time": 1749646630.556,
+        "end_time": 1749646644.56
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749646435.756,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749646427.756,
-        "end_time": 1749646438.858
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749646462.86,
+        "maneuver_time": 1749646673.954,
         "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749646454.954,
-        "end_time": 1749646465.956
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749646500.357,
-        "maneuver_type": "Jibe",
-        "duration": 10.901999950408936,
-        "start_time": 1749646492.456,
-        "end_time": 1749646503.358
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749646519.956,
-        "maneuver_type": "buoy",
-        "duration": 11.102999925613403,
-        "start_time": 1749646511.956,
-        "end_time": 1749646523.059
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749646542.16,
-        "maneuver_type": "Tack",
-        "duration": 11.002000093460083,
-        "start_time": 1749646534.257,
-        "end_time": 1749646545.259
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749646562.556,
-        "maneuver_type": "Tack",
-        "duration": 11.1010000705719,
-        "start_time": 1749646554.556,
-        "end_time": 1749646565.657
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749646578.959,
-        "maneuver_type": "Tack",
-        "duration": 11.103999853134155,
-        "start_time": 1749646570.96,
-        "end_time": 1749646582.064
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749646605.259,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749646597.26,
-        "end_time": 1749646608.358
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749646637.556,
-        "maneuver_type": "Jibe",
-        "duration": 11.1010000705719,
-        "start_time": 1749646629.556,
-        "end_time": 1749646640.657
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749646674.753,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749646666.753,
-        "end_time": 1749646677.755
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749646691.755,
-        "maneuver_type": "buoy",
-        "duration": 11.099999904632568,
-        "start_time": 1749646683.755,
-        "end_time": 1749646694.855
+        "duration": 13.878000020980835,
+        "start_time": 1749646667.078,
+        "end_time": 1749646680.956
       }
     ]
   },
@@ -1760,123 +432,43 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749646918.064,
-        "maneuver_type": "buoy",
-        "duration": 11.081000089645386,
-        "start_time": 1749646910.076,
-        "end_time": 1749646921.157
+        "maneuver_time": 1749647040.063,
+        "maneuver_type": "Jibe",
+        "duration": 14.081000089645386,
+        "start_time": 1749647033.076,
+        "end_time": 1749647047.157
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749646950.96,
+        "maneuver_time": 1749647140.358,
         "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749646943.053,
-        "end_time": 1749646954.056
+        "duration": 14.098000049591064,
+        "start_time": 1749647133.358,
+        "end_time": 1749647147.456
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749646974.163,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646966.26,
-        "end_time": 1749646977.26
+        "maneuver_time": 1749647198.259,
+        "maneuver_type": "Jibe",
+        "duration": 14.097000122070312,
+        "start_time": 1749647191.26,
+        "end_time": 1749647205.357
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749646988.759,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749646980.859,
-        "end_time": 1749646991.86
+        "maneuver_time": 1749647236.06,
+        "maneuver_type": "Jibe",
+        "duration": 14.101999998092651,
+        "start_time": 1749647229.062,
+        "end_time": 1749647243.164
       },
       {
         "maneuver_index": 5,
-        "maneuver_time": 1749647014.158,
-        "maneuver_type": "Tack",
-        "duration": 11.096999883651733,
-        "start_time": 1749647006.163,
-        "end_time": 1749647017.26
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749647041.26,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749647033.26,
-        "end_time": 1749647044.262
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749647076.756,
-        "maneuver_type": "Jibe",
-        "duration": 11.003000020980835,
-        "start_time": 1749647068.757,
-        "end_time": 1749647079.76
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749647087.358,
+        "maneuver_time": 1749647250.558,
         "maneuver_type": "buoy",
-        "duration": 11.002000093460083,
-        "start_time": 1749647079.36,
-        "end_time": 1749647090.362
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749647112.358,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749647104.358,
-        "end_time": 1749647115.46
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749647140.657,
-        "maneuver_type": "Tack",
-        "duration": 10.997999906539917,
-        "start_time": 1749647132.66,
-        "end_time": 1749647143.658
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749647158.157,
-        "maneuver_type": "Tack",
-        "duration": 10.996000051498413,
-        "start_time": 1749647150.164,
-        "end_time": 1749647161.16
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749647172.956,
-        "maneuver_type": "Tack",
-        "duration": 11.092000007629395,
-        "start_time": 1749647164.956,
-        "end_time": 1749647176.048
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749647199.457,
-        "maneuver_type": "Jibe",
-        "duration": 11.104000091552734,
-        "start_time": 1749647191.457,
-        "end_time": 1749647202.561
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749647236.459,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749647228.556,
-        "end_time": 1749647239.558
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749647251.359,
-        "maneuver_type": "buoy",
-        "duration": 10.905999898910522,
-        "start_time": 1749647243.456,
-        "end_time": 1749647254.362
+        "duration": 14.0,
+        "start_time": 1749647243.657,
+        "end_time": 1749647257.657
       }
     ]
   },
@@ -1887,123 +479,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749647505.559,
-        "maneuver_type": "buoy",
-        "duration": 11.094000101089478,
-        "start_time": 1749647497.563,
-        "end_time": 1749647508.657
+        "maneuver_time": 1749647630.16,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749647623.257,
+        "end_time": 1749647637.257
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749647533.457,
-        "maneuver_type": "Tack",
-        "duration": 11.1010000705719,
-        "start_time": 1749647525.457,
-        "end_time": 1749647536.558
+        "maneuver_time": 1749647664.857,
+        "maneuver_type": "Jibe",
+        "duration": 14.097000122070312,
+        "start_time": 1749647657.859,
+        "end_time": 1749647671.956
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749647558.346,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749647550.358,
-        "end_time": 1749647561.359
+        "maneuver_time": 1749647683.756,
+        "maneuver_type": "buoy",
+        "duration": 14.1010000705719,
+        "start_time": 1749647676.757,
+        "end_time": 1749647690.858
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749647575.076,
-        "maneuver_type": "Tack",
-        "duration": 10.996000051498413,
-        "start_time": 1749647567.161,
-        "end_time": 1749647578.157
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749647597.459,
-        "maneuver_type": "Tack",
-        "duration": 10.990000009536743,
-        "start_time": 1749647589.556,
-        "end_time": 1749647600.546
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749647629.556,
+        "maneuver_time": 1749647797.956,
         "maneuver_type": "Jibe",
-        "duration": 11.099999904632568,
-        "start_time": 1749647621.556,
-        "end_time": 1749647632.656
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749647665.46,
-        "maneuver_type": "Jibe",
-        "duration": 10.990000009536743,
-        "start_time": 1749647657.556,
-        "end_time": 1749647668.546
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749647685.051,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749647677.056,
-        "end_time": 1749647688.056
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749647702.948,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749647694.956,
-        "end_time": 1749647705.956
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749647731.358,
-        "maneuver_type": "Tack",
-        "duration": 11.098000049591064,
-        "start_time": 1749647723.358,
-        "end_time": 1749647734.456
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749647750.262,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749647742.358,
-        "end_time": 1749647753.357
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749647770.956,
-        "maneuver_type": "Tack",
-        "duration": 10.88100004196167,
-        "start_time": 1749647763.076,
-        "end_time": 1749647773.957
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749647799.257,
-        "maneuver_type": "Jibe",
-        "duration": 11.095999956130981,
-        "start_time": 1749647791.259,
-        "end_time": 1749647802.355
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749647835.556,
-        "maneuver_type": "Jibe",
-        "duration": 11.1010000705719,
-        "start_time": 1749647827.556,
-        "end_time": 1749647838.657
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749647849.161,
-        "maneuver_type": "buoy",
-        "duration": 10.907000064849854,
-        "start_time": 1749647841.26,
-        "end_time": 1749647852.167
+        "duration": 14.000999927520752,
+        "start_time": 1749647790.956,
+        "end_time": 1749647804.957
       }
     ]
   },
@@ -2014,115 +518,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749644700.457,
-        "maneuver_type": "Tack",
-        "duration": 11.10099983215332,
-        "start_time": 1749644692.459,
-        "end_time": 1749644703.56
+        "maneuver_time": 1749644789.856,
+        "maneuver_type": "Jibe",
+        "duration": 13.997999906539917,
+        "start_time": 1749644782.959,
+        "end_time": 1749644796.957
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749644722.36,
-        "maneuver_type": "Tack",
-        "duration": 11.09600019454956,
-        "start_time": 1749644714.36,
-        "end_time": 1749644725.456
+        "maneuver_time": 1749644821.855,
+        "maneuver_type": "Jibe",
+        "duration": 14.003000020980835,
+        "start_time": 1749644814.956,
+        "end_time": 1749644828.959
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749644738.454,
-        "maneuver_type": "Tack",
-        "duration": 11.102999925613403,
-        "start_time": 1749644730.456,
-        "end_time": 1749644741.559
+        "maneuver_time": 1749644978.558,
+        "maneuver_type": "Jibe",
+        "duration": 14.096999883651733,
+        "start_time": 1749644971.559,
+        "end_time": 1749644985.656
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749644767.655,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749644759.657,
-        "end_time": 1749644770.657
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749644789.076,
+        "maneuver_time": 1749645011.855,
         "maneuver_type": "Jibe",
-        "duration": 11.009999990463257,
-        "start_time": 1749644781.16,
-        "end_time": 1749644792.17
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749644822.96,
-        "maneuver_type": "Jibe",
-        "duration": 11.026000022888184,
-        "start_time": 1749644815.046,
-        "end_time": 1749644826.072
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749644852.757,
-        "maneuver_type": "buoy",
-        "duration": 11.1010000705719,
-        "start_time": 1749644844.757,
-        "end_time": 1749644855.858
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749644871.256,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749644863.359,
-        "end_time": 1749644874.358
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749644890.256,
-        "maneuver_type": "Tack",
-        "duration": 11.103999853134155,
-        "start_time": 1749644882.256,
-        "end_time": 1749644893.36
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749644908.959,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749644900.959,
-        "end_time": 1749644911.96
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749644946.359,
-        "maneuver_type": "Tack",
-        "duration": 10.998999834060669,
-        "start_time": 1749644938.361,
-        "end_time": 1749644949.36
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749644979.654,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749644971.655,
-        "end_time": 1749644982.655
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749645011.757,
-        "maneuver_type": "Jibe",
-        "duration": 10.999000072479248,
-        "start_time": 1749645003.76,
-        "end_time": 1749645014.759
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749645038.048,
-        "maneuver_type": "buoy",
-        "duration": 10.986000061035156,
-        "start_time": 1749645030.072,
-        "end_time": 1749645041.058
+        "duration": 14.092999935150146,
+        "start_time": 1749645004.855,
+        "end_time": 1749645018.948
       }
     ]
   },
@@ -2133,123 +557,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749645388.359,
+        "maneuver_time": 1749645536.161,
         "maneuver_type": "Jibe",
-        "duration": 11.093000173568726,
-        "start_time": 1749645380.36,
-        "end_time": 1749645391.453
+        "duration": 13.911999940872192,
+        "start_time": 1749645529.255,
+        "end_time": 1749645543.167
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749645436.759,
-        "maneuver_type": "Tack",
-        "duration": 11.001000165939331,
-        "start_time": 1749645428.856,
-        "end_time": 1749645439.857
+        "maneuver_time": 1749645564.857,
+        "maneuver_type": "Jibe",
+        "duration": 13.999000072479248,
+        "start_time": 1749645557.96,
+        "end_time": 1749645571.959
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749645452.56,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749645444.56,
-        "end_time": 1749645455.656
+        "maneuver_time": 1749645711.552,
+        "maneuver_type": "Jibe",
+        "duration": 13.904000043869019,
+        "start_time": 1749645704.655,
+        "end_time": 1749645718.559
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749645468.16,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749645460.16,
-        "end_time": 1749645471.256
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749645508.759,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749645500.855,
-        "end_time": 1749645511.856
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749645537.058,
+        "maneuver_time": 1749645746.559,
         "maneuver_type": "Jibe",
-        "duration": 10.997999906539917,
-        "start_time": 1749645529.16,
-        "end_time": 1749645540.158
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749645566.16,
-        "maneuver_type": "Jibe",
-        "duration": 10.907999992370605,
-        "start_time": 1749645558.256,
-        "end_time": 1749645569.164
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749645592.359,
-        "maneuver_type": "buoy",
-        "duration": 11.09600019454956,
-        "start_time": 1749645584.36,
-        "end_time": 1749645595.456
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749645608.757,
-        "maneuver_type": "Tack",
-        "duration": 11.098999977111816,
-        "start_time": 1749645600.759,
-        "end_time": 1749645611.858
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749645628.948,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749645620.959,
-        "end_time": 1749645631.959
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749645647.259,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749645639.358,
-        "end_time": 1749645650.359
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749645674.456,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749645666.456,
-        "end_time": 1749645677.558
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749645710.855,
-        "maneuver_type": "Jibe",
-        "duration": 11.000999927520752,
-        "start_time": 1749645702.855,
-        "end_time": 1749645713.856
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749645747.456,
-        "maneuver_type": "Jibe",
-        "duration": 11.102999925613403,
-        "start_time": 1749645739.457,
-        "end_time": 1749645750.56
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749645766.759,
-        "maneuver_type": "buoy",
-        "duration": 11.085000038146973,
-        "start_time": 1749645758.759,
-        "end_time": 1749645769.844
+        "duration": 13.904000043869019,
+        "start_time": 1749645739.657,
+        "end_time": 1749645753.561
       }
     ]
   },
@@ -2260,115 +596,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749646094.36,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646086.454,
-        "end_time": 1749646097.454
+        "maneuver_time": 1749646198.052,
+        "maneuver_type": "Jibe",
+        "duration": 14.1010000705719,
+        "start_time": 1749646191.059,
+        "end_time": 1749646205.16
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749646113.956,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646105.959,
-        "end_time": 1749646116.959
+        "maneuver_time": 1749646237.957,
+        "maneuver_type": "Jibe",
+        "duration": 13.907000064849854,
+        "start_time": 1749646231.052,
+        "end_time": 1749646244.959
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749646132.454,
-        "maneuver_type": "Tack",
-        "duration": 10.996000051498413,
-        "start_time": 1749646124.56,
-        "end_time": 1749646135.556
+        "maneuver_time": 1749646377.256,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749646370.257,
+        "end_time": 1749646384.257
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749646156.654,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749646148.655,
-        "end_time": 1749646159.757
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749646197.051,
+        "maneuver_time": 1749646416.655,
         "maneuver_type": "Jibe",
-        "duration": 11.00600004196167,
-        "start_time": 1749646189.052,
-        "end_time": 1749646200.058
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749646236.957,
-        "maneuver_type": "Jibe",
-        "duration": 11.007999897003174,
-        "start_time": 1749646229.048,
-        "end_time": 1749646240.056
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749646256.855,
-        "maneuver_type": "buoy",
-        "duration": 11.101999998092651,
-        "start_time": 1749646248.855,
-        "end_time": 1749646259.957
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749646273.76,
-        "maneuver_type": "Tack",
-        "duration": 10.907000064849854,
-        "start_time": 1749646265.856,
-        "end_time": 1749646276.763
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749646293.959,
-        "maneuver_type": "Tack",
-        "duration": 11.08899998664856,
-        "start_time": 1749646285.959,
-        "end_time": 1749646297.048
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749646311.456,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646303.457,
-        "end_time": 1749646314.457
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749646337.757,
-        "maneuver_type": "Tack",
-        "duration": 11.08400011062622,
-        "start_time": 1749646329.76,
-        "end_time": 1749646340.844
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749646378.456,
-        "maneuver_type": "Jibe",
-        "duration": 10.8989999294281,
-        "start_time": 1749646370.558,
-        "end_time": 1749646381.457
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749646417.257,
-        "maneuver_type": "Jibe",
-        "duration": 11.100000143051147,
-        "start_time": 1749646409.257,
-        "end_time": 1749646420.357
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749646435.357,
-        "maneuver_type": "buoy",
-        "duration": 11.000999927520752,
-        "start_time": 1749646427.358,
-        "end_time": 1749646438.359
+        "duration": 14.101999998092651,
+        "start_time": 1749646409.657,
+        "end_time": 1749646423.759
       }
     ]
   },
@@ -2379,99 +635,19 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749646749.657,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749646741.757,
-        "end_time": 1749646752.756
+        "maneuver_time": 1749647022.056,
+        "maneuver_type": "Jibe",
+        "duration": 14.095999956130981,
+        "start_time": 1749647015.061,
+        "end_time": 1749647029.157
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749646767.453,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749646759.453,
-        "end_time": 1749646770.456
-      },
-      {
-        "maneuver_index": 3,
-        "maneuver_time": 1749646786.956,
-        "maneuver_type": "Tack",
-        "duration": 11.089999914169312,
-        "start_time": 1749646778.956,
-        "end_time": 1749646790.046
-      },
-      {
-        "maneuver_index": 4,
-        "maneuver_time": 1749646814.454,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646806.456,
-        "end_time": 1749646817.456
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749646911.357,
-        "maneuver_type": "buoy",
-        "duration": 11.0,
-        "start_time": 1749646903.453,
-        "end_time": 1749646914.453
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749646924.062,
-        "maneuver_type": "Tack",
-        "duration": 11.088000059127808,
-        "start_time": 1749646916.072,
-        "end_time": 1749646927.16
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749646942.453,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749646934.454,
-        "end_time": 1749646945.454
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749646960.756,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749646952.759,
-        "end_time": 1749646963.76
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749646993.357,
-        "maneuver_type": "Tack",
-        "duration": 11.09500002861023,
-        "start_time": 1749646985.359,
-        "end_time": 1749646996.454
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749647021.546,
+        "maneuver_time": 1749647050.157,
         "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749647013.556,
-        "end_time": 1749647024.556
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749647050.956,
-        "maneuver_type": "Jibe",
-        "duration": 11.102999925613403,
-        "start_time": 1749647042.956,
-        "end_time": 1749647054.059
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749647073.956,
-        "maneuver_type": "buoy",
-        "duration": 10.884000062942505,
-        "start_time": 1749647066.073,
-        "end_time": 1749647076.957
+        "duration": 14.101999998092651,
+        "start_time": 1749647043.157,
+        "end_time": 1749647057.259
       }
     ]
   },
@@ -2482,115 +658,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749647395.357,
-        "maneuver_type": "Tack",
-        "duration": 11.08400011062622,
-        "start_time": 1749647387.36,
-        "end_time": 1749647398.444
+        "maneuver_time": 1749647494.452,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749647487.453,
+        "end_time": 1749647501.453
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749647413.656,
-        "maneuver_type": "Tack",
-        "duration": 11.101999998092651,
-        "start_time": 1749647405.657,
-        "end_time": 1749647416.759
+        "maneuver_time": 1749647529.654,
+        "maneuver_type": "Jibe",
+        "duration": 14.001999855041504,
+        "start_time": 1749647522.654,
+        "end_time": 1749647536.656
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749647435.163,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749647427.256,
-        "end_time": 1749647438.256
+        "maneuver_time": 1749647668.556,
+        "maneuver_type": "Jibe",
+        "duration": 13.998000144958496,
+        "start_time": 1749647661.656,
+        "end_time": 1749647675.654
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749647463.049,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749647455.053,
-        "end_time": 1749647466.056
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749647495.157,
+        "maneuver_time": 1749647705.152,
         "maneuver_type": "Jibe",
-        "duration": 11.095999956130981,
-        "start_time": 1749647487.157,
-        "end_time": 1749647498.253
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749647530.654,
-        "maneuver_type": "Jibe",
-        "duration": 11.001999855041504,
-        "start_time": 1749647522.654,
-        "end_time": 1749647533.656
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749647548.257,
-        "maneuver_type": "buoy",
-        "duration": 11.003000020980835,
-        "start_time": 1749647540.358,
-        "end_time": 1749647551.361
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749647561.757,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749647553.759,
-        "end_time": 1749647564.855
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749647579.453,
-        "maneuver_type": "Tack",
-        "duration": 11.003000020980835,
-        "start_time": 1749647571.453,
-        "end_time": 1749647582.456
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749647599.148,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749647591.161,
-        "end_time": 1749647602.16
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749647629.072,
-        "maneuver_type": "Tack",
-        "duration": 10.999000072479248,
-        "start_time": 1749647621.161,
-        "end_time": 1749647632.16
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749647669.16,
-        "maneuver_type": "Jibe",
-        "duration": 11.003000020980835,
-        "start_time": 1749647661.16,
-        "end_time": 1749647672.163
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749647706.36,
-        "maneuver_type": "Jibe",
-        "duration": 11.003000020980835,
-        "start_time": 1749647698.453,
-        "end_time": 1749647709.456
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749647726.16,
-        "maneuver_type": "buoy",
-        "duration": 11.000999927520752,
-        "start_time": 1749647718.16,
-        "end_time": 1749647729.161
+        "duration": 14.006999969482422,
+        "start_time": 1749647698.157,
+        "end_time": 1749647712.164
       }
     ]
   },
@@ -2601,123 +697,35 @@
     "intervals": [
       {
         "maneuver_index": 1,
-        "maneuver_time": 1749648073.757,
-        "maneuver_type": "buoy",
-        "duration": 11.097000122070312,
-        "start_time": 1749648065.757,
-        "end_time": 1749648076.854
+        "maneuver_time": 1749648222.359,
+        "maneuver_type": "Jibe",
+        "duration": 14.0,
+        "start_time": 1749648215.36,
+        "end_time": 1749648229.36
       },
       {
         "maneuver_index": 2,
-        "maneuver_time": 1749648126.856,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749648118.956,
-        "end_time": 1749648129.956
+        "maneuver_time": 1749648258.358,
+        "maneuver_type": "Jibe",
+        "duration": 14.001000165939331,
+        "start_time": 1749648251.36,
+        "end_time": 1749648265.361
       },
       {
         "maneuver_index": 3,
-        "maneuver_time": 1749648144.457,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749648136.556,
-        "end_time": 1749648147.556
+        "maneuver_time": 1749648399.454,
+        "maneuver_type": "Jibe",
+        "duration": 14.101999998092651,
+        "start_time": 1749648392.454,
+        "end_time": 1749648406.556
       },
       {
         "maneuver_index": 4,
-        "maneuver_time": 1749648159.158,
-        "maneuver_type": "Tack",
-        "duration": 11.095999956130981,
-        "start_time": 1749648151.16,
-        "end_time": 1749648162.256
-      },
-      {
-        "maneuver_index": 5,
-        "maneuver_time": 1749648185.76,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749648177.855,
-        "end_time": 1749648188.856
-      },
-      {
-        "maneuver_index": 6,
-        "maneuver_time": 1749648221.757,
+        "maneuver_time": 1749648434.96,
         "maneuver_type": "Jibe",
-        "duration": 11.095999956130981,
-        "start_time": 1749648213.76,
-        "end_time": 1749648224.856
-      },
-      {
-        "maneuver_index": 7,
-        "maneuver_time": 1749648258.957,
-        "maneuver_type": "Jibe",
-        "duration": 11.113999843597412,
-        "start_time": 1749648250.959,
-        "end_time": 1749648262.073
-      },
-      {
-        "maneuver_index": 8,
-        "maneuver_time": 1749648276.644,
-        "maneuver_type": "buoy",
-        "duration": 10.999000072479248,
-        "start_time": 1749648268.656,
-        "end_time": 1749648279.655
-      },
-      {
-        "maneuver_index": 9,
-        "maneuver_time": 1749648289.947,
-        "maneuver_type": "Tack",
-        "duration": 11.0,
-        "start_time": 1749648281.957,
-        "end_time": 1749648292.957
-      },
-      {
-        "maneuver_index": 10,
-        "maneuver_time": 1749648308.556,
-        "maneuver_type": "Tack",
-        "duration": 11.09500002861023,
-        "start_time": 1749648300.56,
-        "end_time": 1749648311.655
-      },
-      {
-        "maneuver_index": 11,
-        "maneuver_time": 1749648325.855,
-        "maneuver_type": "Tack",
-        "duration": 11.1010000705719,
-        "start_time": 1749648317.855,
-        "end_time": 1749648328.956
-      },
-      {
-        "maneuver_index": 12,
-        "maneuver_time": 1749648349.756,
-        "maneuver_type": "Tack",
-        "duration": 11.000999927520752,
-        "start_time": 1749648341.756,
-        "end_time": 1749648352.757
-      },
-      {
-        "maneuver_index": 13,
-        "maneuver_time": 1749648398.656,
-        "maneuver_type": "Jibe",
-        "duration": 11.0,
-        "start_time": 1749648390.756,
-        "end_time": 1749648401.756
-      },
-      {
-        "maneuver_index": 14,
-        "maneuver_time": 1749648436.157,
-        "maneuver_type": "Jibe",
-        "duration": 11.002000093460083,
-        "start_time": 1749648428.158,
-        "end_time": 1749648439.16
-      },
-      {
-        "maneuver_index": 15,
-        "maneuver_time": 1749648453.756,
-        "maneuver_type": "buoy",
-        "duration": 11.098000049591064,
-        "start_time": 1749648445.757,
-        "end_time": 1749648456.855
+        "duration": 13.98799991607666,
+        "start_time": 1749648428.061,
+        "end_time": 1749648442.049
       }
     ]
   }
