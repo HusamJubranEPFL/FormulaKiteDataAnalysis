@@ -573,11 +573,16 @@ def detect_maneuvers_from_sog_minima(
     minima_idx, _ = find_peaks(-sog, prominence=prominence)
     maxima_idx, _ = find_peaks(sog, prominence=prominence)
 
-    # Merge closely spaced minima
+    # Merge minima with entry SOG condition
     merged_minima = []
     for min_idx in minima_idx:
-        if sog[min_idx] < min_sog_entry_threshold:
-            continue  # Skip minima below threshold
+        min_time = time[min_idx]
+        entry_time = max(min_time - pre_window, time[0])
+        entry_idx = np.searchsorted(time, entry_time, side='left')
+
+        entry_sog = sog[entry_idx]
+        if entry_sog < min_sog_entry_threshold:
+            continue  # Skip if entry speed is too low
 
         if not merged_minima:
             merged_minima.append(min_idx)
