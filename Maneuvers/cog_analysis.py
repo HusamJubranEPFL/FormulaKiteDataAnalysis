@@ -350,62 +350,7 @@ def load_boat_data(boat1_path: str, boat2_path: str) -> tuple[pd.DataFrame, pd.D
     boat2_name = extract_boat_name(boat2_path)
 
     return boat1_df, boat2_df, boat1_name, boat2_name
-"""
-def analyze_session(boat1_path: str, boat2_path: str = None) -> list[dict]:
-    boat1_df = pd.read_csv(boat1_path)
-    boat1_name = extract_boat_name(boat1_path)
 
-    if boat2_path is None:
-        # --- Mono-bateau ---
-        # Étapes : COG → SOG → Fusion logique
-        boat1_changes = detect_COG_changes_rolling_mean(boat1_df)
-        maneuvers = detect_maneuvers_from_sog_minima(boat1_df)
-
-        # Identifier les manœuvres pertinentes (SOG + COG)
-        valid_maneuver_map, summary = get_valid_maneuvers_with_cog(maneuvers, boat1_changes)
-
-        # Plot avec toutes les manœuvres SOG, mais seules les valides ont un numéro
-        plot_trajectories(
-            boat1_df,
-            boat1_changes,
-            boat1_name=boat1_name,
-            boat1_sog_maneuvers=maneuvers  # on passe tout
-        )
-
-        if summary:
-            # Affichage SOG zoomé sur les segments valides
-            plot_sog_with_intervals(boat1_df, None, [m for m in maneuvers if m['maneuver_time'] in valid_maneuver_map], boat1_name)
-            return summary
-        else:
-            print("⚠️ Aucune manœuvre SOG détectée proche d’un changement de COG.")
-            return []
-
-    else:
-        # --- Deux bateaux : logique inchangée ---
-        boat2_df = pd.read_csv(boat2_path)
-        boat2_name = extract_boat_name(boat2_path)
-
-        boat1_changes = detect_COG_changes_rolling_mean(boat1_df)
-        boat2_changes = detect_COG_changes_rolling_mean(boat2_df)
-
-        plot_trajectories(
-            boat1_df, boat1_changes,
-            boat2_df=boat2_df, boat2_changes=boat2_changes,
-            boat1_name=boat1_name, boat2_name=boat2_name
-        )
-
-        intervals = compute_longest_intervals(
-            boat1_changes, boat2_changes,
-            boat1_df, boat2_df,
-            top_n=2,
-            boat1_name=boat1_name,
-            boat2_name=boat2_name
-        )
-
-        add_avg_twa_to_intervals(intervals, boat1_df, boat2_df)
-        plot_sog_with_intervals(boat1_df, boat2_df, intervals, boat1_name, boat2_name)
-
-        return intervals"""
 
 def analyze_session(
     boat1_path: str, boat2_path: str = None, 
@@ -612,11 +557,14 @@ def detect_maneuvers_from_sog_minima(
         if duration < min_duration:
             continue
 
-        twa_start = abs(twa[i1])
+        # twa_start = abs(twa[i1])
         twa_min = abs(twa[min_idx])
-        twa_end = abs(twa[i2])
+        # twa_end = abs(twa[i2])
         cog_start = cog[i1]
         cog_end = cog[i2]
+        window_size = 20
+        twa_start = np.mean(np.abs(twa[i1:i1 + window_size])) if i1 + window_size < len(twa) else np.mean(np.abs(twa[i1:]))
+        twa_end = np.mean(np.abs(twa[max(i2 - window_size, 0):i2])) if i2 - window_size >= 0 else np.mean(np.abs(twa[:i2]))
 
         # Calcul de la différence angulaire COG (avec gestion du wrap-around)
         cog_delta = abs(cog_end - cog_start)
@@ -626,14 +574,15 @@ def detect_maneuvers_from_sog_minima(
             continue  # Pas de vraie inversion de cap
 
         # Classification de la manœuvre
-        if (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
-            mtype = "buoy"
-        elif twa_start > twa_threshold and twa_end > twa_threshold:
+        if twa_start > twa_threshold and twa_end > twa_threshold:
             mtype = "Jibe"
         elif twa_start < twa_threshold and twa_end < twa_threshold:
             mtype = "Tack"
+        elif (twa_start < twa_threshold and twa_end > twa_threshold) or (twa_start > twa_threshold and twa_end < twa_threshold):
+            mtype = "Buoy"
         else:
             mtype = "unknown"
+
 
         maneuvers.append({
             'start_time': start_time,
