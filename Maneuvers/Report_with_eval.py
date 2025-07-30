@@ -312,4 +312,5 @@ def plot(df, rider_name, maneuver_type_filter=None):
 
     # Display final evaluation table
     print(f"\n=== Evaluation Summary for {rider_name} doing '{maneuver_type_filter or 'all types'}' maneuvers — Sorted by Eval 1 (Ratio Path/AB) ===")
+    pd.set_option('display.max_rows', None)
     display(eval_df_sorted)  # For Jupyter. Use print(eval_df_sorted) otherwise
