@@ -11,7 +11,7 @@ The project focuses on two main aspects of performance:
 
 For both Maneuvers and Straight lines, the data structure always includes:  
 - **CSV files** (`Gian.csv`, `Karl.csv`, `SenseBoard.csv`) containing Vakaros measurements for each run  
-- **SenseBoard logs** (`SenseBoard_log_modified_… .xlsx`) with raw sensor data (especially load cells) covering the entire session  
+- **SenseBoard logs** (`SenseBoard_log_modified_… .xlsx`) with data of the senseboard (especially load cells) covering the entire session (by day and not by run) 
 - **Interview files** (`Interview … .xlsx`) providing complementary information such as total weight, equipment setup, and other contextual details  
 
 ```
