@@ -8,7 +8,6 @@ The project focuses on two main aspects of performance:
 ---
 
 ## Repository Structure  
-# FormulaKiteDataAnalysis — Repository Structure (synthetic view)
 
 > Purpose: provide a clear overview, without unnecessary repetition, to understand the general architecture and data flow.
 
