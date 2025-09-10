@@ -9,9 +9,9 @@ The project focuses on two main aspects of performance:
 
 ## Repository Structure  
 
-For both **Maneuvers** and **Straight lines**, the data structure always includes:  
+For both Maneuvers and Straight lines, the data structure always includes:  
 - **CSV files** (`Gian.csv`, `Karl.csv`, `SenseBoard.csv`) containing Vakaros measurements for each run  
-- **SenseBoard logs** (`senseboard_log/`) with raw sensor data (especially load cells) covering the entire session  
+- **SenseBoard logs** (`SenseBoard_log_modified_… .xlsx`) with raw sensor data (especially load cells) covering the entire session  
 - **Interview files** (`Interview … .xlsx`) providing complementary information such as total weight, equipment setup, and other contextual details  
 
 ```
