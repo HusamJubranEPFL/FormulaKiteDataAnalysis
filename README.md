@@ -5,34 +5,51 @@ The project focuses on two main aspects of performance:
 - Straight runs (upwind & downwind speed testing)  
 - Maneuvers (tacks & gybes)  
 
-The work combines raw field data, systematic filtering, and advanced statistical modeling to provide insights into kitefoil performance.  
-
 ---
 
 ## Repository Structure  
 
-- `Data_Sailnjord/`  
-  - `Maneuvers/` — maneuver runs organized by date (`08_06`, `11_06`), athlete (`Gian`, `Karl`), and run (`Run1…`).  
-    Contains `SenseBoard.csv` files per run, plus equipment interviews and SenseBoard logs.  
-  - `Straight_lines/` — straight-line runs (`06_06` to `10_06`) with the same structure (athletes, runs, SenseBoard, equipment interviews, and logs).  
-
-- `Maneuvers/`  
-  Analysis code & notebooks for maneuver studies: `MainCOG.ipynb`, `Report_*_Tack/Jibe.ipynb`, `cog_analysis.py`, `report_fct.py`, `runner.ipynb`.  
-  Includes consolidated datasets (`all_data.csv`, `all_data_enriched.csv`, `summary.json`).  
-  Subfolders: `old/` (previous versions), `__pycache__/` (ignore).  
-
-- `Straight Run/`  
-  Analysis code & notebooks for straight runs: `analysis.ipynb/.py`, `MainReport.ipynb`, `cog_analysis.py`, `report_fct.py`, statistical tests (`mast_ttest.ipynb`, `weight_ttest.ipynb`).  
-  Includes consolidated datasets (`all_data.csv`, `all_data_enriched.csv`, `summary.json`, `summary_enriched.json`).  
-  Subfolders: `archives/` (historic reports & notebooks), `__pycache__/` (ignore).  
-
-- `Test Kite Port Camargue/`  
-  Pre-Python processed materials from the testing campaign (documentation, logs, and intermediate files prepared before the Python analysis began).  
-
-- `__pycache__/`  
-  Auto-generated Python cache files (not relevant for analysis).  
-
----
+```text
+FormulaKiteDataAnalysis
+│   README.md
+│   TREE.md
+│   __pycache__/                 # auto-generated cache files (ignore)
+│
+├── Data_Sailnjord/              # processed datasets ready for Python analysis
+│   ├── Maneuvers/               # maneuver runs
+│   │   ├── 08_06/               # date
+│   │   │   ├── Gian/Run*/       # athlete + runs (SenseBoard.csv, GPS)
+│   │   │   ├── Karl/Run*/       # athlete + runs
+│   │   │   ├── Interview and equipment/  # equipment metadata (.xlsx)
+│   │   │   └── senseboard_log/           # SenseBoard logs
+│   │   └── 11_06/ (same structure)
+│   │
+│   └── Straight_lines/          # straight runs
+│       ├── 06_06/               # date
+│       │   ├── Run*/            # runs (Gian, Karl, SenseBoard)
+│       │   ├── Interview and equipment/
+│       │   └── senseboard_log/
+│       ├── 07_06/
+│       ├── 09_06/
+│       └── 10_06/
+│
+├── Maneuvers/                   # analysis of maneuvers
+│   ├── *.ipynb / *.py           # analysis notebooks & scripts
+│   ├── all_data*.csv            # consolidated datasets
+│   ├── summary.json
+│   ├── old/                     # previous versions
+│   └── __pycache__/             # auto-generated (ignore)
+│
+├── Straight Run/                # analysis of straight runs
+│   ├── *.ipynb / *.py           # analysis notebooks & scripts
+│   ├── all_data*.csv            # consolidated datasets
+│   ├── summary*.json
+│   ├── archives/                # historic reports & notebooks
+│   └── __pycache__/             # auto-generated (ignore)
+│
+└── Test Kite Port Camargue/     # pre-Python processed materials
+    ├── Equipment files, logs, protocols
+    └── Raw data/                # raw campaign datasets (SenseBoard, Vakaros, Wind/Marks)
 
 ## Usage  
 
