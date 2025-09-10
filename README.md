@@ -9,31 +9,32 @@ The project focuses on two main aspects of performance:
 
 ## Repository Structure  
 
-> Purpose: provide a clear overview, without unnecessary repetition, to understand the general architecture and data flow.
+For both **Maneuvers** and **Straight lines**, the data structure always includes:  
+- **CSV files** (`Gian.csv`, `Karl.csv`, `SenseBoard.csv`) containing Vakaros measurements for each run  
+- **SenseBoard logs** (`senseboard_log/`) with raw sensor data (especially load cells) covering the entire session  
+- **Interview files** (`Interview … .xlsx`) providing complementary information such as total weight, equipment setup, and other contextual details  
 
 ```
 FormulaKiteDataAnalysis/
 ├── README.md
-├── TREE.md  ← (this document)
-│
 ├── Data_Sailnjord/              # processed datasets ready for Python analysis
 │   ├── Maneuvers/
 │   │   ├── 08_06/
 │   │   │   ├── Gian/ ── 08_06_Run{1..5}/ (SenseBoard.csv)
 │   │   │   ├── Karl/ ── 08_06_Run{1..6}/ (Karl Maeder.csv)
 │   │   │   ├── senseboard_log/ (SenseBoard_log_modified_250608.xlsx)
-│   │   │   └── Interview and equipment/ (Interview *.xlsx)
+│   │   │   └── Interview and equipment/ (Interview Karl 250608.xlsx | Interview SenseBoard 250608.xlsx)
 │   │   └── 11_06/
 │   │       ├── Gian/ ── 11_06_Run{1..5}/ (Gian Stragiotti.csv | SenseBoard.csv)
 │   │       ├── Karl/ ── 11_06_Run{1..6}/ (Karl Maeder.csv)
-│   │       ├── senseboard_log/ (…250611…)
-│   │       └── Interview and equipment/ (…250611…)
+│   │       ├── senseboard_log/ (…250611….xlsx)
+│   │       └── Interview and equipment/ (…250611….xlsx)
 │   │
 │   └── Straight_lines/
-│       ├── 06_06/ ── 06_06_Run{1..8}/ (Gian|Karl|SenseBoard.csv) + interviews/logs
-│       ├── 07_06/ ── 07_06_Run{1..10}/ (Gian|Karl|SenseBoard.csv) + interviews/logs
-│       ├── 09_06/ ── 09_06_Run{1..11}/ (Karl|SenseBoard.csv) + interviews/logs
-│       └── 10_06/ ── 10_06_Run{1..10}/ (Gian|Karl|SenseBoard.csv) + interviews/logs
+│       ├── 06_06/ ── Interview and equipment + senseboard_log + 06_06_Run{1..8}/ (Gian|Karl|SenseBoard.csv)
+│       ├── 07_06/ ── Interview and equipment + senseboard_log + 07_06_Run{1..10}/ (Gian|Karl|SenseBoard.csv)
+│       ├── 09_06/ ── Interview and equipment + senseboard_log + 09_06_Run{1..11}/ (Karl|SenseBoard.csv)
+│       └── 10_06/ ── Interview and equipment + senseboard_log + 10_06_Run{1..10}/ (Gian|Karl|SenseBoard.csv)
 │
 ├── Maneuvers/
 │   ├── analysis notebooks & scripts (addsenseboarddata.ipynb, MainCOG.ipynb,
