@@ -51,49 +51,6 @@ def compute_anova(df, target="SOG", max_null_ratio=0.2):
     except Exception as e:
         print(f"\nError in ANOVA computation: {str(e)}")
         return pd.DataFrame()
-    
-"""def linear_regression(df, target="SOG", degree=1, top_coefs=30, max_null_ratio=0.2):
-    df_copy = df.copy()
-    cols = df_copy.columns.drop(target)
-    # Model setup
-    X = df[cols]
-    y = df[target]
-    
-    poly = PolynomialFeatures(degree=degree, include_bias=False)
-    X_poly = poly.fit_transform(X)
-    feature_names = poly.get_feature_names_out(cols)
-    
-    # Modeling
-    model = make_pipeline(
-        StandardScaler(),
-        LinearRegression()
-    )
-    
-    model.fit(X_poly, y)
-    y_pred = model.predict(X_poly)
-    
-    # Performance
-    print(f"\nModel performance:")
-    print(f"R²: {r2_score(y, y_pred):.3f}")
-    print(f"Used features: {len(cols)}")
-    print(f"Polynomial terms generated: {len(feature_names)}")
-    
-    # Coefficients
-    coefs = model.named_steps['linearregression'].coef_
-    intercept = model.named_steps['linearregression'].intercept_
-    
-    coef_df = pd.DataFrame({
-        'feature': feature_names,
-        'coefficient': coefs
-    }).sort_values('coefficient', key=abs, ascending=False)
-    
-    # Formula
-    print("\nTop terms in formula:")
-    top_terms = coef_df.head(10)  # Show top 10 terms
-    for _, row in top_terms.iterrows():
-        print(f"{row['coefficient']:.3f} * {row['feature']}")
-    
-    return coef_df.head(top_coefs)"""
 
 from sklearn.linear_model import LinearRegression
 import pandas as pd
